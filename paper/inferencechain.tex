@@ -1,0 +1,73 @@
+% ============================================================
+% Figure: Conceptual inference chain for station-based LD-PdM
+% ============================================================
+\begin{tikzpicture}[
+    font=\small,
+    node distance=0.42cm,
+    >={Latex[length=2mm]},
+    box/.style={
+        draw,
+        rounded corners=2pt,
+        align=center,
+        minimum width=0.86\linewidth,
+        minimum height=0.95cm,
+        inner sep=4pt
+    },
+    midbox/.style={
+        draw,
+        rounded corners=2pt,
+        align=center,
+        minimum width=0.7\linewidth,
+        minimum height=0.82cm,
+        inner sep=3pt
+    },
+    note/.style={
+        font=\footnotesize,
+        align=center
+    }
+]
+
+\node[box] (context) {%
+\textbf{Station context and available data}\\
+timetable, passenger counts, ticketing data,\\
+zone characteristics, maintenance records
+};
+
+\node[midbox, below=of context] (proxy) {%
+\textbf{Proxy evidence layer}\\
+traffic intensity, inferred usage, contextual burden indicators
+};
+
+\node[midbox, below=of proxy] (load) {%
+\textbf{Latent operational quantities}\\
+usage intensity, cumulative load, stress concentration
+};
+
+\node[midbox, below=of load] (risk) {%
+\textbf{Latent maintenance-relevant state}\\
+degradation pressure, exposure, maintenance risk
+};
+
+\node[box, below=of risk] (decision) {%
+\textbf{Decision-oriented outputs}\\
+inspection priority, hotspot identification, maintenance attention classes
+};
+
+\draw[->, thick] (context) -- (proxy);
+\draw[->, thick] (proxy) -- (load);
+\draw[->, thick] (load) -- (risk);
+\draw[->, thick] (risk) -- (decision);
+
+\node[note, left=0.2cm of load.west, anchor=east] {%
+prior knowledge\\
+and assumptions
+};
+\draw[->, dashed] ([xshift=-0.02cm]load.west) -- ++(-0.55,0);
+
+\node[note, right=0.2cm of risk.east, anchor=west] {%
+uncertainty kept\\
+explicit
+};
+\draw[->, dashed] ([xshift=0.02cm]risk.east) -- ++(0.55,0);
+
+\end{tikzpicture}

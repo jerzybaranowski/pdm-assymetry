@@ -1,0 +1,60 @@
+% ============================================================
+% Figure: Illustrative prioritisation output
+% ============================================================
+\begin{tikzpicture}[
+    x=0.9cm,
+    y=0.78cm,
+    font=\small,
+    >=Latex
+]
+
+% Axes
+\draw[->, thick] (0,0) -- (0,8.2) node[above] {Expected relevance};
+\draw[->, thick] (0,0) -- (6.9,0) node[right] {Uncertainty};
+
+% Threshold guides
+\draw[dashed] (2.3,0) -- (2.3,8);
+\draw[dashed] (4.6,0) -- (4.6,8);
+\draw[dashed] (0,2.6) -- (6.6,2.6);
+\draw[dashed] (0,5.3) -- (6.6,5.3);
+
+% Region labels
+\node[font=\scriptsize, align=center] at (1.15,7.9) {routine\\ planning};
+\node[font=\scriptsize, align=center] at (3.45,7.9) {elevated\\ attention};
+\node[font=\scriptsize, align=center] at (5.55,7.9) {inspect /\\ clarify};
+\node[font=\scriptsize, align=center] at (1.15,1.2) {low priority};
+
+% Points
+\node[circle, draw, fill=white, inner sep=1.8pt] at (1.3,6.0) {};
+\node[anchor=east, font=\scriptsize] at (1.15,6.0) {Z1};
+
+\node[circle, draw, fill=white, inner sep=1.8pt] at (3.0,6.3) {};
+\node[anchor=south, font=\scriptsize] at (3.0,6.45) {Z2};
+
+\node[circle, draw, fill=white, inner sep=1.8pt] at (5.2,5.9) {};
+\node[anchor=west, font=\scriptsize] at (5.35,5.9) {Z3};
+
+\node[rectangle, draw, fill=white, minimum width=0.16cm, minimum height=0.16cm] at (1.7,4.2) {};
+\node[anchor=west, font=\scriptsize] at (1.9,4.2) {E1};
+
+\node[rectangle, draw, fill=white, minimum width=0.16cm, minimum height=0.16cm] at (3.8,4.6) {};
+\node[anchor=west, font=\scriptsize] at (4.0,4.6) {E2};
+
+\node[rectangle, draw, fill=white, minimum width=0.16cm, minimum height=0.16cm] at (5.3,4.0) {};
+\node[anchor=west, font=\scriptsize] at (5.5,4.0) {E3};
+
+\node[diamond, draw, fill=white, aspect=1.2, inner sep=1.3pt] at (1.5,1.7) {};
+\node[anchor=west, font=\scriptsize] at (1.7,1.7) {D1};
+
+\node[diamond, draw, fill=white, aspect=1.2, inner sep=1.3pt] at (2.9,2.0) {};
+\node[anchor=west, font=\scriptsize] at (3.1,2.0) {D2};
+
+\node[diamond, draw, fill=white, aspect=1.2, inner sep=1.3pt] at (4.9,1.5) {};
+\node[anchor=west, font=\scriptsize] at (5.1,1.5) {D3};
+
+% Callout
+\draw[rounded corners=2pt] (6.3,7.25) rectangle (8.45,7.95);
+\node[font=\scriptsize, align=center] at (7.38,7.6) {high relevance\\ high uncertainty};
+\draw[->] (6.3,7.6) -- (5.2,6.05);
+
+\end{tikzpicture}

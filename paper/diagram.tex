@@ -1,0 +1,104 @@
+\begin{tikzpicture}[
+  font=\small,
+  node distance=8mm and 12mm,
+  box/.style={
+    rectangle, rounded corners=2pt,
+    draw, very thick,
+    align=left,
+    inner xsep=6pt, inner ysep=5pt,
+    text width=3.5cm
+  },
+  title/.style={font=\bfseries, align=left, text width=5.3cm},
+  midbox/.style={
+    rectangle, rounded corners=2pt,
+    draw, very thick,
+    align=left,
+    inner xsep=7pt, inner ysep=6pt,
+    text width=3.5cm
+  },
+  note/.style={font=\footnotesize\itshape, inner sep=1pt},
+  arrIn/.style={-Latex, thick, dashed},
+  arrOut/.style={-Latex, thick, dotted},
+  gapline/.style={line width=2.2pt, draw=gray!65}
+]
+
+
+
+% ------------------------
+% LEFT COLUMN (latent)
+% ------------------------
+\node[title] (Ltitle) {Decision-relevant (latent) quantities};
+
+\node[box, below=3mm of Ltitle] (L1) {\textbf{Degradation state}\\ \textit{(latent / unobservable)}};
+\node[box, below=of L1] (L2) {\textbf{Failure risk / probability}\\ \textit{(decision target)}};
+\node[box, below=of L2] (L3) {\textbf{Load--degradation relationship}\\ \textit{(usage $\rightarrow$ wear)}};
+\node[box, below=of L3] (L4) {\textbf{Remaining useful life (RUL)}\\ \textit{(conceptual, not directly measured)}};
+
+% ------------------------
+% Information gap (structural asymmetry)
+% ------------------------
+\coordinate (gapX) at ($(L1.east)+(14mm,0)$);
+
+\draw[gapline]
+  ($(gapX |- Ltitle.north)+(0,2mm)$) --
+  ($(gapX |- L4.south)+(0,-2mm)$);
+
+\node[note, rotate=90, text=gray!70]
+  at ($(gapX)+(3mm,10mm )$) {information gap};
+
+
+% ------------------------
+% RIGHT COLUMN (observable)
+% ------------------------
+\node[title, right=72mm of Ltitle] (Rtitle) {Available and observable\\information};
+
+\node[box, below=3mm of Rtitle] (R1) {\textbf{Proxy usage indicators}\\ \textit{(traffic, schedules, tickets, etc.)}};
+\node[box, below=of R1] (R2) {\textbf{Environmental / context variables}\\ \textit{(location, time, season, etc.)}};
+\node[box, below=of R2] (R3) {\textbf{Maintenance \& service records}\\ \textit{(delayed, inconsistent, qualitative)}};
+\node[box, below=of R3] (R4) {\textbf{Failure events}\\ \textit{(rare; censored by maintenance actions)}};
+
+% ------------------------
+% MIDDLE (inference)
+% ------------------------
+\coordinate (midTop) at ($(Ltitle.east)!0.5!(Rtitle.west)$);
+\node[midbox, below=12mm of midTop] (M) {
+  \textbf{Probabilistic inference under asymmetry}\vspace{1mm}
+  \begin{itemize}\setlength{\itemsep}{0.5mm}\setlength{\topsep}{0mm}
+    \item latent state estimation
+    \item uncertainty propagation
+    \item population-level aggregation
+  \end{itemize}
+};
+
+% Anchor points on the middle box for cleaner routing (avoid stacked arrows)
+\coordinate (Me1) at ($(M.east)+(0,11mm)$);
+\coordinate (Me2) at ($(M.east)+(0,4mm)$);
+\coordinate (Me3) at ($(M.east)+(0,-3mm)$);
+\coordinate (Me4) at ($(M.east)+(0,-20mm)$);
+
+\coordinate (Mw1) at ($(M.west)+(0,10mm)$);
+\coordinate (Mw2) at ($(M.west)+(0,3mm)$);
+\coordinate (Mw3) at ($(M.west)+(0,-4mm)$);
+\coordinate (Mw4) at ($(M.west)+(0,-20mm)$);
+
+% ------------------------
+% Incoming links (observable -> inference)
+% Put labels ON arrows; curve slightly to avoid riding box borders
+% ------------------------
+\draw[arrIn] (R1.west) to[out=180,in=0] node[midway, above, note] {indirect} (Me1);
+\draw[arrIn] (R2.west) to[out=180,in=0] node[midway, above, note] {contextual} (Me2);
+\draw[arrIn] (R3.west) to[out=180,in=0] node[midway, above, note] {delayed} (Me3);
+\draw[arrIn] (R4.west) to[out=180,in=0] node[midway, above, note] {rare / censored} (Me4);
+
+% ------------------------
+% Outgoing links (inference -> latent decision quantities)
+% Labels also on arrows
+% ------------------------
+\draw[arrOut] (Mw1) to[out=180,in=0] node[midway, above, note] {uncertain} (L1.east);
+\draw[arrOut] (Mw2) to[out=180,in=0] node[midway, above, note] {probabilistic} (L2.east);
+\draw[arrOut] (Mw3) to[out=180,in=0] node[midway, above, note] {model-based} (L3.east);
+\draw[arrOut] (Mw4) to[out=180,in=0] node[midway, above, note] {distributional} (L4.east);
+
+
+
+\end{tikzpicture}
