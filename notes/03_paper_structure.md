@@ -1,51 +1,45 @@
-# Recovered manuscript structure and outlining rules
+# Manuscript structure and outlining rules
 
-This note preserves the part of the manuscript structure that is explicitly recoverable from retained project context. The complete detailed outline existed previously, but its exact text is not available in the current migration environment.
+This file preserves the paragraph-level outlining method developed during the 2025-12 project phase. The current manuscript source is now available in `../paper/template.tex`; therefore this note is a **writing method and historical design record**, not an authoritative table of contents.
 
-## Recovered Introduction structure
+## Historical Introduction logic
 
-### 1. Introduction
+The Introduction was designed around four conceptual moves:
 
-#### 1.1. PdM as decision-making under uncertainty
+1. **PdM as decision-making under uncertainty.** Predictive maintenance is not merely signal processing/classification; it supports actions under uncertain condition and future evolution.
+2. **LD-PdM as a distinct observation regime.** Maintenance decisions can remain important while direct condition information is structurally weak, sparse, indirect, or absent.
+3. **Probabilistic/Bayesian motivation.** Proxy, contextual, historical, and prior evidence require explicit uncertainty representation.
+4. **Contribution statement.** The contribution is a problem formulation/system-level framing rather than a new diagnostic algorithm.
 
-Intended message: predictive maintenance is not merely a signal-processing/classification task. It is a decision problem involving uncertain condition, uncertain future evolution and asymmetric consequences of action or inaction.
-
-#### 1.2. Identification of LD-PdM as a distinct data regime
-
-Intended message: there exists a practically important class of assets for which maintenance decisions matter but direct condition data are structurally weak, sparse, indirect or absent. The regime is linked to sensor economics, legacy infrastructure, scale and rare fault information.
-
-#### 1.3. Motivation for Bayesian framing in LD-PdM
-
-Intended message: when condition must be inferred from proxies, contextual variables, histories and prior engineering knowledge, uncertainty should be propagated explicitly. Bayesian/probabilistic modelling is therefore a natural language for the problem.
-
-#### 1.4. Contribution statement
-
-This subsection was considered effectively locked during the detailed-outline phase. The contribution logic is preserved in `notes/02_contribution_statement.md`.
+This logic remains useful, but the current Introduction must now be revised to incorporate Li et al. (2024) and to avoid overstating novelty for data scarcity, instrumentation cost, or uncertainty themselves.
 
 ## Paragraph-level outlining convention
 
-The project adopted a strict detailed-outline format:
+For future restructuring:
 
-- each bullet represents one future paragraph;
-- each paragraph introduces one coherent message;
-- a paragraph should not combine multiple independent claims merely to shorten the outline;
-- references are attached to the bullet/message they support;
-- required figures/tables are represented as separate bullets rather than hidden inside prose bullets.
+- one bullet = one future paragraph;
+- one paragraph = one coherent message;
+- do not combine independent claims merely to shorten the outline;
+- attach references to the message they actually support;
+- treat required figures/tables as separate outline bullets;
+- explicitly mark whether a paragraph contains background, gap, contribution, evidence, or limitation.
 
-This is intended to make the transition from outline to LaTeX prose mechanical and to expose argumentative gaps before writing.
+This convention is particularly useful for the next Introduction/Discussion rewrite because the Li et al. comparison needs to be integrated without turning the paper into a review.
 
-## Introduction citation rule
+## Citation rule
 
-During the 2025-12-17 restructuring discussion, the user decided that references in the Introduction should be concentrated in Sections 1.1–1.3. Section 1.4 was not considered a good location for introducing new literature and was left essentially unchanged.
+The historical outline concentrated background references before the contribution statement. The current manuscript uses normal in-text citations. Do not force historical bulk-citation formatting into the source.
 
-A previous request also specified that a detailed LaTeX outline should end each subsection with a bulk citation containing all references used in that subsection. When the exact LaTeX source is imported, check whether that convention survived into the manuscript or was only an outlining device.
+The key current citation requirement is that Li et al. (2024) must appear **before or at the point where LD-PdM is defined**, because the manuscript must acknowledge the existing small-data PHM framing before stating the narrower gap.
 
 ## Figures in the Introduction
 
-Figures in the Introduction were allowed only if absolutely necessary to establish a conceptual point. The default was to reserve figures for later sections.
+Keep the original rule: include an Introduction figure only if it is necessary to formalize the asymmetry. A two-axis regime figure (maintenance decision value versus economically available direct observability) could justify itself because it would operationalize the title concept; purely decorative figures should remain outside the Introduction.
 
-## What is not safely recoverable
+## Current source issues relevant to structure
 
-The complete headings and paragraph bullets for the remainder of the paper are not available in retained context. They should **not** be reconstructed from memory and silently presented as the original outline.
+See `../AUDIT.md`. In particular:
 
-Once the Overleaf source or `outline.pdf` is imported, this file should be expanded with the exact structure and then marked as verified.
+- the Introduction currently promises an “illustrative simulation” although the active station sections are conceptual;
+- active drafting headings such as “Section positioning” and “Section opening paragraph” remain in the manuscript;
+- the Discussion should explicitly position LD-PdM relative to small-data PHM, not only CBM/risk-based maintenance/digital twins.

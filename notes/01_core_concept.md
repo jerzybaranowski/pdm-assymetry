@@ -2,19 +2,17 @@
 
 ## 1. Problem statement
 
-Conventional predictive-maintenance narratives often assume that maintenance-relevant condition data can be acquired directly if needed: add vibration, temperature, current, acoustic, pressure or other sensors; collect run-to-failure data; train a diagnostic/prognostic model; then optimize maintenance.
+Conventional predictive-maintenance narratives often assume that maintenance-relevant condition data can be acquired directly if needed: add vibration, temperature, current, acoustic, pressure, or other sensors; collect fault/degradation data; train a diagnostic/prognostic model; then optimize maintenance.
 
-The project targets a different regime. For many real asset populations, **the need to reduce maintenance cost is substantial while direct condition information is structurally scarce**. The scarcity is not merely a temporary dataset defect. It can be the economically rational consequence of the asset class and deployment context.
+The project targets a different observation regime. For some asset populations, **maintenance decisions matter while direct condition information remains weak, indirect, or absent**. The limitation may arise from retrofit cost, legacy infrastructure, access constraints, scale, organizational conditions, or the low marginal value of instrumenting every asset.
 
-This motivates the working concept of **LD-PdM: low-data / low-instrumentation predictive maintenance**.
+The manuscript’s canonical term is **Limited-Data Predictive Maintenance (LD-PdM)**. “Limited observability” and “low instrumentation” describe the regime more precisely than sample count alone.
 
 ## 2. Two economically different PdM regimes
 
 ### Critical or expensive installations
 
-Examples include generators, chemical reactors and other unique or high-consequence installations. Dedicated condition monitoring is comparatively easy to justify because the value of avoiding unplanned downtime, secondary damage, safety consequences or a major production loss may dominate the cost of instrumentation.
-
-In this regime, PdM is frequently justified primarily as a **risk-avoidance / availability mechanism**, not simply as a way to reduce routine maintenance expenditure.
+Examples include generators, chemical reactors, and other unique or high-consequence installations. Dedicated condition monitoring can be comparatively easy to justify because the value of avoiding unplanned downtime, secondary damage, safety consequences, or major production loss may dominate instrumentation cost.
 
 ### Mass-deployed, individually less critical assets
 
@@ -28,28 +26,28 @@ Examples discussed in the project include:
 - tool fleets;
 - other repeated electromechanical devices in public or industrial infrastructure.
 
-These populations can create a large aggregate maintenance burden. They therefore have genuine cost-cutting potential. Yet a rich sensor package on every asset can be difficult to justify once installation, wiring, networking, commissioning, validation, integration, cybersecurity, data infrastructure and lifecycle maintenance are counted.
+Such populations can create meaningful aggregate maintenance burden. Yet a rich sensor package on every asset may be unattractive once installation, wiring, networking, commissioning, validation, integration, cybersecurity, data infrastructure, and lifecycle maintenance are counted.
 
-This is the central **asymmetry between maintenance need and data availability**.
+The central asymmetry is therefore between **maintenance decision value** and **economically/operationally available direct observability**.
 
-## 3. Data scarcity is multi-layered
+## 3. Data limitation is multi-layered
 
-The paper should avoid reducing the problem to a single “small dataset” statement. The regime combines several distinct shortages:
+The paper should not reduce the problem to a single “small dataset” statement. Relevant limitations include:
 
 - direct condition variables may not be measured at all;
-- fault examples are rare relative to long healthy operation;
+- fault examples are rare relative to healthy operation;
 - run-to-failure trajectories are uncommon;
-- maintenance records can be sparse, inconsistent or censored;
+- maintenance records can be sparse, inconsistent, or censored;
 - operating load is often unobserved;
-- contextual variables may exist only at a coarser spatial or temporal scale;
+- contextual variables may exist only at coarse spatial/temporal resolution;
 - asset populations are heterogeneous despite nominally identical hardware;
-- interventions alter the subsequent degradation process, making histories non-exchangeable.
+- interventions truncate or alter degradation trajectories.
 
-The resulting dataset may be large in raw row count while still carrying little information about the latent maintenance-relevant state.
+A dataset can therefore be large in raw row count while carrying little direct information about the latent maintenance-relevant state.
 
 ## 4. Evidence sources in LD-PdM
 
-When dedicated condition sensing is absent, the system should exploit evidence that already exists for other operational reasons:
+When dedicated condition sensing is absent or incomplete, useful evidence may already exist for other operational reasons:
 
 - event logs and controller states;
 - duty-cycle or activation counts;
@@ -66,57 +64,51 @@ When dedicated condition sensing is absent, the system should exploit evidence t
 - known failure modes;
 - fleet-level information shared across similar assets.
 
-These are not perfect replacements for condition sensors. Their value lies in updating probabilistic beliefs about latent usage, degradation and failure risk.
+These sources do not replace condition sensors equivalently. Their role is to update probabilistic beliefs about latent usage, degradation pressure, and risk.
 
 ## 5. Canonical proxy-data example
 
-For an escalator at a railway station, the number of people actually transported may not be measured directly. Yet the station can possess passenger-flow information: tickets to/from the relevant platform, train schedules, platform assignments, station occupancy estimates or gate counts.
+For an escalator at a railway station, actual passenger load may not be measured. The station may nevertheless possess tickets, train schedules, platform assignments, occupancy estimates, gate counts, or device event logs.
 
-Such variables are **proxy evidence** for escalator load. They should not be treated as exact measurements. A probabilistic observation model can represent how uncertain passenger-flow data map to latent escalator usage and then to degradation/risk.
-
-This example captures the intended epistemic structure of LD-PdM better than a conventional sensor-classification pipeline.
+These variables are **proxy evidence** for usage. They must not be interpreted as exact load measurements. A probabilistic observation model should represent the uncertainty from station context to latent device usage and then from usage to degradation/risk.
 
 ## 6. Why a probabilistic/Bayesian framing is natural
 
-Indirect evidence introduces uncertainty at every inferential step:
+Indirect evidence creates uncertainty at each inferential layer:
 
-1. contextual data only imperfectly represent actual usage;
-2. actual usage only partially explains degradation;
+1. contextual data only imperfectly represent local usage;
+2. usage only partially explains degradation;
 3. degradation is latent and heterogeneous across assets;
-4. maintenance actions depend on asymmetric costs of early intervention, delayed intervention and failure.
+4. maintenance decisions depend on asymmetric consequences of early intervention, delayed intervention, and failure.
 
-Bayesian modelling is therefore motivated by the problem structure because it can combine:
+Bayesian/probabilistic modelling is therefore structurally motivated because it can combine prior engineering knowledge, fleet-level information, sparse service observations, proxy variables, censored/missing data, and posterior predictive risk.
 
-- prior engineering knowledge;
-- fleet-level information;
-- sparse service observations;
-- proxy variables;
-- censored or missing data;
-- posterior predictive failure/degradation risk;
-- explicit uncertainty used in maintenance decisions.
+The paper should not present Bayesian modelling as novelty by itself. Its role is to make the epistemic gap created by weak direct observation explicit and auditable.
 
-The paper should not present “Bayesian” as a stylistic preference. Its role is to represent the epistemic gap created by weak observation.
+## 7. Main system-level case
 
-## 7. Main system-level case study
-
-The planned application is a railway station containing multiple repeated asset classes. The station is useful because it naturally combines:
+The planned application is a railway station containing repeated asset classes and heterogeneous evidence sources. The station is attractive because it combines:
 
 - many maintenance-relevant devices;
 - uneven instrumentation;
-- operational context already captured for non-maintenance reasons;
+- operational context collected for non-maintenance reasons;
 - strong temporal variation in usage;
 - service histories;
-- opportunities for fleet-level scheduling;
-- an existing or plausible digital-twin representation of the station.
+- fleet/system-level scheduling opportunities;
+- a natural path toward integration with a digital representation of the station.
 
-The maintenance layer can be integrated into a digital twin not by pretending that the twin contains perfectly observed condition states, but by storing **beliefs and uncertainty about asset condition** alongside geometry, topology, usage and service history.
+The current manuscript uses this as an **illustrative architecture**, not yet as a validated numerical simulation. The audit in `../AUDIT.md` recommends either adding a compact decision-level simulation or explicitly repositioning the manuscript as a concept/perspective paper.
 
-## 8. Key distinction from conventional “small-data PHM”
+## 8. Relationship to small-data PHM
 
-The project must keep the following distinction explicit:
+The distinction must be stated carefully in light of Li et al. (2024).
 
-> **Small-data PHM asks how to perform learning when the desired condition/fault dataset is small. LD-PdM asks how to support maintenance when direct condition data may remain sparse or unavailable because obtaining them is not economically justified.**
+Li et al. already recognize limited quantity/quality of monitoring data, heavy investment and ROI barriers, sensor deployment cost at scale, incomplete/imbalanced data, complex conditions, and uncertainty. Therefore LD-PdM must not be presented simply as “structural data scarcity whereas existing work is temporary small data.”
 
-The former naturally leads to data augmentation, transfer learning, few-shot learning and representation learning. The latter requires observation modelling, proxy evidence, prior knowledge, uncertainty propagation, value-of-information reasoning and maintenance decision analysis.
+The more defensible distinction is:
 
-The two research areas overlap but are not equivalent.
+> **Small-data PHM is primarily concerned with performing PHM tasks reliably when monitoring/status datasets are limited in quantity or quality. LD-PdM focuses on maintenance settings in which direct condition channels may themselves be persistently weak or absent, so indirect/contextual/historical evidence becomes a primary observation mechanism and the main target is maintenance decision support under partial observability.**
+
+The areas overlap. The paper’s contribution depends on explaining the overlap honestly and then identifying the narrower observation/decision regime.
+
+See `../literature/02_positioning_vs_li2024.md`.

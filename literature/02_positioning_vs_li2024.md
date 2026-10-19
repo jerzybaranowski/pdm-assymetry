@@ -2,105 +2,117 @@
 
 ## Reference
 
-Chuanjiang Li, Shaobo Li, Yixiong Feng, Konstantinos Gryllias, Fengshou Gu, and Michael Pecht, **“Small data challenges for intelligent prognostics and health management: a review,”** *Artificial Intelligence Review*, 57(8), Article 214, 2024. DOI: 10.1007/s10462-024-10820-4.
+Chuanjiang Li, Shaobo Li, Yixiong Feng, Konstantinos Gryllias, Fengshou Gu, and Michael Pecht, **“Small data challenges for intelligent prognostics and health management: a review,”** *Artificial Intelligence Review*, 57(8), Article 214, 2024. DOI: `10.1007/s10462-024-10820-4`.
 
-The paper explicitly identifies high-cost data collection and complex operating conditions as causes of small-data problems in PHM and reviews mainstream methodological responses including data augmentation, transfer learning and few-shot learning.
+## Why this paper is strategically important
 
-## Why the overlap matters
+Li et al. are not merely a review of few-shot fault diagnosis. Their scope overlaps with several foundations of the present manuscript. They define small-data PHM in terms of equipment/system status information collected from sensors that is limited in **quantity or quality**, and they discuss causes including heavy investment, access restrictions, complex operating conditions, and multi-factor coupling. They also discuss incomplete and imbalanced data and note that uncertainty quantification becomes more difficult under small-data conditions.
 
-Li et al. already establish several claims that the present paper must **not** present as novel:
+This means the present paper cannot create its novelty boundary by claiming that existing PHM assumes abundant data while LD-PdM uniquely notices cost, imbalance, or uncertainty. Those points already exist explicitly in the literature.
 
-- PHM frequently operates under limited data;
-- fault information is costly to obtain;
-- real operating conditions complicate data collection;
-- modern deep-learning PHM methods can fail when data are limited;
-- data-efficient methods are an active research topic.
+## Claims that Li et al. already establish
 
-A manuscript that only states that “PdM has too little fault data” would therefore be insufficiently differentiated.
+The present manuscript should treat the following as prior art rather than novelty:
 
-## Main distinction
+- PHM often operates with limited high-quality data;
+- healthy/normal observations dominate while abnormal/fault data are scarce;
+- data can be incomplete, unlabeled, mislabeled, or imbalanced;
+- industrial data acquisition can be expensive;
+- digital upgrading and installing sensors across many machines can create an ROI barrier;
+- changing/complex working conditions make complete data collection unrealistic;
+- small-data conditions weaken model generalization and increase predictive uncertainty;
+- data augmentation, transfer learning, and few-shot/meta-learning are established responses to small-data PHM.
 
-The strongest distinction is the nature of the problem being solved.
+Li et al. also include maintenance execution within the functional PHM lifecycle, so the distinction cannot simply be “they do diagnosis while we do maintenance.”
 
-### Li et al.: small-data learning problem
+## The distinction that remains defensible
 
-The central question is approximately:
+The strongest boundary is **not temporary versus structural scarcity alone**. Li et al. already identify economic and operational causes that can persist.
 
-> How can intelligent PHM models still be trained effectively when the desired fault/condition dataset is small?
+The more defensible distinction is the **observation architecture and the role of the model in the decision process**.
 
-This naturally motivates:
+### Li et al.: small-data PHM
 
-- data augmentation;
-- transfer learning;
-- few-shot learning;
-- benchmark datasets;
-- experimental protocols for evaluating models under limited training data.
+Their problem formulation remains centered on limited equipment/system status datasets and the question of how intelligent PHM tasks can be performed reliably when monitoring data are insufficient in quantity or quality. The methodological center of gravity is therefore model learning and generalization under limited condition/fault data.
 
-The implicit goal remains to obtain a better diagnostic/prognostic model from scarce condition/fault data.
+### LD-PdM: weak direct observability as the maintenance regime
 
-### Present paper: structurally weak observation and maintenance decision problem
+The present paper should focus on settings in which direct condition channels may be absent or too weak to constitute the main data source at all. Evidence can instead consist primarily of:
 
-The central question is instead:
+- proxy variables collected for non-maintenance purposes;
+- contextual/operational information;
+- maintenance and inspection histories;
+- documentation and engineering priors;
+- fleet/population information.
 
-> How should predictive maintenance be formulated when direct condition data may remain weak or unavailable because acquiring them is economically or operationally unjustified?
+The central object is then not a small labeled condition dataset but a **belief state over latent maintenance-relevant quantities under heterogeneous indirect evidence**.
 
-This changes the methodological center of gravity toward:
+The primary output is also different: the paper should emphasize inspection priority, maintenance attention, resource allocation, risk bands, and value of information rather than the accuracy of a classifier or RUL predictor.
 
-- proxy and contextual observations;
-- maintenance/service history;
-- prior engineering knowledge;
-- latent-state probabilistic models;
-- uncertainty propagation;
-- fleet-level inference;
-- value of information;
-- sensing/inspection economics;
-- maintenance decisions under partial observability.
+## Comparison table
 
-The scarcity is not necessarily something that should or can be “fixed” by collecting a larger labeled condition dataset.
+| Dimension | Li et al. (2024) | LD-PdM direction |
+|---|---|---|
+| Data limitation | limited quantity and/or quality of sensor-collected status data | direct condition data can be persistently absent; indirect evidence can dominate |
+| Economic barriers | explicitly recognized as a cause of small data | used to define the observation regime and motivate whether information acquisition is worthwhile |
+| Typical evidence | equipment monitoring/status samples | proxies, context, service history, priors, partial sensing, fleet information |
+| Main methodological focus | data-efficient AD/FD/RUL learning | structured inference under partial observability + maintenance decision support |
+| Main remedies | augmentation, transfer learning, few-shot/meta-learning | observation models, hierarchical/probabilistic inference, uncertainty propagation, decision/value-of-information logic |
+| Evaluation emphasis | model performance and fair small-data evaluation | decision relevance, ranking/prioritisation, robustness, cost/risk consequences |
+| Scale argument | not the main organizing principle | weak asset-level evidence can still support useful population-level allocation decisions |
 
-## Structural versus accidental scarcity
+## Important consequence for the term “Limited-Data Predictive Maintenance”
 
-A useful formulation for the manuscript is to distinguish:
+The term itself is vulnerable to being read as a synonym for small-data PHM. Therefore the manuscript must define “limited data” in a more specific way than sample size.
 
-- **accidental/temporary small data** — the desired variables exist conceptually, but too few training examples have been collected; and
-- **structural low observability** — the desired condition variables are not measured, are only indirectly observed, or are unlikely to be measured because richer instrumentation does not pass an economic/operational justification test.
+A useful operational definition should state that LD-PdM applies when:
 
-The present paper is primarily about the second case.
+1. a maintenance decision has meaningful operational/economic value;
+2. at least one decision-relevant direct condition variable is persistently unavailable, weakly observed, or uneconomic to obtain;
+3. indirect/contextual/historical evidence therefore plays a material role in inference; and
+4. the objective is maintenance action or prioritisation under uncertainty, not merely recovery of predictive accuracy from a small condition dataset.
 
-## Economic asymmetry as the differentiator
+If this remains difficult to communicate after revision, “limited-observability” should be used prominently as a descriptor even if the canonical acronym remains LD-PdM.
 
-The paper’s distinctive claim should be that **maintenance value and sensing value are not the same quantity**.
+## How Li et al. should enter the manuscript
 
-A fleet may have high aggregate maintenance cost and therefore strong motivation for better maintenance decisions, while the marginal value of adding a condition sensor to each individual asset remains below its lifecycle deployment cost.
+### Introduction
 
-This produces an asymmetry that is not captured by treating data scarcity solely as a machine-learning sample-efficiency problem.
+Cite Li et al. after establishing data scarcity and before claiming a distinct LD-PdM regime. Acknowledge that small-data PHM already covers economic, incomplete, and imbalanced-data causes. Then state the narrower gap: small-data methods still generally presuppose a direct monitoring/status dataset, whereas LD-PdM is concerned with maintenance when the relevant condition channels themselves may be absent and indirect evidence becomes primary.
 
-## Asset-class distinction
+The current sentence implying that data scarcity is typically treated merely as an engineering inconvenience should be rewritten; it is too strong in light of Li et al.
 
-Li et al. cover PHM generally. The present paper can sharpen its own contribution by contrasting:
+### Asymmetry of failure data
 
-- high-value/high-consequence assets that can justify dedicated condition monitoring; with
-- repeated, individually less critical devices where the business case for rich sensing is weaker despite aggregate maintenance burden.
+Li et al. can support the background claim about incomplete and imbalanced PHM data. The manuscript must then move beyond this to censoring, intervention-truncated trajectories, and the weak observation of the latent maintenance state.
 
-Automatic doors, escalators, elevators and HVAC-related devices are useful because they make this distinction intuitive.
+### Asymmetry of costs and incentives
 
-## Recommended manuscript changes
+Li et al. are directly relevant because they identify heavy investment and large-scale sensor installation as causes of small-data PHM. This strengthens the economic motivation but simultaneously removes “sensors are costly” as a novelty claim. The novelty must lie in what follows from that constraint for the observation and decision architecture.
 
-To avoid conceptual collision with Li et al.:
+### Discussion
 
-1. **Cite Li et al. early** when introducing data scarcity in PHM.
-2. State explicitly that the present work does not claim discovery of the small-data problem.
-3. Define LD-PdM through **persistent low instrumentation / indirect observability**, not merely through sample count.
-4. Include sensor/deployment economics as part of the problem definition.
-5. Make proxy/context/history-based evidence central rather than incidental.
-6. Use Bayesian/probabilistic modelling to represent uncertainty created by indirect evidence.
-7. Show at least one decision-level simulation or quantitative example; otherwise the paper risks appearing as an essay adjacent to an existing review literature.
-8. Avoid presenting transfer learning, few-shot learning or data augmentation as the principal remedy, because doing so would move the paper back into Li et al.’s territory.
+Add small-data PHM explicitly alongside CBM, sensor-rich PdM, risk-based maintenance, and digital-twin approaches. The discussion should explain overlap as well as difference rather than presenting LD-PdM as an isolated category.
 
-## One-sentence positioning statement
+## Recommended positioning paragraph
 
-A concise distinction suitable for the Introduction is:
+A manuscript-ready paragraph should be drafted during the substantive revision, but the intended logic is:
 
-> Existing small-data PHM research primarily asks how to learn effectively from limited condition and fault data; we address the complementary regime in which direct condition data are structurally limited because instrumentation itself may be economically unjustified, requiring maintenance decisions to be built from uncertain proxy, contextual and historical evidence.
+> Recent small-data PHM research already recognizes that monitoring datasets may be limited, incomplete, or imbalanced because of economic and operational constraints, and it develops data-efficient methods such as augmentation, transfer learning, and few-shot learning. The regime considered here overlaps with that literature but is narrower in a different dimension: the direct condition variables required by conventional PHM may themselves remain persistently unobserved, so maintenance reasoning must rely materially on proxy, contextual, historical, and prior evidence. We therefore treat the central problem as partial observability and decision support rather than sample efficiency alone.
 
-This sentence should be adapted to the manuscript’s exact terminology but captures the strategic boundary that must remain visible throughout the paper.
+Do not copy this mechanically; it should be integrated into the narrative and supported by the surrounding references.
+
+## What the paper should no longer say
+
+Avoid formulations equivalent to:
+
+- “existing PHM treats data scarcity only as a temporary problem”;
+- “our novelty is that sensing is expensive”;
+- “small-data PHM is only about classification”;
+- “Bayesian uncertainty treatment is absent from small-data PHM.”
+
+Li et al. explicitly discuss persistent causes, PHM tasks beyond classification, and uncertainty quantification. The present paper’s contribution must therefore be more precise.
+
+## One-sentence strategic boundary
+
+> **LD-PdM should be positioned as predictive maintenance under persistently weak direct observability, where heterogeneous indirect evidence is used to support decisions, rather than as another method for learning from a small condition-monitoring dataset.**

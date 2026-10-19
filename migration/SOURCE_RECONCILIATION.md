@@ -1,9 +1,9 @@
 # Source reconciliation after Overleaf import
 
 **Source import commit:** `3015f9b285d5333768cc446a04e4278fc547743c`  
-**Reconciliation date:** 2026-10-19
+**Initial reconciliation date:** 2026-10-19
 
-This note records the first comparison between the reconstructed ChatGPT-project notes and the imported manuscript source. It is intended to prevent future work from reintroducing outdated terminology or overlooking issues already identified in earlier discussions.
+> This is a dated first-pass reconciliation record. The later full manuscript audit in [`../AUDIT.md`](../AUDIT.md) and the revised Li et al. analysis in [`../literature/02_positioning_vs_li2024.md`](../literature/02_positioning_vs_li2024.md) are the current guidance where they go beyond or correct this note.
 
 ## 1. Canonical terminology
 
@@ -11,35 +11,21 @@ The manuscript consistently defines the acronym as:
 
 > **Limited-Data Predictive Maintenance (LD-PdM)**
 
-Earlier project discussions sometimes used “low-data predictive maintenance” or “low-instrumentation PdM.” Those phrases remain accurate descriptions of the intended regime, but the canonical manuscript term is now fixed by `paper/template.tex` and should be used in manuscript-facing work unless deliberately changed.
+Earlier project discussions sometimes used “low-data predictive maintenance” or “low-instrumentation PdM.” Those phrases remain descriptive, but the canonical manuscript term is fixed by `paper/template.tex` unless explicitly changed by the author.
 
-## 2. Main source and bibliography are now available
+## 2. Main source and bibliography are available
 
 The current manuscript is `paper/template.tex`, using `paper/extracted.bib`.
 
-The source also contains the current TikZ/LaTeX figures for:
-
-- asymmetric observability (`diagram.tex`);
-- the station inference chain (`inferencechain.tex`);
-- conceptual spatial exposure (`conceptual_heatmap.tex`);
-- prioritisation output (`pioritisationoutput.tex`).
-
-This means future manuscript edits should be made against the exact source rather than reconstructed text from conversation notes.
+The source also contains current TikZ/LaTeX figures for asymmetric observability, the station inference chain, conceptual spatial exposure, and prioritisation output.
 
 ## 3. Previously unresolved `Cinar2020` is resolved
 
-The canonical bibliography contains:
+The canonical bibliography contains Z. M. Çınar et al., “Machine learning in predictive maintenance towards sustainable smart manufacturing in industry 4.0,” *Sustainability*, 12(19), 2020, DOI `10.3390/su12198211`, key `Cinar2020`.
 
-- Z. M. Çınar, A. A. Nuhu, Q. Zeeshan, O. Korhan, M. B. A. Asmael, and B. Safaei,
-  “Machine learning in predictive maintenance towards sustainable smart manufacturing in industry 4.0,”
-  *Sustainability*, 12(19), 2020,
-  DOI `10.3390/su12198211`.
+## 4. Abstract, keywords and abbreviations are present
 
-The key is `Cinar2020` (ASCII key, despite the accented author name).
-
-## 4. Abstract, keywords and abbreviations are no longer missing
-
-The imported source already contains the manuscript abstract and keyword list. The abstract explicitly states the four asymmetries:
+The imported source already contains the manuscript abstract and keyword list. The abstract identifies four asymmetries:
 
 1. limited observability of decision-relevant states;
 2. sparse and biased failure evidence;
@@ -48,46 +34,37 @@ The imported source already contains the manuscript abstract and keyword list. T
 
 The current abbreviation block contains PdM, LD-PdM and RUL.
 
-Historical notes saying that these components still need to be generated should therefore be interpreted as development history, not current tasks.
+## 5. The station case is illustrative, not yet a validated simulation
 
-## 5. The station case is illustrative, not a validated simulation
+The source contains **“Illustrative Station-Based LD-PdM Architecture”** and explicitly says it is not a full validation study or detailed simulation benchmark.
 
-The current source contains a section titled **“Illustrative Station-Based LD-PdM Architecture”** whose opening explicitly states that it is not a fully validated predictive-maintenance model. It uses proxy information, latent-state reasoning, and decision-oriented outputs to demonstrate the conceptual framework.
+This conflicts with the Introduction road map, which says Sections 5–6 present an “illustrative simulation.” The full audit now treats the decision **simulation versus explicit concept/perspective positioning** as a P0 issue.
 
-This is consistent with the original high-concept-paper intention, but it creates a manuscript-level issue that should be fixed during finalization: the Introduction currently says that Sections 5 and 6 “present an illustrative simulation,” whereas the imported source describes the case itself as an illustrative architecture and conceptual decision-output demonstration. Unless numerical simulation code/results are added, the Introduction should not promise a simulation.
-
-## 6. Companion GPECOM work is already integrated conceptually
+## 6. Companion GPECOM work is integrated conceptually
 
 The Conclusions cite `GPECOM2026LdPDM` as a companion conference paper containing a more technical implementation focused on railway-station doors and elevators, Bayesian proxy-flow modelling, and scheduling integration.
 
-This supports the project decision to reuse the door/elevator context without turning the present paper into the same technical contribution. The distinction between the conceptual Symmetry paper and the technical conference implementation should remain explicit.
+Its current bibliographic status (“Submitted for publication”) should be verified before submission.
 
-## 7. Li et al. (2024) remains the most important missing positioning item
+## 7. Li et al. (2024) is the central missing positioning item
 
-The March 2026 review identified:
+The imported manuscript does not contain Li et al. (2024), DOI `10.1007/s10462-024-10820-4`.
 
-C. Li, S. Li, Y. Feng, K. Gryllias, F. Gu, and M. Pecht, “Small data challenges for intelligent prognostics and health management: a review,” *Artificial Intelligence Review*, 57, 214 (2024), DOI `10.1007/s10462-024-10820-4`.
+The initial reconciliation described Li et al. mainly through the methodological remedies they review. A later direct re-reading showed stronger overlap: Li et al. also explicitly identify heavy investment/ROI, large-scale sensor installation, incomplete and imbalanced data, complex conditions, and uncertainty under small-data PHM.
 
-A check of the imported `template.tex` and `extracted.bib` found no occurrence of this paper. This is important because the current manuscript repeatedly argues that limited data should be treated as a structural regime rather than a temporary modelling inconvenience. Li et al. are close enough to that premise that the distinction must be made explicitly.
+Therefore the manuscript cannot use instrumentation cost, imbalance, or uncertainty alone as novelty. The stronger distinction is **persistent weak direct observability + indirect evidence + decision-oriented maintenance reasoning**. See `../literature/02_positioning_vs_li2024.md`.
 
-The recommended positioning remains:
+## 8. Notes remain useful despite the source import
 
-> Existing small-data PHM research primarily asks how to learn effectively from limited condition and fault data; LD-PdM addresses the complementary regime in which direct condition information is structurally limited because instrumentation itself may be unavailable or economically unjustified, so maintenance decisions must be built from uncertain proxy, contextual and historical evidence.
+The Markdown material preserves research information not fully represented in the manuscript, including:
 
-This should be integrated into the Introduction and bibliography before submission.
-
-## 8. Notes that remain useful despite the source import
-
-The Markdown material still contains research information that is not fully represented in the current manuscript:
-
-- the broader literature-search synthesis around proxy/indirect inference across heterogeneous domains;
-- the explicit distinction between sensor purchase cost and lifecycle deployment/integration cost;
-- the December 2025 paragraph-level outlining discipline;
-- the stronger formulation of value-of-information / sensorisation as a decision variable;
-- the publication-readiness critique from the March 2026 review.
-
-These should be treated as a source of pending improvements rather than overwritten by the present LaTeX.
+- cross-domain proxy/indirect-inference synthesis;
+- lifecycle deployment/integration cost logic;
+- paragraph-level outlining discipline;
+- value-of-information / sensing-as-decision-variable ideas;
+- the quantitative station-simulation option;
+- publication-readiness critique.
 
 ## 9. Compilation status
 
-The repository source structure appears complete enough to represent the Overleaf project, including MDPI class/style files and figures. Compilation has **not yet been independently verified in the current ChatGPT environment**. A clean compile should be part of the next repository-level validation step before substantive manuscript editing.
+The source structure appears complete relative to the imported Overleaf project, including MDPI class/style files and figure sources. A clean compile from a fresh checkout has not yet been recorded. This remains a P2 task in `../AUDIT.md`.

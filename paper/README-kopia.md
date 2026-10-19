@@ -1,2 +1,0 @@
-# Asymmetry_PdM
-

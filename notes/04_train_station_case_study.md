@@ -1,34 +1,34 @@
-# Train-station case study and digital-twin direction
+# Railway-station case study: current role and quantitative extension
 
-## Purpose of the case study
+## Current manuscript role
 
-The station case is not intended to prove that one specific PdM algorithm is superior. Its role is to make the structural-asymmetry argument concrete and to demonstrate how a maintenance system can operate when direct condition sensing is incomplete or economically unjustified.
+The current source (`../paper/template.tex`) uses the station case as an **illustrative architecture**, not a validated predictive-maintenance simulation. Its purpose is to make the structural-asymmetry argument concrete and to show how maintenance reasoning can be organized when direct condition sensing is incomplete or economically unattractive.
 
-The case study should therefore preserve the contrast between:
+The case should preserve the contrast between:
 
-- the **maintenance decision need** at fleet/system level; and
-- the **limited observability** of individual devices.
+- maintenance decision value at fleet/system level; and
+- weak direct observability of individual devices.
 
 ## Candidate asset classes
 
-The project discussions identify the following as particularly useful examples:
+The project discussions identify:
 
 - escalators;
 - elevators;
 - automatic doors;
 - HVAC / air-conditioning-related equipment;
-- potentially other repeated station electromechanical assets.
+- other repeated station electromechanical assets.
 
-The elevator and automatic-door examples from the related GPECOM paper were specifically proposed for reuse in the Symmetry manuscript where scientifically appropriate.
+The related GPECOM paper focuses more technically on railway-station doors and elevators. Reuse/citation is appropriate where it supports the present conceptual argument, but the Symmetry paper must remain a distinct contribution.
 
 ## Evidence sources
 
-A station contains substantial data that are not collected as condition-monitoring data but may still be informative about asset usage and degradation:
+A station contains data not collected as condition-monitoring signals but potentially informative about asset usage and burden:
 
 - train timetables;
 - platform assignments;
 - ticketing and passenger-flow data;
-- gate/entry counts where available;
+- gate/entry counts;
 - station occupancy estimates;
 - device activation/event logs;
 - controller alarms;
@@ -36,96 +36,84 @@ A station contains substantial data that are not collected as condition-monitori
 - weather/ambient conditions;
 - maintenance work orders;
 - inspection records;
-- component-replacement history;
-- manufacturer lifetime/maintenance recommendations.
+- replacement history;
+- manufacturer recommendations.
 
-The important modelling principle is that these sources have different spatial/temporal resolution and different reliability. They should enter the model as heterogeneous evidence rather than being concatenated as if they were equivalent sensor channels.
+These sources differ in spatial/temporal resolution and reliability. They should be represented as heterogeneous evidence, not concatenated as equivalent sensor channels.
 
-## Canonical escalator example
+## Canonical proxy example
 
-Suppose direct passenger load on an escalator is not measured.
+For an escalator, actual passenger load may be unmeasured while ticketing, train schedules, platform assignments, occupancy estimates, and coarse counters are available.
 
-The station may nevertheless know:
+A useful hierarchy is:
 
-- the number of tickets associated with a platform or destination;
-- the trains arriving/departing from that platform;
-- expected or measured passenger counts;
-- the times during which the escalator was available;
-- coarse usage/event counters.
+1. station context → latent local passenger flow;
+2. local passenger flow → latent device usage/load;
+3. usage/load + asset parameters → latent degradation pressure;
+4. degradation pressure → maintenance risk/urgency;
+5. posterior belief + intervention/failure costs → maintenance action.
 
-These quantities can be used to define a distribution for latent escalator usage. A simple hierarchy is:
+The uncertainty in each arrow is part of the model.
 
-1. station context -> latent passenger flow near the escalator;
-2. latent passenger flow -> latent escalator usage/load;
-3. usage/load + asset parameters -> latent degradation;
-4. degradation -> failure/maintenance risk;
-5. posterior risk + maintenance costs -> action decision.
+## Digital representation / digital-twin direction
 
-The key contribution is not any one mathematical choice for these arrows, but the recognition that the arrows are uncertain and must be represented as such.
+A station digital representation can organize:
 
-## Digital-twin integration
-
-A station digital twin can provide the organizing layer for this information. In the proposed conception, the twin should not be treated as an omniscient high-fidelity sensor replica.
-
-Instead, each asset can carry:
-
-- identity and topology/location;
-- asset class and component metadata;
-- operating context;
+- asset identity and topology/location;
+- asset class/component metadata;
+- operational context;
 - observed events;
 - maintenance history;
-- probability distributions / belief states for usage and condition;
-- predicted risk over a chosen horizon;
+- probability distributions/belief states for usage and condition;
+- predicted risk or priority;
 - uncertainty and provenance of evidence;
-- proposed inspection or maintenance action.
+- proposed inspection/maintenance action.
 
-This turns the digital twin into an integration environment for weak and heterogeneous maintenance evidence.
+The important point is that the representation is **not assumed to provide complete observability**. Its role can be evidence integration and uncertainty-aware maintenance reasoning.
 
-## Simulation direction
+## Quantitative extension recommended by the current audit
 
-The paper was intended to rely mainly on desktop research, simulations and clear visuals rather than a new full-scale industrial experiment. A useful simulation design consistent with the project concept is:
+The paper would be materially stronger with a compact simulation. The simulation does not need to become a detailed station digital twin.
 
 ### Asset population
 
-Simulate a fleet of nominally similar station assets with heterogeneous latent degradation rates.
+Simulate a population of nominally similar devices with heterogeneous degradation sensitivities.
 
 ### Latent usage
 
-Generate time-varying usage from station traffic, including rush-hour, weekday/weekend and platform-specific patterns.
+Generate time-varying device usage from station traffic patterns (rush-hour, weekday/weekend, platform/zone differences).
 
 ### Proxy observation
 
-Generate a noisy/coarse proxy of usage from passenger/ticket-flow information rather than revealing the true usage directly.
+Expose the maintenance model only to a noisy/coarse proxy of usage, not to the latent true usage.
 
 ### Degradation and interventions
 
-Let degradation depend probabilistically on usage and asset-specific parameters. Include inspections, corrective maintenance and preventive interventions.
+Let degradation pressure depend probabilistically on usage and asset-specific parameters. Include inspection/preventive/corrective actions at a level sufficient to calculate decision consequences.
 
 ### Policies to compare
 
-At minimum, conceptually compare:
+At minimum:
 
-- fixed calendar maintenance;
-- history-only probabilistic maintenance;
-- proxy-informed LD-PdM;
-- an idealized directly observed condition-monitoring benchmark.
+1. calendar/fixed-priority maintenance;
+2. history-only probabilistic prioritisation;
+3. proxy-informed LD-PdM;
+4. idealized direct-condition-information upper bound.
 
-The idealized benchmark should be presented as an upper-information reference, not as a realistic free alternative.
+### Outputs
 
-### Evaluation quantities
+Useful decision-level quantities include:
 
-Potential outputs include:
-
-- total maintenance cost;
-- unplanned failures/downtime;
+- maintenance/failure cost under declared assumptions;
+- high-risk assets missed;
 - premature interventions;
-- calibration of predicted risk;
+- ranking quality or top-k capture of truly stressed assets;
 - value of proxy information;
 - sensitivity to proxy quality;
-- break-even value of adding a direct sensor/inspection.
+- break-even value of an extra inspection/direct sensor.
 
-These simulations would directly support the paper’s thesis by showing how decision quality changes as information availability changes.
+The idealized direct-condition case should be presented as an **upper-information benchmark**, not as a free realistic alternative.
 
 ## Main caution
 
-The case study becomes weak if it is only a list of plausible data sources. It should contain at least one explicit probabilistic model or simulation that demonstrates the asymmetry quantitatively. Otherwise reviewers may read the paper as a position essay rather than a research contribution.
+The current station case is conceptually coherent but does not yet constitute quantitative evidence. If the simulation is not added, manuscript claims and article type should be adjusted accordingly. See `../AUDIT.md`.
