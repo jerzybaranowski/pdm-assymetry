@@ -37,6 +37,8 @@ The paper can therefore argue that LD-PdM is not based on an absence of prior me
 
 A further observation from the review was that many proxy-based studies produce a point estimate of an inaccessible variable but do not carry uncertainty through to the maintenance decision.
 
+This is a recovered historical observation, not a prevalence finding established by the current bounded source audit. The revised manuscript makes no literature-wide claim that proxy methods generally omit uncertainty; see `03_claim_source_matrix.md`.
+
 For LD-PdM, this gap is central. If the evidence is indirect, the maintenance system should represent uncertainty in:
 
 - the proxy-to-usage relationship;
@@ -109,7 +111,7 @@ A central contribution of the paper should be to organize these issues under the
 
 Chuanjiang Li, Shaobo Li, Yixiong Feng, Konstantinos Gryllias, Fengshou Gu, and Michael Pecht, “Small data challenges for intelligent prognostics and health management: a review,” *Artificial Intelligence Review*, vol. 57, no. 8, article 214, 2024. DOI: 10.1007/s10462-024-10820-4.
 
-This paper requires explicit positioning; see `02_positioning_vs_li2024.md`. A reconciliation check after the Overleaf import found that it is not yet present in `paper/template.tex` or `paper/extracted.bib`.
+This paper requires explicit positioning; see `02_positioning_vs_li2024.md`. It was absent at the source-import check and was integrated into `paper/template.tex` and `paper/extracted.bib` during the 2026-10-19 revision.
 
 ### Bauer and Baranowski (2025)
 
@@ -127,4 +129,4 @@ The canonical BibTeX key is `Cinar2020`.
 
 ## 7. What remains to recover or systematize
 
-The current Overleaf bibliography is now available, but the earlier literature-search workflow contained broader source-by-source notes than are represented in the manuscript bibliography alone. The next literature-management step should therefore be to map the papers already present in `paper/extracted.bib` onto the literature strands above and identify which earlier search results are still missing—especially those needed for sensor economics, proxy inference, and the Li et al. positioning.
+The earlier literature-search workflow contained broader notes than the imported bibliography alone. The 2026-10-19 bounded audit now maps all current records and consequential claims in `03_claim_source_matrix.md`. Additional source recovery is not required to restore the earlier conversation verbatim; expand the literature only where a retained manuscript claim needs stronger support.

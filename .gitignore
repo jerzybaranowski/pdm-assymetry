@@ -22,6 +22,7 @@
 *.nav
 *.snm
 *.vrb
+*-eps-converted-to.pdf
 
 # Python
 __pycache__/

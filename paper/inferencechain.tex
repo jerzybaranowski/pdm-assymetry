@@ -1,73 +1,42 @@
-% ============================================================
-% Figure: Conceptual inference chain for station-based LD-PdM
-% ============================================================
+% Conditional evidence-to-action reasoning for the hypothetical station case.
+% Used in Section 5; standalone previews use sources/tikz/inferencechain.tex.
 \begin{tikzpicture}[
-    font=\small,
-    node distance=0.42cm,
-    >={Latex[length=2mm]},
-    box/.style={
-        draw,
-        rounded corners=2pt,
-        align=center,
-        minimum width=0.86\linewidth,
-        minimum height=0.95cm,
-        inner sep=4pt
-    },
-    midbox/.style={
-        draw,
-        rounded corners=2pt,
-        align=center,
-        minimum width=0.7\linewidth,
-        minimum height=0.82cm,
-        inner sep=3pt
-    },
-    note/.style={
-        font=\footnotesize,
-        align=center
-    }
+  font=\small,
+  node distance=5mm,
+  >={Latex[length=2mm]},
+  box/.style={draw, rounded corners=2pt, align=center,
+    text width=7.25cm, minimum height=9mm, inner sep=4pt},
+  side/.style={draw, rounded corners=2pt, align=center,
+    text width=2.55cm, inner sep=4pt, font=\footnotesize},
+  link/.style={->, thick},
+  conditional/.style={->, thick, dashed},
+  note/.style={font=\footnotesize, align=center, text width=7.3cm}
 ]
+\node[box] (context) {\textbf{Assumed available station evidence}\\
+  timetable, passenger or ticket flow,\\layout, service history};
+\node[box, below=of context] (proxy) {\textbf{Proxy interpretation}\\
+  which observations inform\\the use of a particular device?};
+\node[box, below=of proxy] (load) {\textbf{Beliefs about usage, load and exposure}\\
+  device-specific activity and accumulated burden};
+\node[box, below=of load] (condition) {\textbf{Conditional beliefs about condition and events}\\
+  exposure does not itself establish\\degradation or failure};
+\node[box, below=of condition] (decision) {\textbf{Candidate maintenance actions}\\
+  inspect earlier, seek better evidence,\\or retain the service rule};
 
-\node[box] (context) {%
-\textbf{Station context and available data}\\
-timetable, passenger counts, ticketing data,\\
-zone characteristics, maintenance records
-};
+\draw[link] (context) -- (proxy);
+\draw[link] (proxy) -- (load);
+\draw[conditional] (load) -- (condition);
+\draw[link] (condition) -- (decision);
 
-\node[midbox, below=of context] (proxy) {%
-\textbf{Proxy evidence layer}\\
-traffic intensity, inferred usage, contextual burden indicators
-};
+\node[side, left=5mm of load] (prior) {\textbf{Engineering priors and assumptions}\\
+  traffic to usage;\\exposure to condition};
+\draw[conditional] (prior.east) -- (load.west);
+\draw[conditional] (prior.south) |- (condition.west);
 
-\node[midbox, below=of proxy] (load) {%
-\textbf{Latent operational quantities}\\
-usage intensity, cumulative load, stress concentration
-};
+\node[side, right=5mm of decision] (consequences) {\textbf{Consequences and constraints}\\
+  service function,\\feasible actions,\\existing\\requirements};
+\draw[link] (consequences.west) -- (decision.east);
 
-\node[midbox, below=of load] (risk) {%
-\textbf{Latent maintenance-relevant state}\\
-degradation pressure, exposure, maintenance risk
-};
-
-\node[box, below=of risk] (decision) {%
-\textbf{Decision-oriented outputs}\\
-inspection priority, hotspot identification, maintenance attention classes
-};
-
-\draw[->, thick] (context) -- (proxy);
-\draw[->, thick] (proxy) -- (load);
-\draw[->, thick] (load) -- (risk);
-\draw[->, thick] (risk) -- (decision);
-
-\node[note, left=0.2cm of load.west, anchor=east] {%
-prior knowledge\\
-and assumptions
-};
-\draw[->, dashed] ([xshift=-0.02cm]load.west) -- ++(-0.55,0);
-
-\node[note, right=0.2cm of risk.east, anchor=west] {%
-uncertainty kept\\
-explicit
-};
-\draw[->, dashed] ([xshift=0.02cm]risk.east) -- ++(0.55,0);
-
+\node[note, below=5mm of decision] {Uncertainty is retained through the reasoning chain.\\
+  Dashed links require explicit engineering assumptions.};
 \end{tikzpicture}

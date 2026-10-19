@@ -1,8 +1,10 @@
-# Railway-station case study: current role and quantitative extension
+# Railway-station case study and optional quantitative extension
+
+**Scope update, 2026-10-19:** the author confirms a conceptual paper with no empirical data and permits a high-level synthetic illustration if useful. The current task is a worked conceptual station decision, with a bounded optional illustration described in `07_publication_completion_plan.md`. The broader simulation proposal below is historical and is not a publication prerequisite.
 
 ## Current manuscript role
 
-The current source (`../paper/template.tex`) uses the station case as an **illustrative architecture**, not a validated predictive-maintenance simulation. Its purpose is to make the structural-asymmetry argument concrete and to show how maintenance reasoning can be organized when direct condition sensing is incomplete or economically unattractive.
+The revised source (`../paper/template.tex`) uses the station case as a **worked qualitative example**, with an assumption register and conditional inspection scenarios. It makes the structural-asymmetry argument concrete and shows where maintenance reasoning from indirect evidence is possible and where it must stop. No station measurements or simulation outcomes are claimed.
 
 The case should preserve the contrast between:
 
@@ -71,9 +73,9 @@ A station digital representation can organize:
 
 The important point is that the representation is **not assumed to provide complete observability**. Its role can be evidence integration and uncertainty-aware maintenance reasoning.
 
-## Quantitative extension recommended by the current audit
+## Historical quantitative extension proposal
 
-The paper would be materially stronger with a compact simulation. The simulation does not need to become a detailed station digital twin.
+An earlier audit proposed the following simulation as a possible extension. It has not been implemented or approved as an experimental protocol. The current completion plan does not require this broader experiment.
 
 ### Asset population
 
@@ -116,4 +118,4 @@ The idealized direct-condition case should be presented as an **upper-informatio
 
 ## Main caution
 
-The current station case is conceptually coherent but does not yet constitute quantitative evidence. If the simulation is not added, manuscript claims and article type should be adjusted accordingly. See `../AUDIT.md`.
+The current station case supplies a conceptual illustration, not quantitative evidence. Align claims with that role; label any optional synthetic results separately. The author confirms an invitation under the existing title, so publication-type deliberation should not delay the conceptual revision. See `../AUDIT.md`.

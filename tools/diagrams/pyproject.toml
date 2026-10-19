@@ -1,0 +1,17 @@
+[project]
+name = "pdm-diagram-tools"
+version = "0.0.0"
+description = "Optional local preview and verification tools for the manuscript's TikZ diagrams"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "PyMuPDF==1.27.2.3",
+    "PyYAML==6.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.0.3",
+]
+
+[tool.uv]
+package = false

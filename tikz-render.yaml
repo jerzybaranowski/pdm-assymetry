@@ -1,0 +1,7 @@
+version: 1
+units: paper
+source_dir: sources/tikz
+output_dir: figures/tikz
+dpi_scale: 6.0
+keep_pdf: true
+engine: pdflatex

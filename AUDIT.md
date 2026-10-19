@@ -2,9 +2,37 @@
 
 **Audit date:** 2026-10-19  
 **Target:** *Symmetry*, Engineering and Materials  
-**Current assessment:** **not submission-ready**
+**Current assessment:** **substantively revised draft for author review; AI disclosure deferred**
+
+## Revision status on 2026-10-19
+
+The agreed conceptual revision is implemented in `paper/template.tex`. The invited title and LD-PdM name are retained. The current review PDF has 16 pages after the focused Li comparison; the first revision had 14, followed by a 15-page draft restoring useful explanatory material after the author's question about the reduction. Details and section counts are in [`notes/08_manuscript_revision_report.md`](notes/08_manuscript_revision_report.md).
+
+| Audit items | Current disposition |
+|---|---|
+| P0.1–P0.2 | Addressed in the draft: Li integration, operational definition, and boundary cases. A focused comparison additionally acknowledges records, physical knowledge, fleet information, and uncertainty; differences concern organizing emphasis, not exclusive capabilities. |
+| P0.3 | Conceptual route implemented with a worked qualitative example. No simulation is claimed or required by the current conclusions. |
+| P0.4–P0.5 | Addressed through conditional economics, an assumption register, and explicit evidence-to-action scenarios. No station ROI or performance result is claimed. |
+| P0.6–P0.7 | Existing partial-observation/information-value work is acknowledged; variables, action dependence, inspection value, pooling assumptions, and proxy limits are separated. |
+| P1.1–P1.6 | Active drafting language and unsupported simulation promises removed. Case/output sections combined and strengthened; all active figures are explicitly conceptual. |
+| P1.7 | GPECOM publication metadata corrected and the contribution boundary stated. No conference figures or numerical results are reproduced. |
+| P2.1–P2.2 | Revised source builds successfully; first-page abstract/keywords, single-author option, year, and header height corrected. Final affiliation presentation remains an author check. |
+| P2.3 | Funding scope retained as instructed, with grammatical corrections. AI disclosure is red and explicitly deferred by the author. |
+| P2.4–P2.5 | Commented duplicate drafts removed. The misspelled prioritisation filename is retained only as an inactive historical source, so renaming it is unnecessary for this submission. |
+| P2.6–P2.7 | Abstract/keyword rendering repaired. Metadata checked for all 30 bibliography records; all have pagination/article identifiers. 26 records are cited. Claim-support limits are recorded in the source matrix. |
+| P3 | Navigation updated; shared diagram previews, static checks, and optional pinned tooling declarations added. No simulation infrastructure is required. |
+
+Validation found no unresolved citations/references, missing characters, or overfull/underfull boxes. All 16 pages were rendered and visually inspected after the focused Li comparison. A non-fatal `xcolor` warning remains in the bundled class/PGF loading sequence. Three diagram-pipeline tests and the test catalog check pass. The source matrix distinguishes abstract/metadata checks from full-text reading.
+
+**Remaining author work:** review the scientific revision and content balance; replace/approve the red AI declaration; confirm affiliation presentation and submission-history declarations. Funding scope is confirmed. Submission is not authorized. A cover-letter draft is in [`notes/09_cover_letter_draft.md`](notes/09_cover_letter_draft.md).
+
+The detailed findings below preserve the initial audit and its rationale. Their implementation status is the table above; descriptions of defects in the original source are not a second current task list.
 
 This audit is the current working plan for bringing the manuscript to a defensible submission state. It supersedes older “almost ready” language in historical notes. The paper has a coherent conceptual spine, but the novelty boundary, the evidential support for several claims, and the status of the station case still need substantive work.
+
+**Author clarification, 2026-10-19:** the contribution is conceptual; no empirical data are available; a high-level simulation is permitted if useful. The manuscript is invited under its existing title, which is retained. Publication-type selection is not a scientific blocker. A quantitative demonstration is optional, not a prerequisite for completion.
+
+The detailed execution plan, proposed paragraph outline, closure criteria, and bounded optional simulation are in [`notes/07_publication_completion_plan.md`](notes/07_publication_completion_plan.md). This audit remains the authoritative issue register. The follow-up review also verified a baseline build and identified an abstract/keywords rendering defect, incomplete bibliography metadata, and additional conceptual issues below.
 
 ## Executive diagnosis
 
@@ -43,16 +71,13 @@ Therefore the present paper must **not** claim novelty for any of the following 
 
 ### Defensible distinction
 
-The distinction should be formulated around the **information structure and decision target**:
+The distinction concerns **organizing emphasis**, not exclusive information sources, methods, or outputs. This initial comparison has been refined after checking Li's broader scope; see `literature/02_positioning_vs_li2024.md` and the dedicated Discussion subsection.
 
 | Dimension | Li et al. small-data PHM | Proposed LD-PdM focus |
 |---|---|---|
-| Primary data object | condition/status data collected from sensors, but limited in quantity/quality | direct condition channels may be absent; proxy/context/history can be the primary evidence |
-| Main technical problem | learning reliable AD/FD/RUL models from limited data | maintaining decision-relevant beliefs under structural partial observability |
-| Typical remedy | augmentation, transfer learning, few-shot/meta-learning | observation modelling, proxy interpretation, priors, uncertainty propagation, decision analysis |
-| Instrumentation cost | recognized as a cause of small data | treated as part of the persistent observation regime and potentially as a decision variable |
-| Main output | improved PHM model performance | inspection/maintenance priority, risk bands, resource allocation, value of information |
-| Scale | mostly model/task centered | explicit asset-population asymmetry: weak unit evidence but meaningful fleet/system decisions |
+| Organizing question | methods and challenges of data-efficient PHM | applicability of a joint observation and maintenance-decision regime |
+| Concrete contribution sought here | established neighboring literature | inclusion/boundary criteria, explicit inferential links, and conditions for withholding differentiated action |
+| Relationship | overlapping perspectives | established learning and decision methods can be used within the characterization |
 
 ### Required manuscript changes
 
@@ -89,9 +114,9 @@ This would make the title’s “asymmetry” a formal organizing idea rather th
 
 ### Terminology risk
 
-The canonical term **Limited-Data Predictive Maintenance** is close to the established phrase “small-data PHM.” This is a positioning risk. The manuscript should repeatedly clarify that “limited data” refers to the **available maintenance evidence structure**, not merely sample count. If this remains difficult to communicate after Li et al. are integrated, consider whether “limited-observability” should become a stronger descriptor in the title/definition, while retaining or revisiting the acronym only by explicit author decision.
+The canonical term **Limited-Data Predictive Maintenance** is close to the established phrase “small-data PHM.” This is a positioning risk. Clarify in the definition and manuscript text that “limited data” refers to the **available maintenance evidence structure**, not merely sample count. Use “limited observability” as a descriptor where useful. Preserve the existing invited title and canonical LD-PdM name.
 
-## P0.3 Decide whether the paper contains a quantitative demonstration or is explicitly a concept/perspective paper
+## P0.3 Align the evidence with the confirmed conceptual contribution
 
 The current source is inconsistent on this point.
 
@@ -99,38 +124,16 @@ The current source is inconsistent on this point.
 - The station section explicitly says it is **not** a detailed simulation benchmark or validation study.
 - The active figures are conceptual and the prose describes an architecture, exposure map, and prioritisation logic rather than numerical results.
 
-For an `article` submission, the current state risks being read as a well-written position essay without enough research evidence.
+**Route resolved by the author:** retain the conceptual contribution and invited title. A worked qualitative station decision, explicit assumptions, applicability criteria, and fair positioning are the required evidence of conceptual coherence. The earlier recommendation to require a four-policy simulation is superseded.
 
-### Preferred route
+Required changes:
 
-Add a **small, controlled simulation** whose purpose is decision-level illustration, not algorithm benchmarking. The minimum useful experiment would compare:
+- remove promises of simulation or numerical results unless such an illustration is actually added;
+- state what the definition, taxonomy, and worked example establish;
+- replace claims of validation, improved maintenance, or an “existence proof” with conclusions supported by a conceptual argument;
+- align the abstract, section roadmap, station case, Discussion, and conclusion.
 
-1. calendar/fixed-priority maintenance;
-2. history-only probabilistic prioritisation;
-3. proxy-informed LD-PdM;
-4. an idealized direct-condition-information upper bound.
-
-Vary proxy quality and report at least:
-
-- decision/ranking quality;
-- failures or high-risk assets missed;
-- premature inspections/interventions;
-- expected maintenance/failure cost under declared assumptions;
-- sensitivity to proxy quality;
-- value of additional information or break-even sensing value.
-
-This would directly support the central asymmetry claim while remaining consistent with the paper’s non-algorithmic identity.
-
-### Alternative route
-
-If no quantitative demonstration is added, then:
-
-- remove all promises of simulation/results;
-- reduce empirical-sounding claims;
-- consider whether MDPI’s `conceptpaper`, `perspective`, or another manuscript type fits better than `article`;
-- make the paper’s contribution explicitly taxonomic/conceptual and adjust abstract/conclusion accordingly.
-
-This is a strategic author decision and should be made before polishing prose.
+A high-level synthetic illustration may examine when proxy quality, noise, and shared bias permit or undermine exposure-informed inspection prioritisation. Keep its objective distinct from failure prediction and industrial cost savings. A bounded design and stopping rule are in `notes/07_publication_completion_plan.md`; no numerical protocol is yet fixed. The conceptual revision can close without it.
 
 ## P0.4 Strengthen the economic argument with evidence
 
@@ -145,7 +148,7 @@ Needed work:
 - avoid unsupported prevalence claims (“often,” “typically,” “systematically”) unless references justify them;
 - if no strong cost data exist, frame the point as a **decision condition**: LD-PdM applies when the lifecycle value of added direct sensing is not justified under the operator’s constraints.
 
-## P0.5 Make the proxy-to-maintenance chain falsifiable
+## P0.5 Make the proxy-to-maintenance argument traceable and bounded
 
 The current notation
 
@@ -153,14 +156,27 @@ The current notation
 
 is useful conceptually, but the paper currently stops before specifying what would count as evidence that the proxy chain is informative enough for action.
 
-At least one of the following should be added:
+For the conceptual paper, add an assumption register and a worked qualitative decision linking proxy evidence, inferred usage/exposure, possible actions, consequences, and limitations. Show both a case in which evidence could differentiate inspection attention and a case in which the available evidence cannot justify an ordering. A symbolic decision rule may clarify the argument, but numerical probabilities and an implemented optimizer are not required.
 
-- an explicit generative model for proxy → usage → degradation pressure → priority;
-- a Bayesian-network example with declared conditional probabilities;
-- a simulation-based sensitivity analysis;
-- a value-of-information formulation showing when an extra inspection/sensor becomes worthwhile.
+State what later observations could challenge each proxy interpretation. Do not imply that an explicit probability distribution guarantees identifiability, calibration, or operational usefulness.
 
-Without this, the paper’s Bayesian language risks remaining architectural rather than analytical.
+## P0.6 Address established partial-observation and information-value maintenance work
+
+Li et al. integration alone does not establish novelty. Existing work already connects partial/noisy observations, maintenance choices, information acquisition, and population-level inspection allocation. Verified starting points include [Value of condition monitoring in infrastructure maintenance](https://doi.org/10.1016/j.cie.2013.05.022) and [Value of information in sequential decision making](https://doi.org/10.1016/j.ress.2016.05.014).
+
+Position LD-PdM as an operational characterization and synthesis of a maintenance evidence regime. Acknowledge overlap with virtual/soft sensing, risk-based maintenance, Bayesian inspection planning, and partially observable Markov decision processes. Audit claims that other literature omits uncertainty or that no relevant methodological canon exists; narrow or remove them unless supported by a defined source set.
+
+## P0.7 Separate physical quantities, uncertainty, and decisions
+
+The active manuscript needs a consistent glossary and reasoning boundary:
+
+- dedicated sensors also provide evidence about latent condition; weak condition-sensitive channels, rather than latent states alone, distinguish the proposed regime;
+- usage, exposure, degradation, future-event probability, consequences, urgency, and action priority are not interchangeable;
+- define the event and horizon if probability notation is retained; a service-condition threshold is not a failure event;
+- explain the pooling assumptions behind population-level inference and the effect of common proxy bias;
+- distinguish intervention from information gathering: greater uncertainty alone does not establish greater intervention priority;
+- describe asset function and consequences rather than declaring doors, elevators, or escalators non-critical as entire classes;
+- treat censoring and intervention effects as explicit limitations where they are not represented in the example.
 
 ---
 
@@ -188,7 +204,7 @@ This is clearly pre-final drafting language. Rewrite captions to describe what t
 
 ## P1.3 Resolve the simulation/architecture contradiction
 
-If a simulation is added, rewrite Sections 5–6 around actual model assumptions, experiment design, and results. If not, change the Introduction road map from “illustrative simulation” to “illustrative station-based architecture and decision-oriented outputs.”
+Rewrite the roadmap and Sections 5–6 around the worked conceptual station example. If the optional synthetic illustration is added, label its methods and results separately and limit their interpretation to the declared synthetic objective.
 
 ## P1.4 Recalibrate claims of generality
 
@@ -204,11 +220,13 @@ The station case is described as an “existence proof.” In its current non-co
 
 ## P1.7 Check relationship with the GPECOM paper
 
-The manuscript cites `GPECOM2026LdPDM` as a companion paper and the bibliography currently labels it “Submitted for publication.” Before submission:
+The manuscript cites `GPECOM2026LdPDM` as a companion paper and the bibliography currently labels it “Submitted for publication.” The [AGH record](https://badap.agh.edu.pl/publikacja/169113) identifies the published paper, pages 987–992, online from 2026-07-02, DOI `10.1109/GPECOM70462.2026.11578618`. Its [preprint](https://arxiv.org/html/2603.14384v1) already develops proxy-flow/cycle modelling and scheduling. Before submission:
 
-- verify its actual publication/acceptance status and update the BibTeX entry;
+- update the BibTeX entry from the verified published record;
 - ensure the Symmetry paper does not duplicate the conference contribution without clear extension/differentiation;
 - use the door/elevator work as supporting technical evidence, not as a substitute for validation of claims made only in the present paper.
+
+Check the version of record before reuse. Its service-condition probabilities do not validate physical failure probabilities, and its citation of this conceptual manuscript does not independently establish the present contribution.
 
 ---
 
@@ -216,7 +234,11 @@ The manuscript cites `GPECOM2026LdPDM` as a companion paper and the bibliography
 
 ## P2.1 Compile cleanly from a fresh checkout
 
-Compilation has not yet been independently verified after migration. Before substantive final editing, run a clean build and record warnings/errors. At minimum check:
+**Baseline build verified on 2026-10-19:** clean temporary copy of the source at HEAD `2f6436b478e608ddfc73eb37b57deec126844234`, using TeX Live 2024 and latexmk 4.83. This was not a fresh clone. Command: `latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error template.tex`. Exit 0, 23 pages, no unresolved citations/references and no BibTeX errors.
+
+Temporary review artifacts: `/tmp/pdm-latex-audit-3q67w2nv/paper/template.pdf`, `template.log`, `template.blg`, and `build.stdout`. These are local, disposable artifacts rather than a repository build archive. Pages 1, 4, 13, 14, 15, and 16 were rendered with existing Ghostscript and visually inspected.
+
+Open findings: two overfull boxes (16.46 pt in the proxy table; 25.95 pt in the inference-chain diagram), underfull table/abbreviation text, repeated header-height warnings, and an `xcolor` warning. Visual inspection also revealed P2.6 below. After revision, run a final clean build and inspect every page. At minimum check:
 
 - unresolved references/citations;
 - overfull boxes;
@@ -255,6 +277,18 @@ Do this **after** the substantive revision, not before, so useful fragments are 
 
 `pioritisationoutput.tex` contains a filename typo. Rename to a consistent form such as `prioritisation_output.tex` and update the corresponding `\input{...}` once substantive editing of `template.tex` begins.
 
+## P2.6 Repair abstract and keyword rendering
+
+`paper/template.tex:126` starts the document before the abstract and keywords. At `:129`, the source uses an `abstract` environment, whereas the bundled class defines the one-argument `\abstract{...}` command (`paper/Definitions/mdpi.cls:638`–`639`). The PDF loses the first “P” in “Predictive” and displays neither the Abstract nor Keywords label.
+
+Use the correct MDPI front-matter commands before `\begin{document}` and verify the rendered first page. A successful LaTeX exit code does not close this issue.
+
+## P2.7 Verify bibliography metadata and claim support
+
+All 27 bibliography entries are used, and all active citation keys resolve. Fifteen article entries nevertheless have empty pagination and no alternative article identifier: `Carvalho2019`, `Cinar2020`, `Straub2015`, `vanDinter2022`, `Ma2020`, `Zhou2025`, `Guo2025`, `Haruehansapong2023`, `Burnac2025`, `Mahmoodian2022`, `Yeter2020`, `Yang2024`, `Xin2026`, `Enjavimadar2022`, and `Yu2021`.
+
+Check all retained records against publisher metadata, including surname ordering and author initials; the `Xin2026` and `Baraldi2015176` author fields need particular attention. Preserve canonical keys. Separately check claim support: `Straub2015` is a Bayesian updating algorithm paper, `Bourinet2016210` concerns computational rare-event estimation, and `Zeng2016253` supports interval-censoring methodology rather than station-specific evidence. Adding an accurate identifier does not repair an inaccurate attribution.
+
 ---
 
 # P3 — Repository organization and reproducibility
@@ -269,7 +303,7 @@ The repository cleanup associated with this audit does the following:
 - adds a LaTeX-oriented `.gitignore`;
 - reconciles stale research notes with the imported source while preserving their historical role.
 
-Future reproducibility work should add, if a simulation is chosen:
+For the conceptual route, keep a reproducible LaTeX build and traceable sources/diagram assumptions. If the optional synthetic illustration is implemented, add only the infrastructure it requires:
 
 - `code/` or `simulation/` with Python source;
 - fixed random seeds and a single configuration file;
@@ -281,17 +315,17 @@ Future reproducibility work should add, if a simulation is chosen:
 
 # Recommended work sequence
 
-1. **Integrate Li et al. intellectually first**, before polishing any manuscript prose.
-2. Fix the operational definition of LD-PdM and the novelty statement.
-3. Decide **quantitative simulation vs explicit concept/perspective paper**.
-4. If simulation: implement the minimum decision-level experiment and regenerate the station-output sections around actual results.
-5. Strengthen sensor-economics support and narrow unsupported generality claims.
-6. Rewrite the Introduction and Discussion around the revised novelty boundary.
-7. Remove placeholder headings, future-tense figure captions, and stale drafting text.
-8. Clean LaTeX front matter/end matter and verify GPECOM bibliographic status.
-9. Run a clean compile and citation/reference audit.
-10. Only then perform final language polishing and submission-format checks.
+1. Fix the contribution and operational definition, acknowledging Li and established partial-observation/decision-analysis work.
+2. Map consequential claims to their sources and verify retained bibliography records.
+3. Specify the evidence/assumption chain and worked qualitative station decision.
+4. Rewrite the core sections; add only a bounded high-level synthetic illustration if it resolves a specific remaining explanatory gap.
+5. Rewrite the Introduction, Discussion, abstract, and conclusion to match the completed conceptual argument.
+6. Align schematic figures/tables and remove placeholder headings, future captions, unsupported performance claims, and duplicate draft blocks.
+7. Repair abstract/keywords, front/end matter, bibliography, and layout.
+8. Run a final clean build, inspect every page, and prepare submission materials under the existing invitation.
+
+Detailed deliverables and stopping rules: `notes/07_publication_completion_plan.md`.
 
 ## Submission gate
 
-Do **not** label the manuscript submission-ready until all P0 items are resolved and the P1/P2 items have been checked explicitly. The central criterion is not cosmetic completeness: a reviewer should be able to answer, from the paper alone, **what LD-PdM adds beyond small-data PHM and why the station example constitutes evidence for that claim**.
+Do **not** label the manuscript submission-ready until all P0 items have an explicit disposition and the P1/P2 items have been checked. A reviewer should be able to identify **the proposed regime, its relationship to prior art, the assumptions connecting proxy evidence to action, and what the conceptual station example establishes**. Quantitative validation is not a prerequisite for this scope; conclusions must stay within the conceptual argument and any explicitly synthetic illustration actually included.

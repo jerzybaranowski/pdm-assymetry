@@ -4,17 +4,19 @@ This file originally captured the March 2026 pre-submission discussion. It is re
 
 ## Current status
 
-**Not submission-ready.** The Overleaf source has been imported and several previously unresolved migration issues are now closed (`Cinar2020`, abstract, keywords, abbreviations, source availability), but substantive scientific issues remain.
+**Revised draft for author review.** The substantive conceptual revision is implemented; its changes and checks are recorded in `08_manuscript_revision_report.md`. The AI disclosure is deliberately red for later revision, as requested by the author. Scientific review, final affiliation presentation, and submission-history declarations remain author tasks.
 
-## Historical concerns that remain active
+## Historical concerns addressed in the revised draft
 
 - explicit positioning against Li et al. (2024);
 - an operational definition of LD-PdM that is more precise than “small data”;
 - stronger support for instrumentation/retrofit economics;
 - careful separation of proxy evidence from direct measurement;
-- a decision on whether to add a quantitative station simulation or reposition as a concept/perspective paper;
+- a worked conceptual station decision with explicit assumptions and limits;
 - ensuring that “asymmetry” is an organizing construct throughout the paper rather than only a title word;
 - preserving the article’s non-review identity while acknowledging adjacent literature fairly.
+
+**Author clarification, 2026-10-19:** the paper is conceptual, empirical data are unavailable, and a high-level synthetic illustration is permitted if useful. The existing title is invited and retained. The earlier simulation-versus-concept decision is resolved; see `07_publication_completion_plan.md` for the execution plan.
 
 ## Concerns that are now resolved as migration issues
 
@@ -34,9 +36,11 @@ See `../literature/02_positioning_vs_li2024.md` and `../AUDIT.md`.
 
 ## Submission gate
 
-Do not return to line-level polishing until the P0 scientific issues in `AUDIT.md` are resolved. In particular, a reviewer must be able to understand from the manuscript itself:
+The current dispositions are recorded in `AUDIT.md`. A reviewer should be able to understand from the revised manuscript itself:
 
 1. what LD-PdM adds beyond small-data PHM;
 2. why the proposed regime is meaningfully distinct;
 3. what evidence the station case supplies for the paper’s claims;
-4. what the framework would allow a maintenance decision maker to do better than a simpler baseline.
+4. why a candidate action could follow under stated assumptions, and when the evidence cannot justify an ordering.
+
+A comparative improvement over a baseline is not claimed by this conceptual study.

@@ -11,7 +11,7 @@ The Introduction was designed around four conceptual moves:
 3. **Probabilistic/Bayesian motivation.** Proxy, contextual, historical, and prior evidence require explicit uncertainty representation.
 4. **Contribution statement.** The contribution is a problem formulation/system-level framing rather than a new diagnostic algorithm.
 
-This logic remains useful, but the current Introduction must now be revised to incorporate Li et al. (2024) and to avoid overstating novelty for data scarcity, instrumentation cost, or uncertainty themselves.
+This logic informed the 2026-10-19 revision, which now incorporates Li et al. and existing decision-analysis work without claiming novelty for scarcity, instrumentation cost, or uncertainty alone.
 
 ## Paragraph-level outlining convention
 
@@ -24,7 +24,7 @@ For future restructuring:
 - treat required figures/tables as separate outline bullets;
 - explicitly mark whether a paragraph contains background, gap, contribution, evidence, or limitation.
 
-This convention is particularly useful for the next Introduction/Discussion rewrite because the Li et al. comparison needs to be integrated without turning the paper into a review.
+The convention was used for the revision plan in `07_publication_completion_plan.md`. The revised manuscript has seven main sections and retains its conceptual, non-review identity.
 
 ## Citation rule
 
@@ -36,10 +36,10 @@ The key current citation requirement is that Li et al. (2024) must appear **befo
 
 Keep the original rule: include an Introduction figure only if it is necessary to formalize the asymmetry. A two-axis regime figure (maintenance decision value versus economically available direct observability) could justify itself because it would operationalize the title concept; purely decorative figures should remain outside the Introduction.
 
-## Current source issues relevant to structure
+## Original source issues addressed by the revision
 
-See `../AUDIT.md`. In particular:
+See the current dispositions in `../AUDIT.md` and the implementation report in `08_manuscript_revision_report.md`:
 
-- the Introduction currently promises an “illustrative simulation” although the active station sections are conceptual;
-- active drafting headings such as “Section positioning” and “Section opening paragraph” remain in the manuscript;
-- the Discussion should explicitly position LD-PdM relative to small-data PHM, not only CBM/risk-based maintenance/digital twins.
+- unsupported simulation promises were removed;
+- drafting headings such as “Section positioning” and “Section opening paragraph” were removed;
+- the Discussion now positions LD-PdM relative to small-data PHM and established indirect-sensing and decision-analysis approaches.

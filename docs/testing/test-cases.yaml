@@ -1,0 +1,26 @@
+cases:
+  - id: TIKZ-ARTIFACTS-001
+    component: tikz_pipeline
+    behavior: Configured standalone previews have rendered artifacts and resolvable source includes.
+    level: integration
+    status: implemented
+    test_refs:
+      - tests/test_tikz_pipeline.py::test_every_diagram_source_has_its_rendered_image_and_resolvable_includes
+    origin: feature
+    notes: Static verification only; visual inspection and strict local rendering remain separate checks.
+  - id: TIKZ-RENDERER-001
+    component: tikz_pipeline
+    behavior: Diagram compilation is owned by one shared renderer rather than duplicated Python scripts.
+    level: integration
+    status: implemented
+    test_refs:
+      - tests/test_tikz_pipeline.py::test_no_other_script_drives_latex
+    origin: feature
+  - id: TIKZ-SOURCES-001
+    component: tikz_pipeline
+    behavior: Standalone diagram previews stay in configured source directories so the renderer discovers them.
+    level: integration
+    status: implemented
+    test_refs:
+      - tests/test_tikz_pipeline.py::test_no_diagram_source_sits_outside_a_source_directory
+    origin: feature

@@ -1,6 +1,6 @@
 # Manuscript components from the finishing stage
 
-During the 2026-03-09 manuscript-finishing conversation, work was performed on the abstract, keywords, abbreviation list, and candidate citations. The current Overleaf source has now been imported, so the exact manuscript state can be read directly from `../paper/template.tex`.
+During the 2026-03-09 manuscript-finishing conversation, work was performed on the abstract, keywords, abbreviation list, and candidate citations. The source was subsequently imported and revised on 2026-10-19. Current wording is in `../paper/template.tex`; the implementation report is `08_manuscript_revision_report.md`.
 
 ## Abstract
 
@@ -11,32 +11,34 @@ The canonical abstract is present in `paper/template.tex`. It defines **Limited-
 3. economic constraints on instrumentation;
 4. mismatch between high asset-level uncertainty and meaningful population-level decision value.
 
-It also states that the paper’s contribution is conceptual and structural rather than algorithmic.
+It also states the operational characterization and synthesis contribution, the worked qualitative station example, overlap with existing approaches, and the absence of an empirical performance claim. The MDPI front-matter declaration has been repaired so that the abstract and keywords render correctly.
 
 ## Current keyword list
 
-The imported manuscript uses:
+The revised manuscript uses:
 
 - predictive maintenance;
-- Bayesian methods;
-- uncertainty quantification;
-- proxy data;
-- indirect measurement;
-- digital twins;
+- limited data;
+- partial observability;
+- proxy information;
+- Bayesian inference;
+- uncertainty;
 - risk-based maintenance;
-- infrastructure maintenance;
 - railway stations;
+- inspection planning;
 - decision support.
 
 ## Current abbreviation list
 
-The imported manuscript currently contains:
+The revised manuscript contains:
 
 - PdM — Predictive maintenance;
 - LD-PdM — Limited-Data Predictive Maintenance;
-- RUL — Remaining useful life.
+- PHM — Prognostics and health management;
+- RUL — Remaining useful life;
+- POMDP — Partially observable Markov decision process.
 
-Earlier project notes mentioned PHM, CBM and DT as possible abbreviations, but they are not currently included in the manuscript abbreviation block.
+CBM and DT are not used as manuscript abbreviations in this revision.
 
 ## Known candidate self-citation
 

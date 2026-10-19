@@ -28,7 +28,7 @@ The contribution statement opened from the premise that the paper challenges pre
 
 A complete LaTeX outline was subsequently requested, with all references used in a subsection collected into a bulk citation at the subsection end.
 
-An unresolved bibliographic point from this stage is the identity/use of the key `Çınar2020`; it must be verified against the canonical bibliography rather than guessed.
+At that stage, the identity/use of `Çınar2020` was unresolved. The source import subsequently resolved it as the canonical key `Cinar2020`; see `06_manuscript_components.md` and `../migration/SOURCE_RECONCILIATION.md`.
 
 ## 2025-12-17 — Paper structure decisions
 
@@ -56,7 +56,7 @@ One explicitly supplied candidate citation was `Bauer2025`:
 
 W. Bauer and J. Baranowski, “A Comparison of Deep Recurrent Neural Networks and Bayesian Neural Networks for Detecting Electric Motor Damage Through Sound Signal Analysis,” *Energies*, vol. 18, no. 18, 2025, DOI 10.3390/en18184997.
 
-The exact abstract, abbreviation list and keyword wording from that conversation are not available in the current migration context and should be recovered from the manuscript source if already incorporated there.
+The exact historical conversation wording remains unavailable, but the current abstract, abbreviation list, and keywords were recovered in `paper/template.tex` and are described in `06_manuscript_components.md`. Their rendering and editorial adequacy remain separate current tasks.
 
 ## 2026-03-09 — LDPdM Case Study / related paper context
 

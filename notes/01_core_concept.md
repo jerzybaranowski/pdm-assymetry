@@ -97,7 +97,7 @@ The planned application is a railway station containing repeated asset classes a
 - fleet/system-level scheduling opportunities;
 - a natural path toward integration with a digital representation of the station.
 
-The current manuscript uses this as an **illustrative architecture**, not yet as a validated numerical simulation. The audit in `../AUDIT.md` recommends either adding a compact decision-level simulation or explicitly repositioning the manuscript as a concept/perspective paper.
+The current manuscript uses this as an **illustrative architecture**, not a validated numerical simulation. On 2026-10-19 the author confirmed the conceptual contribution and absence of empirical data, while permitting a high-level synthetic illustration if useful. The current completion plan is `07_publication_completion_plan.md`; a simulation is optional.
 
 ## 8. Relationship to small-data PHM
 
