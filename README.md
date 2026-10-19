@@ -1,33 +1,45 @@
 # Asymmetric Relations Between Needs and Data Availability in Predictive Maintenance Systems
 
-This repository is the working repository for the paper currently titled **“Asymmetric Relations Between Needs and Data Availability in Predictive Maintenance Systems”**, intended for submission to *Symmetry* (Engineering and Materials section).
+This repository is the canonical working repository for the paper **“Asymmetric Relations Between Needs and Data Availability in Predictive Maintenance Systems”**, currently prepared for *Symmetry*.
 
-The repository is intended to become the single source of truth for the project: manuscript source, bibliography, simulations, figures, literature notes, and research decisions should live here rather than only in ChatGPT conversations or Overleaf.
+The manuscript defines **Limited-Data Predictive Maintenance (LD-PdM)** as a predictive-maintenance regime in which maintenance needs remain operationally meaningful while direct condition information is structurally scarce, indirect, incomplete, or economically difficult to acquire. “Low-instrumentation” and “low-observability” describe the regime; the manuscript’s canonical expansion of LD-PdM is **Limited-Data Predictive Maintenance**.
 
 ## Core research idea
 
-The paper studies a structural asymmetry in predictive maintenance (PdM): assets may create a meaningful maintenance burden while providing too little direct condition information to support conventional sensor-centric PdM economically.
-
 The central contrast is between:
 
-- expensive or critical assets, where dedicated condition-monitoring instrumentation can be justified mainly by avoided downtime, damage, or safety consequences; and
-- large populations of comparatively ordinary assets—automatic doors, escalators, elevators, HVAC units, vehicle/tool fleets and similar equipment—where substantial aggregate maintenance savings may exist but per-asset sensing can be difficult to justify.
+- expensive or critical assets, where dedicated condition-monitoring instrumentation can often be justified by avoided downtime, damage, or safety consequences; and
+- large populations of comparatively ordinary assets—automatic doors, escalators, elevators, HVAC units, vehicle/tool fleets and similar equipment—where aggregate maintenance value may be substantial but rich per-asset sensing can be difficult to justify.
 
-For the second regime, the paper develops the idea of **low-data / low-instrumentation PdM (LD-PdM)** based on already available operational data, proxy variables, contextual information, documentation and maintenance histories, represented probabilistically rather than assuming that missing condition sensors can simply be added.
+For the second regime, maintenance reasoning can use already-available operational data, proxy variables, contextual information, maintenance histories, documentation, and prior engineering knowledge. Because these sources are only indirectly informative about latent load, degradation, and risk, uncertainty is part of the problem formulation rather than a residual modelling nuisance.
 
-The main application setting is a **train station**, with possible integration of maintenance reasoning into a station digital twin. A key proxy-data example is using passenger-flow or ticketing information as indirect evidence of escalator usage when the escalator itself is not instrumented for load estimation.
+The main illustrative setting is a **railway station**, where passenger-flow and ticketing information can provide indirect evidence of device usage and where maintenance reasoning may ultimately be integrated with a digital representation of the station.
+
+## Canonical manuscript source
+
+The current Overleaf source was imported into `paper/` on 2026-10-19.
+
+- `paper/template.tex` — main manuscript file
+- `paper/extracted.bib` — canonical manuscript bibliography at the time of import
+- `paper/diagram.tex` — asymmetry/observability figure
+- `paper/inferencechain.tex` — inference-chain figure
+- `paper/conceptual_heatmap.tex` — station exposure-map figure
+- `paper/pioritisationoutput.tex` — prioritisation-output figure
+- `paper/Definitions/` — MDPI class, bibliography styles and template assets
+
+The LaTeX source is authoritative for exact wording, section structure, citations, and BibTeX keys. Markdown files preserve project rationale, literature synthesis, decisions, and migration history.
 
 ## Repository structure
 
-- `paper/` — manuscript source. The latest Overleaf/LaTeX source still has to be imported.
+- `paper/` — canonical manuscript source and figures.
 - `notes/` — recovered project discussions, conceptual decisions, case-study notes, and writing rules.
 - `literature/` — literature synthesis and positioning notes.
-- `references/` — recovered/seed BibTeX entries; not yet a complete bibliography.
-- `migration/` — provenance and recovery status for the ChatGPT-project migration.
-- `AGENTS.md` — instructions for future work performed by AI coding/research agents in this repository.
+- `references/` — recovered seed references from conversations; `paper/extracted.bib` is the canonical manuscript bibliography.
+- `migration/` — provenance, source reconciliation, and recovery status.
+- `AGENTS.md` — instructions for future AI-assisted research/coding work in this repository.
 
-## Current status
+## Current migration status
 
-A near-submission manuscript existed in March 2026 and was reviewed in the ChatGPT project before intended submission to *Symmetry*. The current ChatGPT file interface does **not** expose the previously uploaded `Predictive_Maintenance_Concept-submission.pdf`, `Predictive_Maintenance_Concept.zip`, or `outline.pdf`, so their bytes have not been copied here. The latest LaTeX source should therefore be imported from Overleaf (or re-uploaded) before manuscript editing continues.
+The conceptual material from the ChatGPT project and the current Overleaf source are now both in the repository. The exact historical attachments `Predictive_Maintenance_Concept-submission.pdf`, `Predictive_Maintenance_Concept.zip`, and `outline.pdf` are still not available through the current ChatGPT file interface, but this no longer blocks manuscript work because the current LaTeX source is present.
 
-See `migration/RECOVERY_STATUS.md` for details.
+See `migration/RECOVERY_STATUS.md` and `migration/SOURCE_RECONCILIATION.md` for details.

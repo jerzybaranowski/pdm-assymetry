@@ -1,17 +1,46 @@
-# Manuscript components recovered from the finishing stage
+# Manuscript components from the finishing stage
 
-During the 2026-03-09 manuscript-finishing conversation, the following components were explicitly prepared or requested:
+During the 2026-03-09 manuscript-finishing conversation, work was performed on the abstract, keywords, abbreviation list, and candidate citations. The current Overleaf source has now been imported, so the exact manuscript state can be read directly from `../paper/template.tex`.
 
-- abstract;
-- keywords;
-- list of abbreviations in LaTeX `tabular` form;
-- evaluation of selected prior author publications as candidate citations.
+## Abstract
 
-The exact wording of the abstract, keyword list and abbreviation table is not available in the current migration context. Because these components may already be present in the latest Overleaf source, they should **not** be independently rewritten here and later merged by hand unless necessary.
+The canonical abstract is present in `paper/template.tex`. It defines **Limited-Data Predictive Maintenance (LD-PdM)** and explicitly identifies four asymmetries:
+
+1. limited observability of decision-relevant states;
+2. sparse and biased failure evidence;
+3. economic constraints on instrumentation;
+4. mismatch between high asset-level uncertainty and meaningful population-level decision value.
+
+It also states that the paper’s contribution is conceptual and structural rather than algorithmic.
+
+## Current keyword list
+
+The imported manuscript uses:
+
+- predictive maintenance;
+- Bayesian methods;
+- uncertainty quantification;
+- proxy data;
+- indirect measurement;
+- digital twins;
+- risk-based maintenance;
+- infrastructure maintenance;
+- railway stations;
+- decision support.
+
+## Current abbreviation list
+
+The imported manuscript currently contains:
+
+- PdM — Predictive maintenance;
+- LD-PdM — Limited-Data Predictive Maintenance;
+- RUL — Remaining useful life.
+
+Earlier project notes mentioned PHM, CBM and DT as possible abbreviations, but they are not currently included in the manuscript abbreviation block.
 
 ## Known candidate self-citation
 
-The conversation explicitly included:
+The March 2026 conversation explicitly supplied:
 
 ```bibtex
 @ARTICLE{Bauer2025,
@@ -26,32 +55,8 @@ The conversation explicitly included:
 }
 ```
 
-The paper should cite this only where it supports a genuine point (for example, the role of probabilistic/Bayesian models in condition diagnosis), not as a generic self-citation.
+A reconciliation check found that `Bauer2025` is **not currently present** in `paper/extracted.bib`. It should only be added if it supports a specific manuscript statement; it should not be introduced merely as a self-citation.
 
-## Candidate keyword concepts
+## Historical versus current state
 
-These are concept labels, **not a claim that they reproduce the previous final keyword list**:
-
-- predictive maintenance;
-- condition monitoring;
-- data scarcity;
-- low-instrumentation systems;
-- proxy variables;
-- Bayesian inference;
-- maintenance decision-making;
-- digital twin.
-
-When the manuscript source is imported, replace this section with the exact keyword list actually used.
-
-## Likely abbreviation set to verify against source
-
-The project repeatedly uses:
-
-- PdM — Predictive Maintenance;
-- PHM — Prognostics and Health Management;
-- CBM — Condition-Based Maintenance;
-- LD-PdM — Low-Data / Low-Instrumentation Predictive Maintenance;
-- RUL — Remaining Useful Life;
-- DT — Digital Twin (only if used in the manuscript).
-
-Again, the canonical abbreviation list must come from the paper source after import.
+This file now records the verified current manuscript state. For exact wording, always use `paper/template.tex`; this note exists only to preserve the relationship between the March 2026 finishing work and the imported source.

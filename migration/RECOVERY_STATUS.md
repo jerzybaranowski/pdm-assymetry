@@ -1,67 +1,66 @@
 # ChatGPT project migration — recovery status
 
-**Migration date:** 2026-10-19
+**Migration date:** 2026-10-19  
+**Manuscript-source import:** 2026-10-19, commit `3015f9b285d5333768cc446a04e4278fc547743c`
 
-This directory records what could be recovered from the ChatGPT project and what still requires import from the original manuscript source.
+The migration now contains both (i) durable research context reconstructed from the ChatGPT project and (ii) the current Overleaf/LaTeX manuscript source committed by the project owner.
 
 ## Recovered from project conversation context
 
-The following durable project information has been reconstructed and committed to this repository:
+The following durable project information was reconstructed and committed before the source import:
 
-- the core LD-PdM / low-instrumentation predictive-maintenance concept;
-- the distinction between critical, heavily instrumented assets and mass-deployed assets for which dedicated sensing may be economically unjustified;
-- the train-station case-study direction, including escalators, elevators and automatic doors;
-- the proxy-data idea, including passenger/ticket-flow information as indirect evidence of escalator usage;
+- the structural-asymmetry concept underlying LD-PdM;
+- the distinction between critical, heavily instrumented assets and mass-deployed assets for which additional sensing may be economically difficult to justify;
+- the railway-station case-study direction, including escalators, elevators and automatic doors;
+- the proxy-data idea, including passenger/ticket-flow information as indirect evidence of device usage;
 - the intended Bayesian/probabilistic framing for uncertain proxy, contextual and historical evidence;
 - the high-concept/non-review character of the article;
-- the recovered Introduction outline and paragraph-level outlining rules;
+- the paragraph-level outlining rules used during manuscript development;
 - the literature-synthesis result that indirect/proxy inference appears across many domains without being unified under PdM terminology;
 - the required positioning against Li et al. (2024), *Small data challenges for intelligent prognostics and health management: a review*;
 - the March 2026 pre-submission discussion for *Symmetry*;
-- the plan to reuse elevator and automatic-door examples from the related GPECOM paper where appropriate;
-- manuscript-preparation tasks involving abstract, keywords, abbreviations and candidate self-citations.
+- the plan to reuse/cite railway-station door/elevator material from the related GPECOM work where appropriate.
 
-The recovered material is stored as research notes rather than represented as verbatim historical transcripts unless exact wording was available in the retained project context.
+These materials are stored in `notes/` and `literature/` as research records rather than as purported verbatim chat transcripts.
 
-## Known prior project conversations
+## Current canonical manuscript source
 
-The accessible project context identifies at least these relevant threads:
+The source imported into `paper/` contains:
 
-1. **2025-12-16 — Contribution statement drafting**
-2. **2025-12-16 — Context recovery analysis**
-3. **2025-12-17 — Paper structure decisions**
-4. **2026-03-09 — Paper Structure Expansion**
-5. **2026-03-09 — LDPdM Case Study** (related case-study / reviewer-response context)
-6. **2026-03-15 — Paper Review Feedback**
+- `template.tex` — main manuscript;
+- `extracted.bib` — manuscript bibliography;
+- `diagram.tex` — conceptual asymmetry/observability figure;
+- `inferencechain.tex` — inference-chain figure;
+- `conceptual_heatmap.tex` — station exposure-map figure;
+- `pioritisationoutput.tex` — prioritisation figure;
+- `Definitions/` — MDPI class/styles/assets.
 
-Their recoverable outputs are summarized in `notes/CONVERSATION_INDEX.md` and the topical notes in `notes/` and `literature/`.
+The source confirms the canonical expansion **Limited-Data Predictive Maintenance (LD-PdM)** and contains the current abstract, keywords, contribution statement, station-based illustrative case, discussion, conclusions, acknowledgments and bibliography.
 
-## Files known to have existed but not currently retrievable
+The previously unresolved citation key `Cinar2020` is now identified from `paper/extracted.bib` as the 2020 *Sustainability* paper by Çınar et al., “Machine learning in predictive maintenance towards sustainable smart manufacturing in industry 4.0,” DOI `10.3390/su12198211`.
 
-The project conversation history refers to these attachments:
+## Source-versus-notes rule
 
-- `Predictive_Maintenance_Concept-submission.pdf`
-- `Predictive_Maintenance_Concept.zip`
-- `outline.pdf`
+Where the imported LaTeX differs from reconstructed notes:
 
-In the current ChatGPT conversation, the file interface exposes no project attachments, and searches of the persistent Library did not return these files. Consequently their exact bytes could not be migrated.
+- `paper/template.tex` is authoritative for exact manuscript wording and section structure;
+- `paper/extracted.bib` is authoritative for current BibTeX keys;
+- Markdown notes remain authoritative only for research rationale, earlier decisions, literature-search conclusions and migration provenance that are not yet reflected in the manuscript.
 
-Most importantly, the latest LaTeX source is **not currently available** to the migration process. The repository therefore deliberately does not contain a reconstructed substitute for the paper source.
+See `SOURCE_RECONCILIATION.md` for the main discrepancies detected immediately after import.
 
-## Required next import
+## Historical attachments still unavailable
 
-Export the current Overleaf project as a ZIP (or upload the existing `Predictive_Maintenance_Concept.zip`) and provide it to the repository workflow. The import should preserve:
+The project conversation history refers to:
 
-- every `.tex` source file;
-- the canonical `.bib` file(s) and their existing keys;
-- figures and diagrams in their original formats;
-- custom style/class files;
-- any Python/data assets already used to produce manuscript figures.
+- `Predictive_Maintenance_Concept-submission.pdf`;
+- `Predictive_Maintenance_Concept.zip`;
+- `outline.pdf`.
 
-The source should be placed under `paper/` while retaining its internal structure. Once imported, the manuscript source—not the reconstructed notes—becomes authoritative wherever there is a discrepancy.
+Their exact historical bytes are still not exposed by the current ChatGPT file interface. This is no longer a blocker for manuscript work because the current Overleaf source is now in the repository, but the historical files would still be useful for forensic comparison if they are ever recovered.
 
-## Recovery quality
+## Material not recoverable exactly from chat history
 
-The conceptual and strategic migration is strong because the main project decisions are represented in retained conversation context. The weak point is exact-text recovery: complete historical chat transcripts, the final abstract/keyword text, the complete detailed outline, and the latest LaTeX/BibTeX source were not exposed by the currently available project/file interfaces.
+The retained project context does not provide a complete verbatim export of all historical conversations. In particular, the exact historical detailed outline and some intermediate literature-review outputs cannot be reproduced word-for-word. Their durable conclusions were migrated instead.
 
-No attempt was made to silently invent missing source text.
+No missing source text has been silently invented.

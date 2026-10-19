@@ -1,6 +1,6 @@
 # Literature synthesis recovered from the project
 
-This note captures the durable result of the project’s literature-review work. It is not a complete bibliography export because the canonical `.bib` file is not currently available.
+This note captures the durable result of the project’s literature-review work. The current canonical manuscript bibliography is now available as `../paper/extracted.bib`; this note preserves the broader synthesis and literature-positioning logic developed in the ChatGPT project.
 
 ## 1. Main synthesis result
 
@@ -109,7 +109,7 @@ A central contribution of the paper should be to organize these issues under the
 
 Chuanjiang Li, Shaobo Li, Yixiong Feng, Konstantinos Gryllias, Fengshou Gu, and Michael Pecht, “Small data challenges for intelligent prognostics and health management: a review,” *Artificial Intelligence Review*, vol. 57, no. 8, article 214, 2024. DOI: 10.1007/s10462-024-10820-4.
 
-This paper requires explicit positioning; see `02_positioning_vs_li2024.md`.
+This paper requires explicit positioning; see `02_positioning_vs_li2024.md`. A reconciliation check after the Overleaf import found that it is not yet present in `paper/template.tex` or `paper/extracted.bib`.
 
 ### Bauer and Baranowski (2025)
 
@@ -117,10 +117,14 @@ Waldemar Bauer and Jerzy Baranowski, “A Comparison of Deep Recurrent Neural Ne
 
 This was supplied during the manuscript-finishing discussion as a possible self-citation. It should only be retained if it supports a concrete point in the final text, not merely to increase self-citation.
 
-### `Çınar2020`
+### `Cinar2020` — resolved
 
-A previous outline contained or discussed a key rendered as `Çınar2020`, and its identity was explicitly questioned. Treat this key as **unverified** until the canonical bibliography is imported.
+The source import resolves the previously questioned key. `paper/extracted.bib` contains:
 
-## 7. What remains to recover
+Zeki Murat Çınar, Abubakar Abdussalam Nuhu, Qasim Zeeshan, Orhan Korhan, Mohammed Bsher A. Asmael, and Babak Safaei, “Machine learning in predictive maintenance towards sustainable smart manufacturing in industry 4.0,” *Sustainability*, vol. 12, no. 19, 2020. DOI: 10.3390/su12198211.
 
-The earlier literature-search workflow contained more individual papers and BibTeX keys than are available in the retained context. Once the Overleaf source is imported, recover the complete `.bib` first and use it to rebuild a source-by-source literature map rather than trying to recreate missing citations from memory.
+The canonical BibTeX key is `Cinar2020`.
+
+## 7. What remains to recover or systematize
+
+The current Overleaf bibliography is now available, but the earlier literature-search workflow contained broader source-by-source notes than are represented in the manuscript bibliography alone. The next literature-management step should therefore be to map the papers already present in `paper/extracted.bib` onto the literature strands above and identify which earlier search results are still missing—especially those needed for sensor economics, proxy inference, and the Li et al. positioning.
