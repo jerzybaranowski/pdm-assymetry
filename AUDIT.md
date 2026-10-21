@@ -4,25 +4,25 @@
 **Target:** *Symmetry*, Engineering and Materials  
 **Current assessment:** **substantively revised draft for author review; AI disclosure deferred**
 
-## Revision status on 2026-10-19
+## Revision status on 2026-10-21
 
-The agreed conceptual revision is implemented in `paper/template.tex`. The invited title and LD-PdM name are retained. The current review PDF has 16 pages after the focused Li comparison; the first revision had 14, followed by a 15-page draft restoring useful explanatory material after the author's question about the reduction. Details and section counts are in [`notes/08_manuscript_revision_report.md`](notes/08_manuscript_revision_report.md).
+The agreed conceptual revision is implemented in `paper/template.tex`. The invited title and LD-PdM name are retained. The current review PDF has 16 pages after the focused Li comparison and the author-approved two-door/contribution refinement. The first revision had 14, followed by a 15-page draft restoring useful explanatory material after the author's question about the reduction. Details and recorded section counts are in [`notes/08_manuscript_revision_report.md`](notes/08_manuscript_revision_report.md).
 
 | Audit items | Current disposition |
 |---|---|
 | P0.1–P0.2 | Addressed in the draft: Li integration, operational definition, and boundary cases. A focused comparison additionally acknowledges records, physical knowledge, fleet information, and uncertainty; differences concern organizing emphasis, not exclusive capabilities. |
 | P0.3 | Conceptual route implemented with a worked qualitative example. No simulation is claimed or required by the current conclusions. |
-| P0.4–P0.5 | Addressed through conditional economics, an assumption register, and explicit evidence-to-action scenarios. No station ROI or performance result is claimed. |
+| P0.4–P0.5 | Addressed through conditional economics, an assumption register, and explicit evidence-to-action scenarios. The 2026-10-21 refinement traces doors A/B through a conditional inspection choice and withdrawal after correction of routing during the assessed exposure interval. No station ROI or performance result is claimed. |
 | P0.6–P0.7 | Existing partial-observation/information-value work is acknowledged; variables, action dependence, inspection value, pooling assumptions, and proxy limits are separated. |
-| P1.1–P1.6 | Active drafting language and unsupported simulation promises removed. Case/output sections combined and strengthened; all active figures are explicitly conceptual. |
-| P1.7 | GPECOM publication metadata corrected and the contribution boundary stated. No conference figures or numerical results are reproduced. |
+| P1.1–P1.6 | Active drafting language and unsupported simulation promises removed. Case/output sections combined and strengthened; all active figures are explicitly conceptual. The Abstract, Introduction, Discussion, and Conclusions now foreground the use of the criteria and distinctions while reducing repeated qualifications. |
+| P1.7 | Closed by the full-text contribution check on 2026-10-21. The author confirmed that the inspected public preprint is identical to the final published version. Current attribution is accurate; technical equations, figures, and numerical results are not reproduced. See `literature/04_gpecom_contribution_boundary.md`. |
 | P2.1–P2.2 | Revised source builds successfully; first-page abstract/keywords, single-author option, year, and header height corrected. Final affiliation presentation remains an author check. |
 | P2.3 | Funding scope retained as instructed, with grammatical corrections. AI disclosure is red and explicitly deferred by the author. |
 | P2.4–P2.5 | Commented duplicate drafts removed. The misspelled prioritisation filename is retained only as an inactive historical source, so renaming it is unnecessary for this submission. |
 | P2.6–P2.7 | Abstract/keyword rendering repaired. Metadata checked for all 30 bibliography records; all have pagination/article identifiers. 26 records are cited. Claim-support limits are recorded in the source matrix. |
 | P3 | Navigation updated; shared diagram previews, static checks, and optional pinned tooling declarations added. No simulation infrastructure is required. |
 
-Validation found no unresolved citations/references, missing characters, or overfull/underfull boxes. All 16 pages were rendered and visually inspected after the focused Li comparison. A non-fatal `xcolor` warning remains in the bundled class/PGF loading sequence. Three diagram-pipeline tests and the test catalog check pass. The source matrix distinguishes abstract/metadata checks from full-text reading.
+Validation found no unresolved citations/references, missing characters, or overfull/underfull boxes. All 16 pages were rendered and visually inspected after the 2026-10-21 refinement, including a repair keeping the abbreviations heading and table together. A non-fatal `xcolor` warning remains in the bundled class/PGF loading sequence. Three diagram-pipeline tests and the test catalog check passed in the earlier pipeline revision; that code is unchanged. The source matrix distinguishes abstract/metadata checks from full-text reading.
 
 **Remaining author work:** review the scientific revision and content balance; replace/approve the red AI declaration; confirm affiliation presentation and submission-history declarations. Funding scope is confirmed. Submission is not authorized. A cover-letter draft is in [`notes/09_cover_letter_draft.md`](notes/09_cover_letter_draft.md).
 

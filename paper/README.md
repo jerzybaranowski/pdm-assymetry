@@ -28,7 +28,7 @@ From this directory:
 latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=../build/manuscript template.tex
 ```
 
-TeX Live 2024 and latexmk 4.83 produce a 16-page PDF after the focused Li comparison, without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected. The abstract/keywords, single-author option, year, header height, and previous width problems are repaired. A non-fatal `xcolor` load-time-option warning remains within the bundled class/PGF loading sequence.
+TeX Live 2024 and latexmk 4.83 produce a 16-page PDF after the two-door example and contribution refinement on 2026-10-21, without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected; the abbreviations heading and table are kept together. The abstract/keywords, single-author option, year, header height, and previous width problems are repaired. A non-fatal `xcolor` load-time-option warning remains within the bundled class/PGF loading sequence.
 
 The review PDF is saved as `../output/pdf/ld-pdm-conceptual-revision.pdf`. It is a review draft with the requested red AI disclosure, not a submission authorization.
 

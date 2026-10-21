@@ -10,7 +10,7 @@ The manuscript develops Limited-Data Predictive Maintenance (LD-PdM) as a concep
 
 The paper acknowledges overlap with small-data PHM, indirect sensing, and established probabilistic maintenance decision analysis. Its contribution is a system-level synthesis that makes the links between proxy evidence, uncertain maintenance quantities, and feasible actions explicit. A worked qualitative railway-station example includes both conditional inspection reasoning and cases in which the evidence cannot justify an ordering.
 
-The related published GPECOM paper by Bauer and Baranowski develops a technical proxy-flow and service-scheduling example. The present manuscript addresses the conceptual regime and its boundaries; it does not reproduce that paper's numerical results or claim field validation. The distinction is explained in the manuscript.
+The related published GPECOM paper by Bauer and Baranowski specifies a proxy-flow model and schedules predefined service categories. The present manuscript contributes applicability criteria, distinctions between inferential quantities, and conditions for withholding or withdrawing an inspection ordering. Its hypothetical qualitative example develops that reasoning independently of the companion's numerical illustration. The GPECOM study is cited and its service-condition outputs are distinguished from physical-failure probabilities; its technical equations, figures, and numerical results are not reproduced.
 
 The work is submitted as a conceptual contribution under the invited title. It contains no new empirical dataset or claim of demonstrated maintenance improvement.
 

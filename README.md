@@ -65,6 +65,7 @@ The current Overleaf source was imported in commit `3015f9b285d5333768cc446a04e4
 | [`literature/01_literature_synthesis.md`](literature/01_literature_synthesis.md) | Cross-domain synthesis of indirect/proxy inference literature and the main literature strands relevant to LD-PdM. |
 | [`literature/02_positioning_vs_li2024.md`](literature/02_positioning_vs_li2024.md) | Detailed comparison with Li et al. (2024), including overlap, defensible novelty boundary, and manuscript integration plan. |
 | [`literature/03_claim_source_matrix.md`](literature/03_claim_source_matrix.md) | Source checks, verified metadata, permissible claim strength, and full-text access limits. |
+| [`literature/04_gpecom_contribution_boundary.md`](literature/04_gpecom_contribution_boundary.md) | Full-text comparison with the companion GPECOM paper and the author-confirmed identity of preprint and final version. |
 | [`literature/candidate_references.bib`](literature/candidate_references.bib) | Unused candidate references. Li et al. is integrated into the canonical bibliography; Bauer–Baranowski remains optional. |
 
 ## `notes/` — durable research decisions and historical project reasoning
@@ -114,7 +115,7 @@ The conceptual revision implements the definition, literature positioning, and w
 
 ## Build/reproducibility status
 
-The revised PDF has 16 pages after the focused Li comparison. It compiles without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected; abstract, keywords, diagrams, and tables render correctly. A non-fatal `xcolor` warning remains within the bundled template. See `notes/08_manuscript_revision_report.md` for the verification scope.
+The current review PDF has 16 pages after the two-door example and contribution refinement on 2026-10-21. It compiles without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected; abstract, keywords, diagrams, and tables render correctly. A non-fatal `xcolor` warning remains within the bundled template. See `notes/08_manuscript_revision_report.md` for the verification scope.
 
 Build the article from `paper/`:
 
