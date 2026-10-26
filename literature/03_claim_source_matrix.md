@@ -4,6 +4,8 @@ Checked on 2026-10-19 against the 27 records originally in `paper/extracted.bib`
 
 The GPECOM content and contribution check was extended on 2026-10-21 using the public full text and the author's confirmation that it is identical to the final published version. See [`04_gpecom_contribution_boundary.md`](04_gpecom_contribution_boundary.md).
 
+**Round 0 update, 2026-10-23:** [focused source checks](05_round0_source_checks.md) document the two added, cited references on usage/load-based maintenance and soft sensing, plus rechecks of disputed metadata. The canonical library now contains 32 records, 23 cited. Ren, Xin/Gou, Buznikov, Zhou and Burnac remain in the library but are no longer used as general indirect-sensing representatives in the manuscript. The historical checks below remain evidence records, not a statement that all those sources are currently cited.
+
 ## How to read the evidence status
 
 - **Direct support:** the inspected source explicitly addresses the limited statement listed here. This does not establish its prevalence across all maintenance settings.

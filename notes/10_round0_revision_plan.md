@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-21  
 **Basis:** the four simulated reviews in [`reviews/round0/`](../reviews/round0/README.md), the current `paper/template.tex`, and the current revision status in [`AUDIT.md`](../AUDIT.md).  
-**Status:** proposal for author review. This plan does not change the manuscript or the accepted scope; `AUDIT.md` remains the authoritative status register.
+**Status, updated 2026-10-23:** implementation authorized by the author's instruction to continue corrections. The symbolic revision and subsequently approved numerical specification are implemented and verified; see [the symbolic report](13_round0_revision_report.md), [numerical report](14_numerical_example_report.md), and [response matrix](../reviews/round0/response_matrix.md). `AUDIT.md` remains the authoritative status register. The plan below preserves the proposed packages and acceptance criteria; its request to obtain numerical approval was fulfilled on 2026-10-23.
 
 The recommended revision should make the conceptual contribution usable: a procedure for assessing a maintenance decision under weak condition information, explicit criteria for applying it, and a worked example that exposes a misleading proxy-based ordering. A small, exactly calculated synthetic example would make the strongest response to the reviews while preserving the paper's conceptual identity. A complete station simulation, fitted degradation model, or new inference algorithm is unnecessary for this revision.
 

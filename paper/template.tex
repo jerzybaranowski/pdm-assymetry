@@ -29,7 +29,7 @@
 \address{AGH University of Krakow; jb@agh.edu.pl}
 \corres{Correspondence: jb@agh.edu.pl}
 
-\abstract{Maintenance decisions can remain consequential even when dedicated condition information is persistently weak or unavailable. This paper develops Limited-Data Predictive Maintenance (LD-PdM) as a conceptual characterization of that information and decision regime. Limited data refers here to the structure and relevance of the available evidence, rather than sample count alone. Four asymmetries organize the argument: weak condition observability, sparse and selective failure evidence, constraints on information acquisition, and the coexistence of uncertain individual states with possible population-level planning value. The framework connects proxy, contextual, historical, and prior evidence to explicit beliefs, decision consequences, and information-gathering choices. It distinguishes usage and exposure from degradation, event probability, and maintenance priority, and identifies assumptions required for each transition. A worked qualitative railway-station example traces a conditional inspection comparison between two doors and shows how changed routing evidence can invalidate it. Further scenarios address conflicting evidence, shared bias, and uninformative proxies. The contribution is an operational characterization and synthesis that connects established small-data prognostics and health management, virtual sensing, and probabilistic maintenance decision analysis to the feasible evidence structure. It provides criteria for identifying the regime, tracing an action rationale, and recognizing when an ordering must be withheld. The analysis is conceptual; predictive calibration and maintenance benefit remain questions for subsequent evaluation.}
+\abstract{Maintenance decisions can remain consequential when feasible condition information is persistently weak. This paper characterizes Limited-Data Predictive Maintenance (LD-PdM) as a regime in which proxy, contextual, historical, and prior evidence materially informs the assessment of maintenance needs. It develops an applicability checklist, a five-step assessment procedure, and a railway-station inspection example. The checklist separates weak condition information from small sample count. The procedure connects evidence and assumptions to admissible actions, including a fallback when a comparison remains unresolved. A two-door model evaluates early inspection together with the response after a positive finding, relative to an existing schedule. Exact calculations with hypothetical inputs give regions where exposure ordering is preserved, reversed by detection differences, or unresolved across routing interpretations. They also expose a cost of requiring unanimous preference: preserving the schedule can forgo an inspection that improves on it under both models. A shared-error calculation separates aggregation uncertainty from pairwise ranking. The contribution organizes established small-data PHM, usage-based maintenance, soft sensing, and probabilistic decision analysis around a specified choice and its feasible evidence. The numerical results illustrate conditional decisions; they do not estimate station performance, calibrated failure probabilities, or industrial savings.}
 \keyword{predictive maintenance; limited data; partial observability; proxy information; Bayesian inference; uncertainty; risk-based maintenance; railway stations; inspection planning; decision support}
 
 \begin{document}
@@ -39,13 +39,13 @@
 
 Predictive maintenance (PdM) connects evidence about an asset to decisions about its future operation, inspection, servicing, or replacement. Diagnosis and remaining useful life (RUL) prediction are important components of this process, but the operational purpose is to choose an appropriate action. Reviews describe the development of PdM, machine-learning methods, and their relationship to industrial information infrastructures \citep{Selcuk20171670,Carvalho2019,Cinar2020}. The availability of informative measurements influences which parts of this workflow can be implemented. It does not, however, determine whether a maintenance decision has to be made.
 
-Limited evidence is already a recognized problem in prognostics and health management (PHM). \citet{Li2024SmallDataPHM} review limitations in monitoring quantity and quality, economic and operational barriers, and data-efficient learning. Their scope includes maintenance execution, multimodal records, physical knowledge, fleet information, and uncertainty. The question here is how to characterize maintenance settings in which feasible condition-sensitive channels remain weak and indirect evidence materially carries the reasoning. This characterization builds on the established account of scarcity and its persistent causes.
+Limited evidence is already a recognized problem in prognostics and health management (PHM). \citet{Li2024SmallDataPHM} review limitations in monitoring quantity and quality, economic and operational barriers, and data-efficient learning. Their scope includes maintenance execution, multimodal records, physical knowledge, fleet information, and uncertainty. The question here is how to assess a maintenance proposal when feasible condition measurements leave important uncertainty and the proposed action depends on interpreting operational records, service history, or engineering assumptions.
 
-We call this regime \emph{Limited-Data Predictive Maintenance} (LD-PdM). The term describes an evidence structure relative to a maintenance choice, rather than a threshold on dataset size. Consider a population of infrastructure devices whose maintenance affects service continuity, while the feasible information budget provides little dedicated condition monitoring for each device. Passenger flows, event logs, service records, documentation, and engineering knowledge may nevertheless inform hypotheses about usage and maintenance needs. The central asymmetry is that the consequence of a maintenance choice and the availability of informative evidence need not increase together. A useful characterization must explain both the opportunity to use such evidence and the limits of doing so.
+This regime is termed \emph{Limited-Data Predictive Maintenance} (LD-PdM). The term describes the evidence available for a maintenance choice. Consider infrastructure devices whose maintenance affects service continuity, while the feasible information budget provides little dedicated condition monitoring for each device. Passenger flows, event logs, service records, documentation, and engineering knowledge may nevertheless inform hypotheses about usage and maintenance needs. The central asymmetry is that the consequence of a maintenance choice and the availability of informative evidence need not increase together. High decision consequences do not ensure informative observations; abundant records do not ensure relevance to the decision.
 
-This is also adjacent to established decision analysis. \citet{SrinivasanParlikad2013VoCM} assess condition-monitoring value for infrastructure maintenance using a partially observable Markov decision process (POMDP), while \citet{MemarzadehPozzi2016VoI} connect information value to inspection, monitoring, and system-level scheduling. Bayesian-network applications in safety, reliability, and risk assessment likewise provide established tools for integrating uncertain evidence \citep{Kabir2019154}. LD-PdM uses these foundations to bring the feasible observation architecture to the foreground and organize a system-level account of maintenance reasoning from heterogeneous indirect evidence.
+Established decision analysis provides the basis for comparing the resulting actions. \citet{SrinivasanParlikad2013VoCM} assess condition-monitoring value for infrastructure maintenance using a partially observable Markov decision process (POMDP), while \citet{MemarzadehPozzi2016VoI} connect information value to inspection, monitoring, and system-level scheduling. Bayesian-network applications in safety, reliability, and risk assessment likewise provide established tools for integrating uncertain evidence \citep{Kabir2019154}. The present assessment uses these foundations to check what the available records can support before committing to an inference method or maintenance policy.
 
-The paper makes three conceptual contributions. First, it gives operational inclusion criteria and boundary cases for LD-PdM, organized around four asymmetries in observability, failure evidence, acquisition costs, and scale. Second, it separates the inferential links from proxy evidence to usage, exposure, condition, and future events from the decision rule that determines an action. Third, it applies these distinctions to a worked qualitative station example in which an inspection ordering is both justified conditionally and withdrawn when its evidential basis changes. Together, these elements provide a way to identify the regime, trace what each source can support, and state the assumptions on which an action depends. The analysis is conceptual, and the station setting and evidence are hypothetical.
+The paper develops three practical outputs for examining such a maintenance proposal: an applicability checklist (Table~\ref{tab:regime-boundaries}), a five-step assessment procedure (Section~\ref{sec:procedure}), and a worked two-door inspection comparison (Section~\ref{sec:outputs}). The comparison derives and numerically illustrates when an exposure-based order agrees with a consequence-based choice, when it reverses, and when the evidence cannot support a common strict preference. These outputs organize established PHM, indirect-sensing, and decision-analysis methods around the available evidence and the operator's remaining choice. The contribution is a conceptual synthesis; the station and inspection assumptions are hypothetical.
 
 Section~\ref{sec:asymmetries} defines the regime and its asymmetries. Section~\ref{sec:inference} describes evidence and belief formation, and Section~\ref{sec:decisions} connects them to maintenance choices. Section~\ref{sec:case} works through a hypothetical station example. Section~\ref{sec:discussion} discusses overlap with existing approaches, limitations, and evaluation questions; Section~\ref{sec:conclusions} concludes.
 
@@ -62,26 +62,26 @@ LD-PdM is defined relative to an asset or population, a maintenance choice, and 
 \end{enumerate}
 Here, persistent means that the limitation is expected to remain relevant over the decision horizon. It need not be permanent. The same asset can move between regimes if its instrumentation, data access, operating context, or maintenance objective changes.
 
-The framework requires the limitations of the evidence to remain explicit when assessment is translated into action. This is a modelling requirement, distinct from the conditions identifying the regime: an overconfident implementation does not make its observation constraints disappear. Equally, a missing channel does not establish LD-PdM if other feasible channels already provide sufficient information for the choice. The asymmetry concerns the mismatch between consequential maintenance choices and the information available to support them; the four perspectives below explain how that mismatch arises and what follows from it.
-
-These criteria concern information content, not simply the presence of sensors. A machine may produce abundant operational records while providing weak evidence about a particular degradation mechanism. Conversely, a small dataset may contain a strongly informative condition measurement. Moreover, degradation and RUL are inferred in many sensor-rich systems as well. The distinction is the availability and relevance of condition-sensitive channels, not whether a physical state is literally observed without a model. Table~\ref{tab:regime-boundaries} illustrates the boundary.
+Table~\ref{tab:regime-boundaries} turns the criteria into questions requiring case-specific evidence. For each row, record \emph{yes}, \emph{no}, or \emph{unresolved}, with the justification and its source. All three affirmative answers establish applicability under the stated assessment. A negative answer excludes the choice from this definition; an unresolved answer leaves classification open. Neither outcome establishes whether a particular inspection order is justified. That requires the separate action comparison in Section~\ref{sec:decisions}.
 
 \begin{table}[t]
-\caption{Qualitative boundary cases for LD-PdM. The categories can overlap; no numerical observability or cost threshold is implied.}
+\caption{Applicability checklist for a specified maintenance choice and horizon. Each row requires a yes/no/unresolved answer supported by the indicated justification.}
 \label{tab:regime-boundaries}
 \small
 \begin{tabularx}{\linewidth}{@{}YYY@{}}
 \toprule
-\textbf{Evidence setting} & \textbf{Maintenance implication} & \textbf{Relationship to LD-PdM} \\
+\textbf{Criterion} & \textbf{Assessment question} & \textbf{Required justification} \\
 \midrule
-Few labelled samples, with an informative dedicated condition channel & Data-efficient learning may improve an existing assessment & Small sample count alone does not establish LD-PdM \\
-Many operational records, with weak information about condition & Usage or context must be interpreted through explicit assumptions & LD-PdM can apply despite a large record volume \\
-Dedicated monitoring and indirect evidence coexist & Different choices or failure mechanisms have different information needs & Mixed regimes are possible within one system \\
-Additional monitoring is feasible and worthwhile for the choice & Acquiring condition information may change the observation regime & Weak observability should be reconsidered, not assumed permanent \\
-Available evidence cannot distinguish relevant alternatives & A differentiated action requires another basis or further information & Naming the regime does not make inference informative \\
+Consequential choice & Could admissible actions differ in service, safety, resource use, or economic outcome? & Name the affected function, alternatives, horizon, and consequence that makes the distinction matter. \\
+Persistently weak condition information & Do feasible condition-sensitive channels leave a relevant condition distinction unresolved over that horizon? & Identify the quantity, available channels, remaining uncertainty, and constraint preventing its resolution. \\
+Material indirect evidence & Does proxy, context, history, or prior information affect the assessment of future maintenance needs? & Show which inference or justification changes when that evidence or assumption changes. Mere availability is insufficient. \\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+For example, a door may have a reliable indication of a presently obstructed opening but no informative channel for wear affecting the next inspection interval. Clearing the observed obstruction and choosing which door to inspect early are different decisions about the same asset. The first need not satisfy the second criterion; the latter may do so. Similarly, few labelled samples with a sufficiently informative condition channel create a small-data learning problem without necessarily creating LD-PdM. Conversely, extensive traffic records may leave a wear mechanism weakly informed. Dedicated measurements also require interpretation, so the distinction concerns their relevance to the choice, rather than whether condition is inferred at all.
+
+The four asymmetries have different logical roles. Observability and acquisition constraints explain the defining mismatch between maintenance need and feasible condition information. Sparse or selective failure records complicate learning within that regime. Population scale creates opportunities for sharing evidence and coordinating work, together with additional dependencies. Rare failures and large populations are therefore not additional inclusion requirements. Low net information value is also not a measure of weak observability: information content, its effect on a choice, and acquisition cost must be assessed separately.
 
 \subsection{Asymmetry of observability}
 
@@ -92,11 +92,11 @@ The operational importance of a variable does not guarantee an informative measu
 \begin{adjustbox}{max width=\linewidth}
 \input{diagram}
 \end{adjustbox}
-\caption{Conceptual separation between available evidence, probabilistic reasoning, and quantities used in maintenance decisions. Links represent model-dependent interpretation, not guaranteed state reconstruction. Weak condition-sensitive evidence can leave condition or event probabilities unresolved even when usage is partly informative.}
+\caption{Conceptual separation between evidence, probabilistic reasoning, and maintenance quantities. Dashed arrows denote evidence inputs; dotted arrows denote inferential outputs. The common inference block leaves individual source-to-target dependencies unspecified. All links require model assumptions; informative usage proxies need not resolve condition or event probabilities.}
 \label{fig:asymmetry-observability}
 \end{figure}
 
-Indirect measurement and virtual sensing offer relevant methodological analogies. Process control and engine monitoring provide examples of inference from secondary measurements \citep{Ren2018261,Xin2026}, while infrastructure studies use vehicle or bogie responses to investigate bridge or rail properties \citep{Zhou2025,Burnac2025}. These works demonstrate particular indirect-measurement formulations; they do not establish that passenger-flow data identify station-device degradation. LD-PdM requires each proposed proxy to be connected to the quantity it can actually inform.
+In the formulation of \citet{Tinga2010UsageLoad}, usage- and load-based maintenance connects operating information to condition and maintenance intervals through physical failure models. Soft sensors estimate process quantities from other measurements using model-driven or data-driven relationships, with model validation and changing operating conditions as practical concerns \citep{Kadlec2009SoftSensors}. In the station setting, even device usage may be indirectly known. The assessment must therefore identify both the target of each estimate and the evidence supporting the next link to maintenance need.
 
 \subsection{Asymmetry of failure evidence}
 
@@ -108,15 +108,13 @@ Statistical work on interval-censored data provides machinery for partially obse
 
 The value of a maintenance decision and the cost of improving its evidence are different quantities. The latter includes acquisition and installation, integration with existing systems, commissioning and validation, connectivity and data processing, and the continuing operation and maintenance of the monitoring arrangement. The importance of deployment cost is also recognized in small-data PHM \citep{Li2024SmallDataPHM}. It motivates a conditional applicability statement: LD-PdM is relevant where better dedicated information cannot presently be obtained within the operator's feasible resources and constraints.
 
-This condition must be assessed for the particular asset function and decision. Unit purchase price does not determine criticality, and an elevator or door may have substantial safety, accessibility, or service consequences. Additional monitoring can therefore be justified for a consequential function even in a population of ordinary devices. Equally, a station example does not establish that sensing is generally uneconomic for an asset class. Condition-monitoring value depends on what the information changes in the maintenance policy \citep{SrinivasanParlikad2013VoCM}; existing operational data also have integration and interpretation costs.
+This condition must be assessed for the particular asset function and decision. Unit purchase price does not determine criticality, and an elevator or door may have substantial safety, accessibility, or service consequences. Additional monitoring can therefore be justified for a consequential function even in a population of ordinary devices. The station example supplies no asset-class estimate of sensing profitability. Condition-monitoring value depends on what the information changes in the maintenance policy \citep{SrinivasanParlikad2013VoCM}; existing operational data also have integration and interpretation costs.
 
 \subsection{Asymmetry of scale}
 
 Uncertain individual states can coexist with useful population-level questions: where exposure concentrates, which groups merit inspection, or how limited attention should be distributed. Hierarchical modelling can share information across appropriately related units; Bayesian IoT failure modelling provides one example \citep{Baranowski2022248}. Risk-based and opportunistic maintenance studies illustrate the importance of system consequences and coordinated interventions \citep{Yeter2020,Yang2024}. These are established modelling opportunities, not a guarantee that a larger population makes weak evidence sufficient.
 
-Pooling requires a defensible relationship between units, including their mechanisms, environments, and maintenance histories. Shared routing errors or a common misspecified proxy relationship do not disappear when more assets are included. Heterogeneous asset classes may require different models. Furthermore, estimating total burden and selecting the particular asset requiring action are different tasks: identical evidence and priors do not justify a data-derived individual ordering. The scale asymmetry is therefore an opportunity for decision support under stated assumptions, rather than an automatic reduction of uncertainty.
-
-Taken together, the asymmetries distinguish the information architecture, the observation process, the acquisition constraint, and the level at which a choice is made. Weak relevant information and consequential choices are defining conditions. Rare events and population scale are important complications or opportunities, but need not occur in every LD-PdM setting. Their practical role is to determine what can be inferred, what remains assumed, and which decision claims would require additional evidence.
+Partial pooling requires a defensible relationship between units, including their mechanisms, environments, and maintenance histories. A hierarchical model should allow between-unit variation where these differ; complete pooling would impose a stronger common-parameter assumption. Shared routing errors or a common misspecified proxy relationship do not disappear when more assets are included. Heterogeneous asset classes may require different models. Furthermore, estimating total burden and selecting the particular asset requiring action are different tasks: identical evidence and priors do not justify a data-derived individual ordering. The operator must therefore distinguish estimating population burden from choosing an individual asset for inspection.
 
 \section{Evidence and Belief Formation}
 \label{sec:inference}
@@ -134,7 +132,8 @@ A proxy is informative only through a relationship with a specified target. Pass
 \textbf{Quantity} & \textbf{Meaning} & \textbf{Interpretive limit} \\
 \midrule
 Evidence & Proxy observations, context, service records, documentation & Record volume does not establish condition information \\
-Usage and exposure & Device activity and accumulated operational burden & Passenger traffic is not a device-cycle counter or wear measurement \\
+Usage & Activity during a specified interval, such as opening cycles & Passenger traffic is not a device-cycle counter \\
+Exposure & Accumulated mechanism-relevant burden over a stated history & Equal cumulative activity need not imply equal wear \\
 Condition & Physical degradation or functional state & Similar exposure does not imply equal condition \\
 Event probability & Probability of a specified event within a declared horizon & A service threshold and a physical failure are different events \\
 Risk & Consequences evaluated together with event uncertainty & An event probability alone does not specify consequences \\
@@ -143,27 +142,13 @@ Priority and action & A choice given beliefs, consequences, and constraints & Pr
 \end{tabularx}
 \end{table}
 
-The evidence may combine operational aggregates, contextual variables, inspection and intervention histories, and engineering documentation. Their roles should remain identifiable. A timetable constrains possible demand; a service record describes an intervention; documentation supplies a mechanism or service requirement. Treating these as interchangeable features obscures the observation assumptions. Context-dependent HVAC diagnostics and virtual-sensing studies provide examples of using alternative signals \citep{Haruehansapong2023,Buznikov20181216}, while maintenance decision systems illustrate heterogeneous information integration \citep{Ma2020}. Their particular data requirements should not be assumed to hold in an unsensored station.
+The evidence may combine operational aggregates, contextual variables, inspection and intervention histories, and engineering documentation. Their roles should remain identifiable. A timetable constrains possible demand; a service record describes an intervention; documentation supplies a mechanism or service requirement. Treating these as interchangeable features obscures the observation assumptions. Context-dependent heating, ventilation, and air-conditioning (HVAC) diagnostics illustrate the use of operating context \citep{Haruehansapong2023}, while maintenance decision systems illustrate heterogeneous information integration \citep{Ma2020}. Their data requirements must be checked against the station's available condition information.
 
-\subsection{An explicit belief state}
+\subsection{Representing the unresolved quantities}
 
-Let $E_{1:t}$ denote the evidence available up to decision time $t$, and let $M$ denote the assumed observation and evolution model. For asset $i$, a conceptual belief state can be written as
-\begin{equation}
-b_{i,t}(u,d,\theta)
-=p(U_{i,t}=u,D_{i,t}=d,\Theta=\theta\mid E_{1:t},M),
-\label{eq:belief}
-\end{equation}
-where $U_{i,t}$ represents usage or accumulated exposure, $D_{i,t}$ physical condition, and $\Theta$ uncertain parameters connecting observations, use, and condition. This notation distinguishes evidence from model assumptions. It does not prescribe a distribution, assert that the variables are identifiable, or supply a fitted model. A defensible implementation would specify its likelihoods, evolution assumptions, and update procedure.
+The assessment should identify which quantities are observed, inferred, or supplied by engineering judgment. For a door, usage can be the number of opening cycles in a recording interval, whereas exposure accumulates relevant activity over a stated history. A wear model may weight cycles differently according to load or environment. The history over which exposure is accumulated must be distinguished from the future calendar-time window over which the maintenance choice is evaluated. No universal conversion from passenger totals to either quantity is assumed here.
 
-If a future event is required for a decision, it must be defined separately. For example, with $T_i^F$ the time of a specified failure event and $\Delta$ the planning horizon,
-\begin{equation}
-q_{i,t}^{F}(a,\Delta)
-=\Pr\!\left(t<T_i^{F}\leq t+\Delta\mid E_{1:t},M,a\right),
-\label{eq:event}
-\end{equation}
-denotes a model-dependent event probability under the specified prospective action $a$, rather than an association conditional on an action selected by an earlier policy. Evaluating it requires a justified transition and event model; a belief about exposure is insufficient. The probability of reaching a service condition would have a different event definition. Failure consequences must then be supplied before either probability can be interpreted as risk.
-
-Bayesian updating supplies established tools for learning model parameters from observations \citep{Straub2015}. Bayesian networks can organize dependencies among uncertain inputs and states, and expert systems can make judgment-based assumptions visible \citep{Kabir2019154,Baraldi2015176}. The choice of representation should follow the evidence and decision requirements. A graph is useful for exposing assumed links; drawing an arrow does not validate the corresponding relationship. Likewise, a structured score represents a belief distribution only if its probabilistic meaning and uncertainty treatment are established.
+A probabilistic representation can connect these quantities while preserving uncertainty about their relationships. Bayesian updating supplies established tools for learning from observations \citep{Straub2015}; Bayesian networks and expert systems can represent dependencies and judgment-based assumptions \citep{Kabir2019154,Baraldi2015176}. The representation should be as specific as the decision requires. Section~\ref{sec:outputs} uses a probability of an actionable condition at inspection, together with detection and consequence assumptions. It does not require a full degradation trajectory or a physical-failure probability. Either extension would need an additional transition model and an explicit event definition.
 
 \subsection{Priors, dependence, and limits of identification}
 
@@ -171,34 +156,52 @@ Engineering knowledge may constrain plausible routing, device-use mechanisms, de
 
 When observations weakly constrain a parameter, its posterior can remain strongly dependent on the prior or chosen model class. Honest uncertainty representation therefore includes sensitivity to plausible alternative assumptions and identification of links that the available evidence cannot resolve. In LD-PdM, this can mean stopping at an exposure comparison rather than extending the chain to a numerical failure probability. Inspection or a targeted measurement may then be more useful than a more elaborate inference algorithm applied to the unchanged evidence.
 
+\subsection{Shared error and population comparisons}
+
+A simple error model separates aggregation from ranking. Suppose an exposure estimate has the form $\widehat{x}_i=x_i+B+\varepsilon_i$, where the true exposures $x_i$ are treated as fixed, $B$ is a shared zero-mean error with variance $\sigma_B^2$, and the asset-specific errors $\varepsilon_i$ have zero mean and common variance $\sigma_\varepsilon^2$. Assume the asset-specific errors are mutually independent and independent of $B$. For $n$ assets,
+\begin{equation}
+\operatorname{Var}(\overline{\widehat{x}}-\overline{x})
+=\sigma_B^2+\frac{\sigma_\varepsilon^2}{n},
+\qquad
+\widehat{x}_i-\widehat{x}_j=(x_i-x_j)+(\varepsilon_i-\varepsilon_j).
+\label{eq:shared-error}
+\end{equation}
+The shared component remains in the population mean but cancels in a pairwise difference. A fixed additive bias instead remains in the mean error; it should not be described as a variance component. Group-specific routing errors need not cancel between groups. Thus a uniform offset can preserve an ordering while distorting total exposure, whereas an erroneous allocation between routes can distort the ordering itself. These elementary identities explain why more records from the same source need not resolve the uncertainty relevant to a station decision.
+
 \section{Maintenance Choices under Weak Information}
 \label{sec:decisions}
 
-\subsection{From beliefs to feasible actions}
+\subsection{A procedure for assessing a maintenance proposal}
+\label{sec:procedure}
 
-Beliefs become decision-relevant through their consequences for feasible actions. At a decision time, the planner should specify the asset function, planning horizon, candidate actions, and constraints. Depending on the task, these may include inspection, a predefined service intervention, or deferment within the applicable maintenance programme. Access windows, staffing, service continuity, and mandatory requirements restrict the feasible set. A ranking without an intended action or horizon remains an assessment product rather than a complete maintenance decision.
+The procedure takes an asset function, a proposed maintenance choice, the available records, and the operator's constraints as inputs. Its output is a documented action rationale or an unresolved comparison with a specified fallback. It can be applied before selecting an inference algorithm:
+\begin{enumerate}[label=\arabic*.,leftmargin=1.5em]
+\item \textbf{Specify the decision.} State the mechanism, future planning window, consequences, available actions, resource limit, and mandatory requirements. Record the existing admissible schedule as the reference choice.
+\item \textbf{Assess applicability.} Complete Table~\ref{tab:regime-boundaries}. Identify feasible condition-sensitive channels and the quantity they leave unresolved. Explain why the constraint persists over the window and how indirect evidence affects the assessment.
+\item \textbf{Trace the evidence.} Link each record to the quantity it informs. Record assumptions needed for the next inference, shared data sources, competing interpretations, and observations that could challenge them.
+\item \textbf{Compare admissible choices.} Evaluate consequences under the stated plausible assumptions and equal resource constraints. An inspection choice includes the subsequent action after each possible finding. Check separately whether a policy improves on the reference schedule and whether it is preferred to the other alternatives throughout the model set.
+\item \textbf{Record and act.} State the supported choice, its assumptions, and the trigger for reconsideration. If no common preference is supported, apply the documented admissible fallback. Request further information only when it can usefully arrive before the decision deadline. A new mandatory or consequence-based requirement takes precedence.
+\end{enumerate}
 
-Established decision-theoretic notation expresses the connection as
+Classification, improvement over a baseline, and selection of a preferred action are separate judgments. A choice may satisfy the LD-PdM criteria while the available evidence supports no unique inspection order. Some policies may nevertheless improve on the reference schedule throughout the model set. The example adopts retention of that schedule as its fallback; Section~\ref{sec:numerical} shows the gain this convention can forgo. An operational application must specify its conflict-resolution rule and record its consequences.
+
+\subsection{Comparing inspection policies}
+
+An inspection policy specifies both the initial inspection and the action after each possible observation. Let $\pi$ denote such a policy, $\Pi$ the admissible set, $E$ the evidence at the planning review, and $m$ an assumed model. Over the common future window, write
 \begin{equation}
-a_t^\star\in\underset{a\in\mathcal{A}_t}{\arg\min}\;
-\mathbb{E}\!\left[L(a,S^a_{t:t+\Delta})\mid E_{1:t},M\right],
+R_m(\pi)=\mathbb{E}^{\pi}_m[L\mid E],
+\qquad \pi_m^\star\in\underset{\pi\in\Pi}{\arg\min}\;R_m(\pi).
 \label{eq:decision}
 \end{equation}
-where $\mathcal{A}_t$ is the set of admissible choices, $S^a_{t:t+\Delta}$ denotes the uncertain system trajectory under choice $a$, and $L$ represents the relevant consequences. These can include intervention effort, disruption, and adverse events. When a choice includes inspection, its evaluation must also include subsequent actions conditional on possible findings; an inspection is not valued as a terminal action with no use of its information. Equation~\ref{eq:decision} specifies what would make a belief useful for a choice; it is not an optimization algorithm or a calibrated objective for the station example. POMDP-based maintenance and information-value analyses develop this connection in quantitative settings \citep{SrinivasanParlikad2013VoCM,MemarzadehPozzi2016VoI}.
+Here $L$ is total loss over the declared window, including inspection, intervention, disruption, and any terminal consequence included in the comparison. The superscript indexes the prospective system evolution and observations under the chosen policy. It does not condition on an action selected by a historical policy. This distinction matters when past inspections were triggered by suspected deterioration. The finite policies in Section~\ref{sec:outputs} make Equation~\ref{eq:decision} concrete without requiring a complete sequential optimizer. POMDP-based maintenance and information-value analyses provide the established decision-theoretic foundations \citep{SrinivasanParlikad2013VoCM,MemarzadehPozzi2016VoI}.
 
-For the qualitative example below, this logic becomes a conditional comparison. Suppose, for the mechanism considered, additional exposure makes an actionable inspection finding more plausible, while inspection burden, effectiveness, and the consequences of acting on the finding are comparable. An exposure difference could then support examining one asset first. This ordinal premise is an explicit assumption, not something established by the traffic proxy itself. It does not justify replacement or certify that the other asset is healthy. An action rationale should identify the link on which it depends and what additional finding would change the choice.
+An inspection has value when a possible finding changes a feasible subsequent action enough to justify the inspection burden. Greater uncertainty alone establishes neither this value nor a reason to intervene. A highly uncertain quantity may be irrelevant to the available actions, while a relatively well-understood defect can warrant prompt service. A counting exercise and a physical inspection also answer different questions: the former may resolve route allocation, while the latter may reveal a condition requiring action. Valuing either requires its observation model, cost, and possible effect on the subsequent decision.
 
-\subsection{Inspection and the value of information}
+\subsection{Resources and robustness}
 
-Inspection has an informational role as well as a resource cost. Its value depends on whether possible findings would alter a subsequent feasible action sufficiently to justify the inspection effort and disruption. Greater uncertainty can increase that opportunity, but it can also reflect a quantity irrelevant to the choice. Conversely, an asset with relatively concentrated beliefs can warrant intervention when the consequences and estimated state justify it. Uncertainty alone is therefore neither a universal reason to intervene nor a reason to defer.
+Across assets, comparison requires a common objective and resource constraint. Exposure describes burden; expected loss also depends on the affected function; inspection value additionally depends on detection and what can be done after a finding. Section~\ref{sec:outputs} shows how these distinctions can reverse an order even for two doors. Coordinated maintenance adds access and service dependencies \citep{Yeter2020,Yang2024,DAriano20191315,Enjavimadar2022}. A ranking of separate asset scores is insufficient where taking one asset out of service changes another's use or removes an accessible route.
 
-Information gathering should be distinguished from changing the asset state. An inspection may update beliefs without repairing anything; servicing may change condition and the relevant future evidence. In a sequential problem, the expected consequences depend on later observations and actions as well as the present choice. Information-value work treats these dependencies explicitly \citep{MemarzadehPozzi2016VoI}. The present framework uses this distinction to clarify possible actions without claiming to solve a full inspection and scheduling policy.
-
-\subsection{Population allocation and robustness}
-
-Across assets, prioritisation also requires a common objective and a resource constraint. Ranking by exposure, by expected consequence, and by expected inspection value can give different orders. Different device classes or service functions may therefore be incomparable under a single undifferentiated score. Coordinated maintenance and infrastructure scheduling involve additional system constraints \citep{Yeter2020,Yang2024,DAriano20191315,Enjavimadar2022}; a proxy-based assessment supplies only part of that planning problem.
-
-A robust qualitative recommendation states the circumstances under which its ordering persists and the circumstances under which it should be withdrawn. Relevant challenges include a changed traffic route, incorrect grouping of assets, inconsistent service histories, and a common bias affecting several proxy estimates. Stable rankings are not necessarily correct rankings. Where the evidence cannot distinguish the relevant choices, the appropriate output is an explicit unresolved comparison or a request for further information, rather than a more precise-looking priority number.
+A preference should be checked across a declared set of plausible models, rather than only under a single convenient routing interpretation. Agreement within that set supports a conditional recommendation; it does not establish that the set covers the true operating situation. If plausible alternatives disagree, the output should identify the disputed assumption and the fallback required by step~5. Stability, calibration, and operational benefit remain different properties.
 
 \section{Worked Conceptual Example: A Railway Station}
 \label{sec:case}
@@ -207,7 +210,9 @@ A robust qualitative recommendation states the circumstances under which its ord
 
 Consider a hypothetical station with a concourse, platform access routes, automatic doors, elevators, and escalators. The example assumes that dedicated condition-sensitive channels are insufficient for the maintenance choice under consideration. It does not assume that instrumentation is absent from every device or economically unjustified for these asset classes. Consequences depend on function and alternatives: an elevator serving an otherwise inaccessible route can require different treatment from one with equivalent accessible alternatives. Operational importance and safety requirements must therefore be assessed for each function, rather than assigned to an entire device class.
 
-For this example, suppose the planner has zone-level passenger counts or ticket-flow summaries, timetables and platform assignments, a station layout, device documentation, and dated inspection and service records. These are assumed inputs to a hypothetical example. The maintenance choice concerns inspection, service, or deferment between the current planning review and the next planned review. Existing mandatory service, safety, and accessibility requirements constrain the feasible actions; weak proxy evidence cannot relax them.
+Suppose the planner has zone-level passenger counts or ticket-flow summaries, timetables and platform assignments, a station layout, device documentation, and dated inspection and service records. At the present review, there is capacity for at most one additional early inspection before the next scheduled review. A predefined service response after a positive finding is also assumed feasible. Existing mandatory work and the established service schedule remain in force. The future window is a common interval of calendar time; historical exposure is accumulated over a common past interval ending at the present review.
+
+Applying Table~\ref{tab:regime-boundaries} to this hypothetical inspection choice gives three conditional affirmative answers. Earlier discovery and treatment can affect service disruption or maintenance effort; feasible channels leave the targeted condition unresolved during the window; and routing and service-history assumptions affect the assessment of where an actionable condition may be found. Each answer depends on a stated premise of the example. If a reliable condition indicator instead already determines the appropriate service response, the second answer changes to no for that decision. If the relevance of the passenger proxy cannot be justified even as a conditional model, the third answer is unresolved. The asset class alone determines none of these answers.
 
 \subsection{From passenger context to conditional beliefs}
 
@@ -230,16 +235,16 @@ Usage may then inform a model of accumulated exposure over a stated interval, co
 \toprule
 \textbf{Inferential link} & \textbf{Assumption required} & \textbf{Evidence that could challenge it} \\
 \midrule
-Station flow to device use & Coverage, routing, and device-choice assumptions remain applicable during the planning interval. & Local passage observations, closures, or changed platform use. \\
+Station flow to device use & Coverage, routing, and device-choice assumptions apply during the interval represented by the observations. & Local passage observations, closures, or changed platform use. \\
 Device use to exposure & The selected mechanism and operating mode explain the usage quantity being accumulated. & Cycle/run-time records, controller settings, or changed operating practice. \\
 Exposure to condition & Relevant initial-state, degradation, and maintenance-effect assumptions are credible for this asset. & Inspection findings, component history, or signs inconsistent with the assumed mechanism. \\
 Condition to future event & A specified event, horizon, and applicable conditional model are available. & Dated event/inspection records and checks of predictive calibration. \\
-Beliefs to action & The exposure--finding relationship, inspection burden, consequences, and constraints justify the comparison. & Inspection findings, operator review, and access dependencies. \\
+Beliefs to action & Condition probability, detection, net response value, inspection burden, and constraints justify the comparison. & Inspection findings, response outcomes, operator review, and access dependencies. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-An event probability requires an additional, explicit event model. Reaching a documented service condition, discovering a defect at inspection, and losing required function before the next review are different events. The present example does not assign probabilities to any of them. The related door-and-elevator study develops Bayesian proxy-flow modelling and scheduling integration~\citep{GPECOM2026LdPDM}; its service-condition probabilities should not be interpreted as calibrated physical-failure probabilities. Here the station provides a setting for examining the evidential links and their decision implications, rather than reproducing that technical implementation.
+An event probability requires an additional, explicit event model. Reaching a documented service condition, discovering a defect at inspection, and losing required function before the next review are different events. The comparison below defines an actionable-condition probability; the numerical illustration uses declared hypothetical inputs. The related door-and-elevator study develops a particular Bayesian proxy-flow model, age/cycle service-condition thresholds, and maintenance scheduling~\citep{GPECOM2026LdPDM}. The present paper shares its station setting and proxy motivation, while developing an applicability checklist and evidence assessment procedure. Its two-door inspection comparison is hypothetical; no technical equations, numerical results, or figures are reproduced from the companion. A service-condition threshold in that work should not be read as a calibrated physical-failure probability here.
 
 Figure~\ref{fig:case-architecture} summarises the conditional structure. Its arrows identify interpretive dependencies; they do not establish that the available inputs identify every downstream quantity.
 
@@ -248,40 +253,76 @@ Figure~\ref{fig:case-architecture} summarises the conditional structure. Its arr
 \begin{adjustbox}{max width=\linewidth}
 \input{inferencechain}
 \end{adjustbox}
-\caption{Schematic evidence-to-decision structure for the hypothetical station. Usage and exposure depend on proxy interpretation; condition and future-event beliefs require additional models and evidence. Assumptions and uncertainty apply throughout. The diagram contains no measured or estimated station outputs.}
+\caption{Schematic evidence-to-decision structure for the hypothetical station. Solid arrows trace the reasoning sequence and consequence inputs; dashed arrows highlight the engineering-assumption links shown explicitly. Assumptions and uncertainty also apply to the solid links. The diagram contains no measured or estimated station outputs.}
 \label{fig:case-architecture}
 \end{figure}
 
-\subsection{Inspection, service, and deferment}
+\subsection{A symbolic two-door inspection comparison}
 \label{sec:outputs}
 
-Consider two hypothetical automatic doors, A and B, serving alternative concourse-to-platform routes. With limited inspection capacity before the next review, the planner must choose which door to inspect first; no mandatory requirement determines the order. Assume comparable mechanisms, controller settings, baseline condition beliefs, inspection burdens, detectability of relevant findings, and benefits from acting on them. Dated service records inform these assumptions without establishing equal physical condition. Suppose zone counts, timetables, layout, and route availability support more passages through A under plausible route allocations. Further assume that passenger grouping and opening behaviour preserve greater cycle-related exposure for A; passenger totals alone cannot establish this contrast.
+Consider doors A and B on alternative concourse-to-platform routes. The reference policy $\pi_0$ retains the existing admissible schedule. Policy $\pi_A$ uses the optional slot to inspect A early and performs the predefined service response after a positive finding; after a negative finding it retains the schedule. Policy $\pi_B$ does the same for B. All policies have the same available capacity and service obligations, although $\pi_0$ leaves the optional slot unused. No mandatory requirement determines the order in this example. If it does, that requirement takes precedence over the following comparison.
 
-For the mechanism considered, assume greater exposure makes an actionable inspection finding more plausible and that using such a finding can improve the subsequent maintenance choice. Under the stated comparability assumptions, this supports inspecting A first. The recommendation identifies exposure as its evidential basis and the exposure--finding relationship as an additional premise. Servicing A would require an applicable service requirement or a relevant finding; the inspection ordering provides no assurance about B's condition. In an operational application, the assumed relationship would require checking against independent inspection evidence.
+Here an actionable condition is one that a reference inspection could confirm and for which the predefined service response is applicable. For door $i\in\{A,B\}$ and a plausible model $m$, let $q_i(m)$ be the probability that this condition is present at early inspection, and $d_i(m)$ the probability that the actual inspection detects it when present. Let $k_i(m)\geq0$ be the incremental inspection burden, incurred regardless of the finding. Let $v_i(m)$ be the conditional expected net loss avoided by the service response after a true positive, relative to $\pi_0$. It includes response effectiveness, service effort, and disruption within the common window, excluding the inspection burden already counted in $k_i$. The losses use one consistent scale; no industrial cost or failure-rate estimate is supplied.
 
-Now suppose a check of dated route assignments, corroborated by local observation, reveals that a platform reassignment was already in force during the exposure interval being compared. The allocation model omitted this change and attributed to A a stream that instead used an adjacent open passage. Under the revised plausible allocations, greater exposure for A is no longer supported. The planner therefore withdraws the inspection ordering and requests local usage evidence if a comparison is still needed. B does not automatically acquire priority. Mandatory service arrangements remain in force. The vignette demonstrates a conditional inspection comparison and its stopping rule. Extending this part of LD-PdM reasoning to a predictive maintenance policy would require a justified model of future condition or events and their action-dependent consequences.
+Assume for this bounded comparison that false positive results do not occur. Inspection without a response is assumed to leave the physical state and schedule unchanged. A true positive has probability $q_i d_i$ and conditional net benefit $v_i$; the remaining outcomes retain the reference policy. Conditioning on these outcomes in Equation~\ref{eq:decision} gives
+\begin{equation}
+G_i(m)=q_i(m)d_i(m)v_i(m)-k_i(m),
+\qquad R_m(\pi_i)=R_m(\pi_0)-G_i(m).
+\label{eq:inspection-gain}
+\end{equation}
+Thus $G_i$ is the expected improvement from a complete inspection-and-response policy. If false positives are possible, subtract $(1-q_i)f_i h_i$, where $f_i$ is the probability of a positive result conditional on the actionable condition being absent under $E,m$, and $h_i$ the conditional extra loss of the erroneous response. The compact form also requires either negligible effects on the other door or inclusion of those effects in the conditional loss differences. It does not require independent door states. Negative findings leave any undetected condition in the baseline consequences; they do not certify a healthy door.
 
-Direct service needs a separate rationale, such as an applicable service requirement or a relevant finding confirmed through inspection. Deferment means retaining the applicable service policy until the next review, subject to existing requirements and reconsideration when evidence changes. It is defensible only if that choice remains acceptable given the possible consequences and available alternatives. Neither a low traffic estimate nor a broad uncertainty interval establishes that deferment is safe. Equally, uncertainty alone does not establish that an intervention is beneficial: an inspection has decision value when its possible findings could change the choice enough to justify its burden.
+Suppose the routing, grouping, and controller assumptions support greater historical cycle exposure for A. Under comparable histories and an assumed increasing exposure--condition relationship, this may support $q_A>q_B$. That additional relationship is not learned from the traffic proxy. For uncertain exposure, ordering mean exposure alone need not order $q_i$ under a nonlinear relationship; the condition probability must account for the exposure distribution. With equal inspection burdens and positive $d_i v_i$, Equation~\ref{eq:inspection-gain} yields the explicit reversal condition
+\begin{equation}
+G_B>G_A
+\quad\Longleftrightarrow\quad
+\frac{d_Bv_B}{d_Av_A}>\frac{q_A}{q_B},
+\qquad q_A>q_B>0.
+\label{eq:reversal}
+\end{equation}
+Equal positive detection probabilities and response values preserve A's order under the equal-burden assumption. A lower-exposure door can therefore warrant earlier inspection when effective detection or the benefit of the available response is sufficiently greater. Either early policy must also improve on retaining the schedule: ranking two negative gains does not justify either inspection.
 
-Table~\ref{tab:station-decisions} varies the evidential situation while keeping the distinction between information gathering and intervention explicit.
+For a declared nonempty finite set $\mathcal M$ of plausible models, a strict preference for A over both B and the reference schedule holds throughout the set exactly when
+\begin{equation}
+\min_{m\in\mathcal M}\{G_A(m)-G_B(m)\}>0,
+\qquad \min_{m\in\mathcal M}G_A(m)>0.
+\label{eq:inspection-stability}
+\end{equation}
+Interchanging A and B gives the corresponding condition for B. The same statement applies to a compact continuous parameter set when the gains are continuous. A sign change defeats a common order; a tie defeats a strict preference but may permit weak dominance. The inequalities define sensitivity regions; Section~\ref{sec:numerical} evaluates them with explicitly hypothetical inputs.
 
-\begin{table}[t]
-\centering
-\caption{Five qualitative scenarios for the same planning interval. Every action remains subject to the applicable service requirements and functional consequences.}
-\label{tab:station-decisions}
-\small
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.21\linewidth}YY@{}}
-\toprule
-\textbf{Evidence situation} & \textbf{Conditional reasoning and possible action} & \textbf{Limit on the conclusion} \\
-\midrule
-Consistent exposure contrast & Consider the more exposed door first under the stated exposure--finding premise and comparable inspection burden and consequences. & The premise requires independent checking; traffic alone establishes neither condition nor failure probability. \\
-Similar expected exposure; unequal uncertainty & Clarify routing or inspect the less understood asset if resolving the uncertainty could change an important decision. Otherwise retain the applicable schedule. & Greater uncertainty alone supplies no intervention order. \\
-Conflict or changed routing & Reconsider the mapping when counts, local observations, or a closure contradict its interpretation; seek local evidence before using the old ordering. & Conflicting sources should not be averaged into unwarranted confidence. \\
-Common source of bias & Audit shared ticket coverage or route allocation before comparing affected groups; retain alternative routing interpretations. & Aggregation cannot remove a shared error. A uniform offset and a group-specific routing error affect comparisons differently. \\
-Uninformative proxy & Retain the applicable service rule or seek more relevant evidence when counts cannot distinguish device use. & The framework supplies no exposure-based justification for differentiating these assets. \\
-\bottomrule
-\end{tabularx}
-\end{table}
+
+Now suppose dated route records show that a platform reassignment was already in force during the assessed exposure period. The original allocation assigned A passengers who used an adjacent open passage. Correcting that historical interpretation revises the evidence for $q_A$; a later rerouting could not erase accumulated cycles. If the revised plausible models no longer satisfy Equation~\ref{eq:inspection-stability} for either door, the planner withdraws the differentiated recommendation and retains $\pi_0$. B does not acquire priority merely because A's rationale failed. The action record identifies local passage observations and dated route confirmation as possible reasons to reconsider before the next review.
+
+This fallback is the operational rule adopted for the example, not a theorem that $\pi_0$ minimizes worst-case loss. It applies only while the existing schedule remains admissible. If an early visit must be allocated, its documented default order or tie-break replaces the unused-slot option. A counting exercise is requested only if it can resolve a relevant comparison in time; no information-value number is asserted without its possible observations, likelihoods, burden, and resulting actions.
+
+The example also clarifies the treatment of maintenance records. It conditions on assumed current condition probabilities and does not estimate them from censored lifetimes. In an empirical application, earlier replacement could censor a lifetime, selective inspection could change which conditions become recorded, and service could change the state itself. Those processes would belong in estimation of $q_i$ and the response consequences. Treating missing or selectively collected records as healthy observations would not justify the inputs to Equation~\ref{eq:inspection-gain}.
+
+\subsection{Numerical illustration and continuous decision boundaries}
+\label{sec:numerical}
+
+Write dimensionless accumulated exposure as $x_i=X_i/X_{\mathrm{ref}}$, where $X_i$ is historical cycle exposure and $X_{\mathrm{ref}}>0$ is a common reference exposure. Two interpretations of the routing records assign $(x_A,x_B)=(1,0.5)$ under $m_1$ and $(0.35,0.5)$ under $m_2$. The latter represents passengers diverted from A to a third open passage during the assessed period. It does not transfer them automatically to B. The illustrative condition model is $q_i=0.1+\beta x_i$, with $\beta\in[0,0.5]$. Inspection sensitivity is $d_B=0.9$ and $d_A\in[0.25,0.9]$; the common net response value is $v_i=10$ and inspection burden $k_i=1$, in arbitrary loss units. False positives are excluded as in the compact model. These values are declared assumptions, not station measurements, elicited uncertainty bounds, or estimated inspection performance. Every probability remains within $[0,1]$ over the stated ranges.
+
+Substitution into Equation~\ref{eq:inspection-gain} gives
+\begin{equation}
+\begin{aligned}
+G_A(m_1)&=d_A(1+10\beta)-1, &
+G_A(m_2)&=d_A(1+3.5\beta)-1,\\
+G_B&=4.5\beta-0.1, &
+c(\beta)&=\frac{0.9(1+5\beta)}{1+10\beta}.
+\end{aligned}
+\label{eq:numerical-gains}
+\end{equation}
+Here $c(\beta)$ is the A/B tie boundary under $m_1$: A has greater gain above it and B below it. B improves on the baseline exactly when $\beta>1/45$. A's baseline boundary under $m_1$ is $d_A=1/(1+10\beta)$. Both comparisons matter near $\beta=0$, where a higher-ranked early inspection can still have negative gain.
+
+At a fixed pair $(\beta,d_A)$, model $m_2$ gives B greater gain than A whenever $\beta>0$. Consequently, across the set $\{m_1,m_2\}$, a strict preference for B over both alternatives holds exactly when $\beta>1/45$ and $d_A<c(\beta)$. No point in the declared rectangle gives a strict preference for A under both interpretations. At $d_A=c(\beta)$ with $\beta>1/45$, B is weakly preferred throughout the set but ties A under $m_1$; the strict rule does not declare a unique common preference. The baseline weakly dominates both early policies throughout the routing set exactly when $\beta\leq1/45$ and $d_A\leq1/(1+10\beta)$.
+
+\input{generated/two_door_results}
+
+Table~\ref{tab:two-door-numerical} illustrates the boundaries with exact calculations. At $\beta=0.2$ and equal detection $d_A=d_B=0.9$, the original routing interpretation gives gains 1.7 for A and 0.8 for B, agreeing with its exposure order. Reducing $d_A$ to 0.4 gives gains 0.2 and 0.8, reversing that order while keeping both inspections beneficial under $m_1$. At $d_A=0.6$, the gains tie under $m_1$. The corrected route $m_2$ favors B in all three cases. If dated evidence establishes $m_2$ and excludes $m_1$, B is supported. Keeping both routes plausible leaves disagreement at equal detection, but both favor B when $d_A=0.4$.
+
+The equal-detection row also exposes a limitation of the adopted fallback. B has gain 0.8 under both routing interpretations, even though A's gain changes from 1.7 to 0.53. Retaining $\pi_0$ because neither early policy is strictly best throughout the set therefore forgoes a positive gain available under both models. A lack of unanimous preference is not a lack of beneficial action. The procedure's conservative fallback is distinguishable from a rule that maximizes a guaranteed gain or trades off the model-specific losses. An operator adopting it should acknowledge that cost; operational deployment requires an explicit rule for resolving such conflicts.
+
+Robustness across routing interpretations at fixed parameters must also be distinguished from robustness across the entire declared parameter rectangle. The gains and pairwise differences are bilinear or affine, so their extrema on each rectangle occur at corners. Across both routes and the full parameter ranges, A's gain ranges from $-0.75$ to $4.4$, while B's ranges from $-0.1$ to $2.15$. Neither early policy is beneficial everywhere, and the baseline is not best everywhere either. The calculation therefore supports conditional decision regions, rather than a single preferred policy over all stated assumptions. The table and exact rational results are generated by a deterministic Python calculation from a single input file; no random simulation or fitted data are used.
 
 \subsection{Population interpretation and scope}
 
@@ -289,64 +330,74 @@ At station level, the planner can group tasks by access window or functional are
 
 A spatial summary can support this discussion without becoming a map of physical damage. For example, the planner could distinguish a group whose exposure is plausibly concentrated on a busy access route from a group with uncertain allocation among alternative routes. This may help organize a local inspection visit or identify where a short counting exercise would clarify the evidence. The summary should retain both the assumed route structure and the origin of its uncertainty. A shaded zone labelled as a hotspot would otherwise invite a stronger condition interpretation than the underlying information supports.
 
-The example makes the proposed evidence-to-action reasoning explicit and identifies cases in which it must stop. Subsequent evaluation would need to test the proxy relationships against independent observations, examine their stability after operational changes, and compare decisions under the same resource and service constraints. The conceptual contribution specifies what such an evaluation would have to connect and distinguish.
+At population scale, the same assessment must identify shared evidence, admissible coordinated actions, and the loss being compared. Equation~\ref{eq:shared-error} explains why a shared source can leave total burden uncertain even when a pairwise contrast is stable. A coordinated policy may also change route use, requiring a joint consequence assessment beyond the separate inspection policies considered here.
 
 \subsection{Communicating the basis of a maintenance choice}
 
-The planner-facing output should distinguish a supported exposure contrast, a comparison sensitive to routing assumptions, and a comparison that the evidence cannot resolve. These are different reasons for attention even when presented in the same work list. An inspection request should state what is suspected, which evidence supports it, and what finding could change the next action. A request for better routing information should identify the disputed link rather than assigning the asset an unexplained high-uncertainty score. Communicating uncertainty in this form makes the model contestable by service personnel who can recognize a changed controller setting, an omitted intervention, or an inaccessible route. The assumption and scenario tables illustrate the content of such an output rather than prescribing a software interface.
+The planner-facing output should distinguish a supported exposure contrast, a comparison sensitive to routing assumptions, and a comparison that the evidence cannot resolve. These are different reasons for attention even when presented in the same work list. An inspection request should state what is suspected, which evidence supports it, and what finding could change the next action. A request for better routing information should identify the disputed link rather than assigning the asset an unexplained high-uncertainty score. Communicating uncertainty in this form makes the model contestable by service personnel who can recognize a changed controller setting, an omitted intervention, or an inaccessible route. The assumption table and numerical policy comparison illustrate the content of such an output rather than prescribing a software interface.
 
 
 \section{Discussion}
 \label{sec:discussion}
 
-\subsection{Relationship to small-data PHM}
+\subsection{Relationship to established approaches}
 
-LD-PdM overlaps with the broad scope of small-data PHM. \citet{Li2024SmallDataPHM} discuss maintenance execution in Section~1, uncertainty in Section~4.3.2.2, and multimodal and physics-informed approaches in Sections~6.2--6.3. Indirect evidence, prior knowledge, probabilistic treatment, fleet reasoning, and maintenance decisions are shared foundations of the present synthesis.
+Small-data PHM already addresses economic and operational constraints, uncertainty, maintenance records, fleet information, and physical knowledge \citep{Li2024SmallDataPHM}. Usage-based maintenance, soft sensing, and probabilistic inspection planning also provide methods directly relevant to the station problem. Table~\ref{tab:prior-work} compares representative formulations through their questions and evidence requirements. Its final column identifies where these established methods enter the proposed assessment; it does not assign exclusive capabilities to LD-PdM.
 
-The difference is one of organizing emphasis. LD-PdM takes a specified maintenance choice and its feasible observation architecture as the starting point. The inclusion criteria identify when indirect evidence materially carries the reasoning; the quantity distinctions locate the assumptions needed at each inferential link; and the station scenarios show when those links support or defeat an inspection comparison. This organization lets a proposed action be examined through its evidence and assumptions before a learning or decision method is selected. Data-efficient learning can then operate within the characterization where its inputs and target are justified.
+\begin{table}[t]
+\caption{Representative neighboring approaches and their role in the proposed assessment. The comparison concerns organizing questions and assumptions, not mutually exclusive method classes.}
+\label{tab:prior-work}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}YY@{}}
+\toprule
+\textbf{Approach} & \textbf{Question and required evidence} & \textbf{Role in the procedure} \\
+\midrule
+Small-data PHM \citep{Li2024SmallDataPHM} & How can PHM use limited quantity or quality of evidence, including records and physical knowledge? & Distinguish sample limitations from weak condition information before choosing learning methods. \\
+Usage/load-based maintenance \citep{Tinga2010UsageLoad} & How do usage and loads affect condition and maintenance intervals under a physical model? & Check the usage-to-condition assumptions, including cases where usage itself is inferred. \\
+Soft sensing \citep{Kadlec2009SoftSensors} & Can other measurements and a validated relationship estimate an unavailable process quantity? & Identify the target of each proxy and the evidence for applying its relationship. \\
+POMDP and information-value maintenance \citep{SrinivasanParlikad2013VoCM,MemarzadehPozzi2016VoI} & Which observation and maintenance policy is justified by condition uncertainty, costs, and consequences? & Compare complete inspection policies after specifying actions, observation quality, and constraints. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-The perspectives overlap across applications. A setting with few condition samples may satisfy the LD-PdM criteria for one maintenance choice and fail them for another. Conversely, numerous passenger or operating records may remain weakly informative about the condition quantity relevant to a decision. Both perspectives require a justified relationship between available information and the target. The proposed synthesis traces that relationship through the system and the intended maintenance choice.
+The specific output here is a sequence of checks that a reader can apply before accepting a maintenance recommendation: classify the information regime, locate the assumptions between evidence and condition, and compare complete actions under competing interpretations. The two-door calculation exposes the detection and response-value assumptions needed to turn an exposure order into an inspection preference. Its expected-loss algebra and sign comparison are applications of established decision analysis. The contribution rests on whether the checklist and procedure make this assessment usable, rather than on methodological priority for those ingredients.
 
-\subsection{Relationship to other maintenance approaches}
+These perspectives can coexist in one application. A small condition dataset may support one decision adequately while leaving another dependent on indirect evidence. A soft sensor or physical usage model can supply an input to the proposed procedure, and a POMDP can implement a sequential policy when its model is justified. The checklist does not exempt any method from validating the relation between its observations and target.
 
-Virtual and indirect sensing contribute methods for inferring unavailable quantities from other observations. Their relevance depends on the particular measured quantity and model, as illustrated by the cross-domain examples in Section~\ref{sec:asymmetries}. LD-PdM places such estimates, their uncertainty, service histories, and context within a specified maintenance choice, making their contribution to the action rationale explicit.
-
-Risk-based maintenance supplies consequence-aware objectives, while Bayesian inspection planning and POMDP formulations provide established ways to connect partial observations, actions, and information acquisition \citep{Yeter2020,SrinivasanParlikad2013VoCM,MemarzadehPozzi2016VoI}. The present contribution is the synthesis into explicit inclusion criteria, distinct inferential links, and a worked illustration for heterogeneous indirect evidence. Its value should be judged by whether this organization clarifies applicability and prevents unsupported transitions from available records to claimed maintenance knowledge.
-
-Digital representations can organize asset identity, topology, histories, and beliefs without providing complete condition information. Digital-twin reviews and infrastructure decision frameworks offer relevant integration perspectives \citep{vanDinter2022,Mahmoodian2022,Yu2021}. Such a representation is optional within LD-PdM. Its useful function is to retain the provenance of evidence and assumptions and connect them to the intended decision.
+Digital representations can retain asset identity, topology, histories, and assumptions \citep{vanDinter2022,Mahmoodian2022,Yu2021}. Their role here is to preserve the provenance of a recommendation and the record that would trigger its revision. A full digital twin is not a prerequisite for applying the checklist or recording the finite policy comparison.
 
 \subsection{What a later evaluation should establish}
 
-The station example makes an inspection rationale traceable and shows which changed observation would withdraw it. Evaluation of predictive calibration, industrial savings, or superiority over an existing policy would require empirical observations or a declared simulation model and comparison design.
+The station example derives conditional policy comparisons from stated assumptions. The gain and reversal inequalities can be checked algebraically, but their practical value depends on whether the assumed condition, detection, and response relationships describe the asset. A declared synthetic model and comparison design can establish conditional policy differences. Assessing predictive calibration or realized industrial savings in the target setting additionally requires empirical observations.
 
-Future evaluation should separate the quality of proxy interpretation from the quality of the resulting choice. Where a quantity is observed for validation, useful checks include whether uncertainty estimates are calibrated and whether proxy relationships transfer across operating contexts. At the decision level, relevant outcomes include consequence-weighted missed events, unnecessary inspection or intervention, and the value of acquired information under equal resources. Ranking stability and predictive accuracy are useful supporting measures, but neither alone establishes decision benefit.
+The following are recommendations for evaluating an implementation, rather than a committed experimental programme. Evaluation should separate the quality of proxy interpretation from the quality of the resulting choice. Where a quantity is observed for validation, useful checks include whether uncertainty estimates are calibrated and whether proxy relationships transfer across operating contexts. At the decision level, relevant outcomes include consequence-weighted missed events, unnecessary inspection or intervention, and the value of acquired information under equal resources. Ranking stability and predictive accuracy are useful supporting measures, but neither alone establishes decision benefit.
 
-The reason is that a decision can depend on only part of the uncertainty about condition. Several plausible states may favour the same inspection, making exact discrimination among them unnecessary for that choice. Conversely, a small difference near a consequential action boundary may make additional information valuable. The appropriate question is therefore which unresolved distinctions could change an admissible action and its consequences. This explains why decision relevance can coexist with substantial state uncertainty, while also identifying when a coarse belief is insufficient. It is a conditional property of the decision problem, not an assertion that imprecise predictions are generally adequate.
+Exact reconstruction of condition is unnecessary when all plausible states support the same admissible action. Close to the reversal boundary in Equation~\ref{eq:reversal}, however, a small change in detection or response value can change the preferred door. Evaluation should therefore test the uncertain distinctions that can change the choice, alongside the accuracy of the estimated quantities.
 
-A controlled synthetic experiment could isolate noise, shared bias, or uncertainty in the proxy-to-usage relationship. Its conclusions would remain conditional on the generated environment, and an exposure-based inspection objective would not establish failure reduction. Empirical work would additionally need observation and intervention records adequate to distinguish changing condition from changing recording practice. A calibrated failure model or industrial sensing break-even estimate therefore remains a separate research task.
+The present exact calculation isolates routing interpretation and inspection sensitivity under a fixed hypothetical condition model. A later stochastic experiment could examine noisy counts and shared proxy bias. Its conclusions would remain conditional on the generated environment, and an exposure-based inspection objective would not establish failure reduction. Empirical work would additionally need observation and intervention records adequate to distinguish changing condition from changing recording practice. A calibrated failure model or industrial sensing break-even estimate therefore remains a separate research task.
 
-\subsection{Boundary conditions and failure of the proxy chain}
+\subsection{Scope and limitations}
 
-The framework has several substantive limits. First, indirect evidence may be uninformative about the maintenance mechanism of interest even if it predicts usage. Second, different combinations of deterioration parameters and prior condition can explain the same records, leaving condition weakly identified. Third, an apparent population pattern can reflect common proxy error rather than shared physical burden. Explicit distributions help reveal these limitations but do not remove them.
+The analysis provides an assessment procedure, conditional analytical results, and an exact numerical illustration with hypothetical inputs. It supplies no fitted exposure--condition relationship, calibrated detection model, station cost estimate, or empirical maintenance comparison. The two-door calculation assumes a feasible service response, a common loss scale, and an admissible reference schedule. Its compact form excludes false positives and either excludes cross-door intervention effects or includes them in the conditional consequences. The stated extension shows where erroneous-response losses enter. Conclusions about a physical-failure policy would require a separate event and transition model.
 
-Fourth, applicability is conditional on the acquisition constraint and the value of the choice. Better dedicated information should be considered when its feasible benefit justifies its lifecycle burden; a model is not justified simply because sensors are absent. If neither the consequence of a decision nor the expected value of available evidence supports the modelling effort, LD-PdM provides a classification of the limitation rather than a reason to construct a new system. Safety, accessibility, and service obligations must be considered for the particular function, independently of unit price.
+The available evidence may leave several models compatible with the same records. In the example, passenger records alone supply no observations of the targeted condition or inspection sensitivity, so they cannot estimate $q_i$ and $d_i$ without additional relationships or outcomes. Even observations of the positive-finding rate alone identify only the product $q_i d_i$ under the zero-false-positive simplification; separating prevalence from detection requires additional information. The procedure therefore retains competing assumptions and bounds its preference to the declared model set. An omitted interpretation can invalidate a preference that was stable within that set.
 
-Finally, context and maintenance policy can change the observation process. Rerouting, refurbishment, different logging practices, or selective inspection can invalidate earlier proxy interpretations. An operational implementation would need a way to detect such changes, revise assumptions, and retain an audit trail. The research agenda is consequently as much about evidence quality, calibration, and communication as about more powerful inference methods.
+Application also requires reconsidering the acquisition constraint. Better condition information may be worthwhile when it changes an important action enough to justify its lifecycle burden. Rerouting, refurbishment, altered logging, or selective inspection can change which interpretation of existing records is credible. An operational implementation needs a review trigger and a record of such changes. The conceptual classification itself neither establishes that a new monitoring system is economical nor justifies relaxing safety, accessibility, or service obligations.
 
 \section{Conclusions}
 \label{sec:conclusions}
 
-Limited-Data Predictive Maintenance describes a regime in which consequential maintenance choices coexist with persistently weak feasible condition information, making indirect, contextual, historical, and prior evidence material to the reasoning. The asymmetry concerns the relationship between decision need and information availability. It is not defined by a small sample count alone, and it overlaps with established PHM, indirect sensing, and probabilistic maintenance decision analysis.
+Limited-Data Predictive Maintenance characterizes consequential maintenance choices for which feasible condition information remains weak and indirect evidence materially informs the assessment of future needs. Its applicability depends on the choice, horizon, and evidence, so neither a small dataset nor a particular asset class determines membership. The title's asymmetry is the mismatch between the consequences of a choice and the information available to support it.
 
-The operational criteria and quantity distinctions provide a way to examine a maintenance proposal: establish the information regime, identify what each source informs, and state the assumptions linking it to an action. The station vignette applies this structure to inspecting A first and withdrawing that ordering when routing evidence changes. Together with the boundary cases and scenario table, it shows how a maintenance rationale can remain explicit about both its basis and its stopping conditions. Predictive and operational performance remain questions for subsequent evaluation.
+The checklist, five-step procedure, and station example provide a concrete way to examine such a proposal. The analytical and numerical comparisons show that an exposure-based order requires assumptions about actionable condition, detection, response value, and inspection burden. In the stated example, lower detection at the more exposed door reverses the inspection order. Routing alternatives can also prevent a common strict preference while leaving B beneficial under both models. The fallback to the existing schedule therefore has an explicit opportunity cost: an operator must distinguish inability to name one uniformly best inspection from inability to improve on the baseline.
 
-The practical implication is to match maintenance expectations to the available observation architecture while keeping the cost and potential benefit of better information open to reconsideration. Future work should evaluate proxy interpretation and maintenance consequences together, identify when shared assumptions dominate the result, and establish when additional inspection or monitoring is worthwhile.
+The analysis establishes these conditional implications without estimating station performance. Future evaluation should test the proxy relationships against independent observations and assess the consequences of complete inspection policies under equal resource constraints. Such work would determine whether the proposed assessment improves maintenance decisions in a particular operating setting.
 
 \vspace{6pt}
 \funding{Partially funded by the European Union. Views and opinions expressed are those of the author only and do not necessarily reflect those of the European Union or Europe's Rail Joint Undertaking. Neither the European Union nor the granting authority can be held responsible for them. The project FP3-IAM4Rail is supported by Europe's Rail Joint Undertaking and its members. Partially funded by AGH's subvention for scientific research.}
 \institutionalreview{Not applicable.}
 \informedconsent{Not applicable.}
-\dataavailability{No new data were created or analysed in this conceptual study.}
+\dataavailability{All hypothetical inputs are stated in Section~\ref{sec:numerical}. The deterministic Python calculation and exact generated results are included with the manuscript source. No empirical station data were used.}
 % Author to verify historical AI tool/version and approve the final declaration.
 \acknowledgments{\textcolor{red}{During preparation of this manuscript, the author used ChatGPT for stylistic editing and OpenAI Codex for assistance with manuscript revision, reference checking, and LaTeX preparation. The author is responsible for reviewing and verifying the content and takes full responsibility for this publication.}}
 \conflictsofinterest{The author declares no conflicts of interest.}
@@ -358,6 +409,7 @@ PdM & Predictive maintenance\\
 LD-PdM & Limited-Data Predictive Maintenance\\
 PHM & Prognostics and health management\\
 RUL & Remaining useful life\\
+HVAC & Heating, ventilation, and air-conditioning\\
 POMDP & Partially observable Markov decision process
 \end{tabular}
 }

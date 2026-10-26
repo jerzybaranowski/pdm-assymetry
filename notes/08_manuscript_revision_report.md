@@ -2,7 +2,9 @@
 
 **Date:** 2026-10-19\
 **Latest update:** 2026-10-21\
-**Status:** revised draft for author review; AI disclosure deferred by the author.
+**Historical status (2026-10-21):** revised draft for author review; AI disclosure deferred by the author.
+
+**Current continuation:** the Round 0 symbolic revision is documented in [the first 2026-10-23 report](13_round0_revision_report.md); the subsequently approved calculation and current 18-page PDF are documented in [the numerical report](14_numerical_example_report.md). The counts and hash below describe the earlier revision, not the current PDF.
 
 The revision implements `07_publication_completion_plan.md` in `paper/template.tex` while preserving the invited title and the canonical LD-PdM name. The author confirmed that empirical data are unavailable, allowed a high-level simulation if useful, and asked to retain the funding scope and mark the AI statement red for later revision.
 

@@ -2,12 +2,13 @@
 
 The Overleaf source was imported on 2026-10-19 in commit `3015f9b285d5333768cc446a04e4278fc547743c`. The current source contains a substantive conceptual revision under the existing invited title. It is ready for author review, with the AI disclosure deliberately red for later revision.
 
-The live issue dispositions are in [`../AUDIT.md`](../AUDIT.md). The implemented changes, length comparison, checks, and remaining author work are recorded in [`../notes/08_manuscript_revision_report.md`](../notes/08_manuscript_revision_report.md).
+The live issue dispositions are in [`../AUDIT.md`](../AUDIT.md). Current editorial and artifact checks are recorded in [`../notes/15_editorial_consistency_report.md`](../notes/15_editorial_consistency_report.md); the approved numerical calculation and its tests are documented in [`../notes/14_numerical_example_report.md`](../notes/14_numerical_example_report.md). The preceding revisions remain in [`../notes/13_round0_revision_report.md`](../notes/13_round0_revision_report.md) and [`../notes/08_manuscript_revision_report.md`](../notes/08_manuscript_revision_report.md).
 
 ## Canonical files
 
 - `template.tex` — manuscript wording, structure, abstract, keywords, citations, and declarations.
-- `extracted.bib` — canonical reference library: 30 entries, 26 cited in the revised text.
+- `extracted.bib` — canonical reference library: 32 entries, 23 cited in the revised text.
+- `generated/two_door_results.tex` — numerical comparison table generated from `../simulations/two_door/parameters.json`; do not edit the table manually.
 - `diagram.tex` and `inferencechain.tex` — the two active inline conceptual diagrams.
 - `conceptual_heatmap.tex` and `pioritisationoutput.tex` — historical schematic sources, no longer inputs to the revised article.
 - `Definitions/` — MDPI class/styles/assets; no vendor source was edited.
@@ -16,7 +17,7 @@ Exact manuscript wording and keys are authoritative here; historical notes prese
 
 ## Current content
 
-The revision integrates Li et al. and established maintenance decision/information-value work, gives operational regime criteria and boundary cases, separates the inferential variables from actions, and develops a worked qualitative station example. Four tables describe boundaries, quantities, assumptions, and decision scenarios. No empirical data or simulation results are claimed. The unused synthetic-extension proposal is not a submission prerequisite.
+The Round 0 revision provides an applicability checklist, a five-step assessment procedure, and an analytical and numerical two-door policy comparison with explicit baseline and fallback. Five tables distinguish applicability, quantities, station assumptions, numerical choices, and adjacent approaches. Six equations are used in the argument. The numerical illustration implements the author's approved hypothetical inputs with exact arithmetic and continuous decision boundaries. It explicitly shows that the stipulated fallback can forgo beneficial early inspection; the procedure now separates that illustrative convention from the requirement to specify an operational fallback. The 2026-10-25 pass also clarifies definitions, historical intervals, empirical-evidence limits, and existing figure-arrow conventions. No empirical performance result is claimed. Individual review dispositions are in [`../reviews/round0/response_matrix.md`](../reviews/round0/response_matrix.md).
 
 Reference verification, claim scope, and full-text limitations are recorded in [`../literature/03_claim_source_matrix.md`](../literature/03_claim_source_matrix.md). Retain candidates outside `extracted.bib` until they are actually cited.
 
@@ -28,7 +29,9 @@ From this directory:
 latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=../build/manuscript template.tex
 ```
 
-TeX Live 2024 and latexmk 4.83 produce a 16-page PDF after the two-door example and contribution refinement on 2026-10-21, without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected; the abbreviations heading and table are kept together. The abstract/keywords, single-author option, year, header height, and previous width problems are repaired. A non-fatal `xcolor` load-time-option warning remains within the bundled class/PGF loading sequence.
+The numerical table is already included. To regenerate it first, run `python3 simulations/two_door/calculate.py` from the repository root; see the [calculation guide](../simulations/two_door/README.md).
+
+TeX Live 2024 and latexmk 4.83 produce an 18-page PDF after the editorial continuation on 2026-10-25, without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected; the abbreviations heading and table are kept together. The abstract/keywords, single-author option, year, header height, and previous width problems are repaired. A non-fatal `xcolor` load-time-option warning remains within the bundled class/PGF loading sequence.
 
 The review PDF is saved as `../output/pdf/ld-pdm-conceptual-revision.pdf`. It is a review draft with the requested red AI disclosure, not a submission authorization.
 

@@ -2,9 +2,45 @@
 
 **Audit date:** 2026-10-19  
 **Target:** *Symmetry*, Engineering and Materials  
-**Current assessment:** **substantively revised draft for author review; AI disclosure deferred**
+**Current assessment:** **Round 1 review assessment completed; substantive scientific revision proposed, not yet implemented; AI disclosure deferred**
 
-## Revision status on 2026-10-21
+## Current revision status — 2026-10-26
+
+The author requested analysis of the four new [simulated reviews](reviews/round1/README.md). The [Round 1 assessment and proposed revision](notes/16_round1_revision_assessment.md) records the checked mathematics, review coverage, literature findings, and recommended scope. This was an assessment task: the manuscript, bibliography, numerical specification, calculation code/artifacts, diagrams, and review PDF were not changed.
+
+The main scientific issue is unresolved: the approved strict-common-preference rule can retain a schedule dominated by an available inspection under every retained routing model. The October 25 clarification explains that choice but does not repair it. The proposed revision would filter dominated policies, declare the selection objective, and demonstrate a completed assessment record. Minimax regret is proposed as the main illustration, with maximin incremental gain as a comparator; this substantive change is awaiting author agreement, including whether a loss relative to the baseline in any retained model is permitted. The existing inputs can be retained. Maximin incremental gain must not be equated with minimax absolute loss when model-specific baseline losses are unspecified.
+
+Other priorities are explicit comparison with PdM feasibility assessment, consistent treatment of corrected versus unresolved routing evidence, narrower claims about the demonstrated inference chain and usability, and reduced repetition. Several reviewer assertions are incorrect or require new assumptions; the assessment records these rather than treating every request as mandatory. A full Bayesian observation model, population simulation, empirical case, and counting-value calculation are not required by the proposed bounded revision.
+
+**Next author decision:** select the proposed scientific revision scope and decision criterion. The deferred AI declaration, affiliation presentation, and submission-history declarations remain pending. The reviewed artifact is still the verified October 25 PDF described below. No new build or production test run was needed for this assessment. No commit, push, deposit, or submission was performed. Earlier completion statements below are historical and do not close the Round 1 scientific issues.
+
+## Historical revision status — 2026-10-25
+
+The author explicitly resumed work. The completed editorial pass distinguishes baseline improvement from common preference in the general procedure and identifies retention of the schedule as the example's chosen fallback. It also defines the actionable condition and exposure normalization, synchronizes historical intervals and the assumption table, separates hypothetical comparison from empirical benefit, and explains the existing arrow styles in both figure captions. The approved calculation and diagram sources are unchanged. The [editorial report](notes/15_editorial_consistency_report.md) records each correction and its verification.
+
+The current review PDF has **18 pages**, all visually inspected after a successful build with no unresolved citations/references, missing characters, or overfull/underfull boxes. The known non-fatal `xcolor` warning remains. Its SHA-256 is `476c89fe8dd86bd3e7e21c8a9ca2e7c8fc9b682e6b13e31ac5ea8e0e660bb8c4`. Calculation tests were not repeated because their sources, inputs, and artifacts are unchanged; the 2026-10-23 passing evidence remains recorded below. The response matrix distinguishes caption clarification from unimplemented style harmonization.
+
+**Remaining author work:** review the scientific argument and resolve the previously deferred AI declaration, affiliation presentation, and submission-history declarations. The broader model requests retain their recorded scope limits. Files are saved locally; no commit, push, or submission was performed. The checkpoint and earlier revision summaries below are historical.
+
+## Historical pause checkpoint — 2026-10-23
+
+Work was paused at the author's explicit request before putting the computer to sleep. All manuscript edits, calculation sources, inputs, generated results, tests, review records, and the checked PDF were saved locally. The collaborating agents had completed their tasks; no build or calculation from that task remained in progress. The author resumed work on 2026-10-25.
+
+The current review artifact is `output/pdf/ld-pdm-conceptual-revision.pdf` (18 pages; SHA-256 `54c2bf2fc4eb79867b5d551cc3c304cca749545dff76a55db618cde66779c9b2`). The completed work and verification are recorded in [the numerical report](notes/14_numerical_example_report.md); individual review dispositions are in [the response matrix](reviews/round0/response_matrix.md). The working tree contains saved modified and untracked files; no commit or push has been performed. Preserve these files on resumption rather than resetting or reconstructing the manuscript.
+
+No calculation or PDF check needs to be repeated unless the relevant source changes. Remaining work is author review of the argument and numerical interpretation, followed by the already deferred AI disclosure, affiliation presentation, and submission-history declarations. Broader requests outside the approved example remain explicitly limited in the response matrix. No submission is authorized.
+
+## Revision status on 2026-10-23 — Round 0
+
+The author instructed continuation of the corrections and explicitly approved the [numerical specification](notes/12_two_door_model_specification.md#8-optional-numerical-inputs-proposed-for-author-review) and calculations on 2026-10-23. The manuscript now implements the applicability checklist, five-step procedure, analytical and numerical two-door inspection comparison, explicit admissible fallback, shared-error derivation, focused prior-work comparison, and revised framing. The review PDF has **18 pages**. See the [numerical report](notes/14_numerical_example_report.md), [preceding symbolic revision report](notes/13_round0_revision_report.md), and [point-by-point response matrix](reviews/round0/response_matrix.md).
+
+The approved deterministic calculation now supplies six exact numerical cases and continuous decision boundaries. It distinguishes correction to one historical routing model from comparison across two still-plausible models. The latter can support no common strict preference even when an early inspection improves on the baseline under both models; the manuscript explicitly records the opportunity cost of its conservative fallback. All inputs are hypothetical. Requests for a full generative or failure model, computed counting value, or broader asset-allocation example remain partial or outside the agreed scope. The two conceptual diagrams are retained unchanged, and their arrow-convention request is not marked implemented.
+
+Verification: successful compilation; no unresolved citations/references, missing characters or overfull/underfull boxes; all 18 rendered pages visually inspected; independent mathematical and numerical review completed. The full test suite passed (10 tests and 58 subtests), all 10 catalog entries validate, and generated numerical artifacts reproduce byte-for-byte. The existing non-fatal `xcolor` warning remains. The canonical library has 32 records, of which 23 are cited. Source-access limits for the two added references are recorded in [the focused checks](literature/05_round0_source_checks.md).
+
+**Remaining author work:** review the revised argument and numerical illustration; resolve the already deferred AI declaration, affiliation presentation and submission-history declarations. Funding scope remains confirmed. No submission is authorized. The original audit dispositions below concern the earlier revision and must not be read as closure of every Round 0 request.
+
+## Historical revision status on 2026-10-21
 
 The agreed conceptual revision is implemented in `paper/template.tex`. The invited title and LD-PdM name are retained. The current review PDF has 16 pages after the focused Li comparison and the author-approved two-door/contribution refinement. The first revision had 14, followed by a 15-page draft restoring useful explanatory material after the author's question about the reduction. Details and recorded section counts are in [`notes/08_manuscript_revision_report.md`](notes/08_manuscript_revision_report.md).
 

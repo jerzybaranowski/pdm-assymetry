@@ -1,0 +1,24 @@
+{
+  "specification": "notes/12_two_door_model_specification.md, Section 8",
+  "evidential_status": "Author-approved hypothetical inputs; no station estimates",
+  "q0": "0.1",
+  "beta_bounds": ["0", "0.5"],
+  "d_a_bounds": ["0.25", "0.9"],
+  "d_b": "0.9",
+  "response_value": "10",
+  "inspection_cost": "1",
+  "false_positive_probability": "0",
+  "loss_units": "arbitrary loss units over the common planning window",
+  "models": {
+    "m1": {"x_a": "1", "x_b": "0.5"},
+    "m2": {"x_a": "0.35", "x_b": "0.5"}
+  },
+  "representative_cases": [
+    {"id": "uninformative_exposure", "beta": "0", "d_a": "0.9"},
+    {"id": "agreement_and_route_disagreement", "beta": "0.2", "d_a": "0.9"},
+    {"id": "detection_reversal", "beta": "0.2", "d_a": "0.4"},
+    {"id": "inspection_tie", "beta": "0.2", "d_a": "0.6"},
+    {"id": "baseline_tie", "beta": "1/45", "d_a": "0.9"},
+    {"id": "upper_endpoint", "beta": "0.5", "d_a": "0.9"}
+  ]
+}

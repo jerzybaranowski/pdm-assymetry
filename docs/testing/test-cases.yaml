@@ -24,3 +24,59 @@ cases:
     test_refs:
       - tests/test_tikz_pipeline.py::test_no_diagram_source_sits_outside_a_source_directory
     origin: feature
+  - id: TWODOOR-OUTCOMES-001
+    component: two_door
+    behavior: Exact inspection gains equal the expected loss change obtained by independently enumerating condition and detection outcomes.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_gain_matches_independent_outcome_losses
+    origin: feature
+  - id: TWODOOR-BASELINE-001
+    component: two_door
+    behavior: Negative early-inspection gains favor the existing schedule even when one door has the larger gain.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_negative_gains_keep_baseline
+    origin: feature
+  - id: TWODOOR-TIES-001
+    component: two_door
+    behavior: Exact inspection ties and ties with the baseline prevent a strict common early-policy recommendation.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_inspection_and_baseline_ties
+    origin: feature
+  - id: TWODOOR-ROBUSTNESS-001
+    component: two_door
+    behavior: Routing disagreement and full-rectangle uncertainty are distinct from fixed-point policy support, and fallback does not conceal baseline dominance.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_model_disagreement_and_rectangle_bounds
+    origin: feature
+  - id: TWODOOR-BOUNDARIES-001
+    component: two_door
+    behavior: Analytical continuous decision boundaries agree with exact policy gains, including the corrected-route exclusion of A.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_continuous_boundaries
+    origin: feature
+  - id: TWODOOR-CONTRACT-001
+    component: two_door
+    behavior: Inputs outside the approved parameter rectangle and unsupported observation assumptions are rejected before calculation.
+    level: contract
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_invalid_inputs_are_rejected
+    origin: feature
+  - id: TWODOOR-EXPORTS-001
+    component: two_door
+    behavior: The approved configuration deterministically reproduces the checked-in exact JSON and manuscript table without floating-point rounding.
+    level: integration
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_artifacts_reproduce_exactly
+    origin: feature
