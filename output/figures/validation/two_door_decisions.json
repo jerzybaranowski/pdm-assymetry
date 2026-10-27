@@ -1,0 +1,144 @@
+{
+  "figure_id": "two-door-decisions",
+  "date": "2026-10-26",
+  "profile": "publication",
+  "status": "technically-validated",
+  "artifacts": {
+    "pdf": {
+      "path": "paper/figures/two_door_decisions.pdf",
+      "sha256": "71c5253c86f2132cca34eb817dbff59fd2c6421e78d4167602feb0f2ba335937",
+      "page_count": 1,
+      "width_mm": 138.6000025431315,
+      "height_mm": 85.00000118679469,
+      "raster_image_count": 0,
+      "fonts": [
+        {
+          "name": "GCWXDV+DejaVuSans-Oblique",
+          "embedded_bytes": 3728
+        },
+        {
+          "name": "BMQQDV+DejaVuSans",
+          "embedded_bytes": 11368
+        }
+      ]
+    },
+    "png": {
+      "path": "paper/figures/two_door_decisions.png",
+      "sha256": "30e3fe10d1d725038c0d3540f5a400d55b155751e12e489aab5c716554b709c0",
+      "pixels": [
+        1637,
+        1003
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    }
+  },
+  "source": {
+    "path": "simulations/two_door/plot_data.json",
+    "sha256": "68b3db93953882af7f91e7dca140eadc9828b3fefcefc56a656bff641e51d8d5",
+    "calculation_in_builder": false,
+    "rendering_conversion": "Calculator rational coordinates converted to float; supplied sampled polylines rendered without analytical recomputation."
+  },
+  "configuration": {
+    "path": "config/figures.yaml",
+    "sha256": "9e28d55f3635b76f1311a92945261c4dfe2f2fbba6aff1d012353a91f96553a6",
+    "dimensions": "Author-approved 138.6 x 85.0 mm, two panels; vector PDF and 300-dpi PNG, approved on 2026-10-26."
+  },
+  "implementation": {
+    "path": "scripts/plot_two_door.py",
+    "sha256": "b928f7abfc414f07ce34d55e6e8470c9a2ae15b919532c6c9d0bab6a051a1c8b"
+  },
+  "checks": {
+    "physical_size": "pass",
+    "png_dpi": "pass",
+    "vector_pdf": "pass",
+    "font_embedding": "pass",
+    "clipping": "pass",
+    "whitespace": "pass",
+    "target_size_96dpi_pdf_preview": "pass",
+    "grayscale": "pass",
+    "protanopia_simulation": "pass",
+    "deuteranopia_simulation": "pass",
+    "publication_pixels_match_reviewed_preview": "pass",
+    "configuration_schema_and_project_state": "pass",
+    "approved_artifact_hashes_unchanged": "pass"
+  },
+  "manual_review": "Both panels and the grayscale/CVD previews were inspected at target-size96dpi. Labels, leaders and boundary distinctions remain legible; no collision or clipping. Root also inspected publication PNG.",
+  "accessibility": {
+    "redundant_encodings": [
+      "direct policy labels",
+      "leader lines to the narrow baseline regions",
+      "dark tie boundaries",
+      "open-circle triple tie"
+    ],
+    "method": "Machado2009severity100 matrices applied in linear sRGB; display gamut clipped after conversion; review previews only.",
+    "doi": "10.1109/TVCG.2009.113",
+    "sources": [
+      "https://raw.githubusercontent.com/njsmith/colorspacious/master/colorspacious/cvd.py",
+      "https://raw.githubusercontent.com/njsmith/colorspacious/master/colorspacious/conversion.py"
+    ],
+    "matrices": {
+      "protanopia": [
+        [
+          0.152286,
+          1.052583,
+          -0.204868
+        ],
+        [
+          0.114503,
+          0.786281,
+          0.099216
+        ],
+        [
+          -0.003882,
+          -0.048116,
+          1.051998
+        ]
+      ],
+      "deuteranopia": [
+        [
+          0.367322,
+          0.860646,
+          -0.227968
+        ],
+        [
+          0.280085,
+          0.672501,
+          0.047413
+        ],
+        [
+          -0.01182,
+          0.04294,
+          0.968881
+        ]
+      ]
+    }
+  },
+  "blockers": [],
+  "warnings": [
+    "The very narrow A region near the upper-left corner is included but has limited resolution at the full-domain scale; equations specify exact boundaries.",
+    "Bundled inspect_figure_artifact.py and validate_figure.py cannot import pypdf in the installed interpreter. Independent PyMuPDF/Pillow artifact checks used instead.",
+    "PyMuPDF emits nonfatal SWIG deprecation warnings."
+  ],
+  "tests": {
+    "date": "2026-10-26",
+    "command": "MPLCONFIGDIR=/private/tmp/pdm-mpl-cache /opt/anaconda3/bin/python -m pytest tests -q",
+    "result": "18 tests and 69 subtests passed, including all 3 figure tests and their 5 subtests; 5 nonfatal SWIG deprecation warnings.",
+    "current_config": "Passed after recording explicit custom-dimension and final-render approval.",
+    "test_catalog": "All 16 entries validated."
+  },
+  "user_review": {
+    "dimension_approval": "user-approved",
+    "final_render_approval": "user-approved",
+    "date": "2026-10-26",
+    "response": "Tak, akceptuję ten rysunek i format",
+    "scope": "The displayed minimax-regret and maximin-gain comparison, two panels, 138.6 x 85 mm, vector PDF and PNG at 300 dpi for the article.",
+    "approved_artifacts": {
+      "pdf": "71c5253c86f2132cca34eb817dbff59fd2c6421e78d4167602feb0f2ba335937",
+      "png": "30e3fe10d1d725038c0d3540f5a400d55b155751e12e489aab5c716554b709c0"
+    },
+    "package_created": false
+  }
+}

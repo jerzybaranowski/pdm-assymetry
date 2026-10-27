@@ -1,0 +1,106 @@
+# Scientific intent approved with the Round 1 implementation proposal.
+# The author approved the concrete two-panel render, 138.6 x 85 mm,
+# vector PDF and 300-dpi PNG on 2026-10-26.
+schema_version: 1
+project:
+  id: pdm-asymmetry
+  root_relative_paths: true
+  paths:
+    draft: paper/figures
+    final: output/figures/final
+    captions: output/figures/captions
+    validation: output/figures/validation
+defaults:
+  palette: blue_ribbon_v1
+  neutral_palette: neutral_v1
+  outputs:
+    overwrite: {draft: true, final: false}
+  accessibility:
+    grayscale: required
+    color_vision: [deuteranopia-or-deuteranomaly, protanopia-or-protanomaly]
+    color_only_encoding: forbidden
+figures:
+  two-door-decisions:
+    # USER-TUNABLE: fixed scientific selection and target dimensions.
+    specification:
+      profile: publication
+      intent:
+        status: resolved
+        purpose: Compare the two declared decision objectives over the approved parameter domain.
+        message: The selected inspection depends on the decision objective as well as the retained routing interpretations.
+        message_status: confirmed
+        audience: maintenance-researcher
+        medium: journal-article
+        manuscript_role: Exact hypothetical two-door decision comparison.
+      analytical_source:
+        status: resolved
+        artifact: simulations/two_door/plot_data.json
+        description: Calculator-exported region polygons, tie curves, tie points and labels; no policy computation in the renderer.
+        producer:
+          file: simulations/two_door/calculate.py
+          function: build_plot_data
+      content:
+        status: resolved
+        panels:
+          minimax-regret: {role: main, quantity: selected-policy, title: Minimax regret}
+          maximin-gain: {role: comparator, quantity: selected-policy, title: Maximin incremental gain}
+        selection_status: user-approved
+      layout:
+        class: custom
+        width_in: 5.456692913385827
+        height_in: 3.346456692913386
+        strategy: constrained
+        reading_order: [minimax-regret, maximin-gain]
+        axes:
+          x: {scale: linear, displayed_range: full, shared_scales: true}
+          y: {scale: linear, displayed_range: full, shared_scales: true}
+      visual:
+        palette: two_door_policy_v1
+        title: {strategy: none}
+        labels: {strategy: direct}
+        legend: {strategy: none}
+        grid: {strategy: none}
+        mappings:
+          inspect-a: {label: Inspect A, color_role: inspect_a_fill}
+          inspect-b: {label: Inspect B, color_role: inspect_b_fill}
+          baseline: {label: Schedule, color_role: baseline_fill}
+          ties: {label: Tied optimum, color_role: tie_line, line_style: solid}
+      captions:
+        required: true
+        markdown: true
+        latex: false
+        status: verified
+      accessibility:
+        grayscale: required
+        color_vision: [deuteranopia-or-deuteranomaly, protanopia-or-protanomaly]
+        color_only_encoding: forbidden
+        exception: {status: none}
+      outputs:
+        export_profile: publication-double-column
+        formats: [pdf, png]
+        png: {dpi: 300}
+        paths:
+          draft_stem: paper/figures/two_door_decisions
+          final_stem: output/figures/final/two_door_decisions
+        overwrite: {draft: true, final: false}
+      approvals:
+        content_selection: user-approved
+        interpretation_sensitive_scales: not-applicable
+        custom_dimensions: user-approved
+        interpretive_annotations: not-applicable
+        accessibility_exception: not-applicable
+        final_render: user-approved
+    # AGENT-MANAGED: keep final-render approval separate from technical checks.
+    implementation:
+      status: technically-validated
+      source:
+        file: scripts/plot_two_door.py
+        builder: build_two_door_decisions
+        renderer: render_figure
+      registry_key: two-door-decisions
+      artifacts:
+        pdf: paper/figures/two_door_decisions.pdf
+        png: paper/figures/two_door_decisions.png
+        caption_markdown: output/figures/captions/two_door_decisions.md
+        validation: output/figures/validation/two_door_decisions.json
+packages: {}

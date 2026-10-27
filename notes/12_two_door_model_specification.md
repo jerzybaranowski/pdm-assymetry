@@ -204,3 +204,18 @@ Do not assign probabilities to $m_1$ and $m_2$ merely to average away routing di
 Evaluate the continuous symbolic thresholds over the stated rectangle and report a small exact table of representative points, including equal detection, unequal detection, a tie boundary, and the exposure-uninformative boundary. A plotted grid can illustrate those thresholds but cannot by itself prove continuous sign stability; use the formulas or bound the full parameter set. Report agreement, disagreement, baseline preference, and unresolved model comparisons wherever obtained. Do not imply that the approved inputs guarantee every desired regime, or tune them after seeing the results without recording the change.
 
 Implementation uses a small deterministic calculation and tests of policy comparison, the baseline check, and ties; it requires no random simulation, package installation, or station data. The results are presented in a numerical table and exact analytical boundaries. The manuscript's data-availability statement must identify the actual synthetic calculation. Execution and validation evidence are recorded separately from these approved inputs.
+
+## 9. Decision-rule revision authorized on 2026-10-26
+
+After reviewing [the Round 1 assessment](16_round1_revision_assessment.md) and the accompanying recommendation, the author instructed: “Zacommituj to co jest i zacznij wdrazac poprawki” (commit the current state and begin implementing the corrections). Commit `0f7a169` preserves the preceding specification, manuscript, results, and reviews. This addendum supersedes the strict-common-preference/fallback selection in Sections 5–8; their historical descriptions are retained as the record of the earlier approved rule.
+
+Keep all Section 8 numerical inputs unchanged. Compare the same three deterministic complete policies, without assigning probabilities to the routing models. At each fixed parameter pair:
+
+1. Remove a policy if another feasible policy has at least as much gain in every retained routing model and strictly more in at least one.
+2. Use minimax regret among the remaining policies as the main illustrative selector: minimize the largest within-model gap to the best feasible gain.
+3. Report maximin incremental gain as a comparator: maximize the smallest gain relative to the model-specific schedule.
+4. Preserve exact tie sets and separately identify any selected policy with a negative gain in a retained model.
+
+No additional nonnegative-gain constraint is imposed. As explained in the approved proposal, minimax regret can select A at `beta=1/45, d_A=0.9`, with gains `0.10/-0.03`; the comparator ties B with the schedule. A future requirement to forbid losses against the baseline would change the feasible set and needs an explicit decision. Maximin incremental gain is not identified with minimax absolute loss when model-specific baseline losses are unknown.
+
+Keep the sensitivity rectangle distinct from the routing set at fixed parameters. Report the whole-rectangle stress comparison separately. The original strict rule may remain in code as a historical diagnostic, but it is no longer the manuscript's recommended selector. Generate the numerical table and geometry for the two-panel decision-region figure from the authoritative calculation; the figure renderer must not repeat the policy analysis. No observation likelihood, population model, randomization, or empirical calibration is added.

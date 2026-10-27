@@ -42,7 +42,7 @@ cases:
     origin: feature
   - id: TWODOOR-TIES-001
     component: two_door
-    behavior: Exact inspection ties and ties with the baseline prevent a strict common early-policy recommendation.
+    behavior: The historical strict rule retains exact inspection ties and ties with the baseline as diagnostic fallback cases.
     level: unit
     status: implemented
     test_refs:
@@ -50,7 +50,7 @@ cases:
     origin: feature
   - id: TWODOOR-ROBUSTNESS-001
     component: two_door
-    behavior: Routing disagreement and full-rectangle uncertainty are distinct from fixed-point policy support, and fallback does not conceal baseline dominance.
+    behavior: Historical routing disagreement remains distinct from full-rectangle uncertainty, and exact corner extrema are preserved under the revised selection criteria.
     level: unit
     status: implemented
     test_refs:
@@ -74,9 +74,59 @@ cases:
     origin: feature
   - id: TWODOOR-EXPORTS-001
     component: two_door
-    behavior: The approved configuration deterministically reproduces the checked-in exact JSON and manuscript table without floating-point rounding.
+    behavior: The approved configuration deterministically reproduces the exact results, manuscript table, and authoritative plotting coordinates without floating-point rounding.
     level: integration
     status: implemented
     test_refs:
       - tests/test_two_door.py::TestTwoDoor::test_artifacts_reproduce_exactly
+    origin: feature
+  - id: TWODOOR-DOMINANCE-002
+    component: two_door
+    behavior: Dominated baseline fallback is removed, weak dominance excludes policies with one equal gain, and equivalent policies remain tied.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_dominated_baseline_is_not_reinstated_on_route_disagreement
+      - tests/test_two_door.py::TestTwoDoor::test_dominance_and_policy_equivalence
+    origin: regression
+  - id: TWODOOR-CRITERIA-002
+    component: two_door
+    behavior: Minimax regret and maximin incremental gain retain their different choices and exact ties without a hidden nonnegative-gain gate.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_criteria_scores_and_negative_gain_selection
+      - tests/test_two_door.py::TestTwoDoor::test_regret_matches_independent_absolute_losses
+    origin: feature
+  - id: TWODOOR-REGIONS-002
+    component: two_door
+    behavior: Exact continuous selector boundaries, triple ties, and exported region interiors agree with the finite-model selector.
+    level: unit
+    status: implemented
+    test_refs:
+      - tests/test_two_door.py::TestTwoDoor::test_selector_boundaries_and_plot_regions
+    origin: feature
+  - id: FIGURE-SOURCE-001
+    component: two_door_figure
+    behavior: The renderer consumes only authoritative plot geometry and rejects missing, nonfinite, out-of-domain coordinates and unknown policy labels.
+    level: contract
+    status: implemented
+    test_refs:
+      - tests/test_two_door_figure.py::TestTwoDoorFigure::test_invalid_geometry_is_rejected
+    origin: feature
+  - id: FIGURE-RENDER-001
+    component: two_door_figure
+    behavior: Both panels preserve source polygons, equality boundaries, tie points and policy labels without importing the calculator.
+    level: integration
+    status: implemented
+    test_refs:
+      - tests/test_two_door_figure.py::TestTwoDoorFigure::test_panels_preserve_exported_geometry_and_legible_labels
+    origin: feature
+  - id: FIGURE-EXPORT-001
+    component: two_door_figure
+    behavior: Figure exports retain the approved two-panel physical size and raster resolution while preserving vector PDF output and refusing final-artifact overwrites.
+    level: integration
+    status: implemented
+    test_refs:
+      - tests/test_two_door_figure.py::TestTwoDoorFigure::test_exports_preserve_physical_size_vector_pdf_and_draft_guard
     origin: feature

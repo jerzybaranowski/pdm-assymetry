@@ -1,28 +1,73 @@
 {
-  "continuous_regions": {
-    "A_strictly_preferred": "d_A > max(a_positive_above_d_a, a_beats_b_above_d_a)",
-    "B_strictly_preferred": "beta > b_positive_above_beta and d_A < a_beats_b_above_d_a",
-    "baseline_weakly_dominates": "beta <= b_positive_above_beta and d_A <= a_positive_above_d_a",
-    "coefficients": {
-      "m1": {
-        "g_a_beta_d_a": "10",
-        "g_a_constant": "-1",
-        "g_a_d_a": "1",
-        "g_b_beta": "9/2",
-        "g_b_constant": "-1/10"
-      },
-      "m2": {
-        "g_a_beta_d_a": "7/2",
-        "g_a_constant": "-1",
-        "g_a_d_a": "1",
-        "g_b_beta": "9/2",
-        "g_b_constant": "-1/10"
-      }
-    },
-    "ties": "Equality in a required comparison prevents strict preference."
+  "decision_protocol": {
+    "absolute_loss_caution": "Maximin incremental gain need not minimize worst absolute loss when model-specific baseline losses differ.",
+    "comparator": "Maximin incremental gain among the same undominated policies.",
+    "historical_strict_rule": "Retired diagnostic only; its fallback can select a dominated baseline.",
+    "main": "Minimax regret among pointwise-undominated deterministic policies.",
+    "negative_gain_states": "Zero-based indices of the supplied evaluations; a selected policy can lose relative to baseline in a retained model.",
+    "nonnegative_gain_gate": false,
+    "ties": "All equal criterion optimizers are retained; equivalent gain vectors do not dominate each other."
   },
   "full_rectangle": {
     "all_models_decision": {
+      "baseline_dominated_by": [],
+      "choice": "B",
+      "common_improving_policies": [],
+      "dominated_by": {
+        "A": [],
+        "B": [],
+        "baseline": []
+      },
+      "maximin_gain": {
+        "minimum_gain": "0",
+        "policies": [
+          "baseline"
+        ]
+      },
+      "minimax_regret": {
+        "maximum_regret": "9/4",
+        "policies": [
+          "B"
+        ]
+      },
+      "policy_metrics": {
+        "A": {
+          "maximum_regret": "197/80",
+          "minimum_gain": "-3/4",
+          "negative_gain_states": [
+            0,
+            1,
+            4,
+            5,
+            6
+          ]
+        },
+        "B": {
+          "maximum_regret": "9/4",
+          "minimum_gain": "-1/10",
+          "negative_gain_states": [
+            0,
+            1,
+            4,
+            5
+          ]
+        },
+        "baseline": {
+          "maximum_regret": "22/5",
+          "minimum_gain": "0",
+          "negative_gain_states": []
+        }
+      },
+      "selected_policies": [
+        "B"
+      ],
+      "undominated_policies": [
+        "baseline",
+        "A",
+        "B"
+      ]
+    },
+    "historical_strict_rule": {
       "baseline_dominated_by": [],
       "choice": "fallback",
       "common_improving_policies": [],
@@ -105,6 +150,59 @@
         ],
         "decision": {
           "baseline_dominated_by": [],
+          "choice": "A",
+          "common_improving_policies": [],
+          "dominated_by": {
+            "A": [],
+            "B": [],
+            "baseline": []
+          },
+          "maximin_gain": {
+            "minimum_gain": "0",
+            "policies": [
+              "baseline"
+            ]
+          },
+          "minimax_regret": {
+            "maximum_regret": "33/20",
+            "policies": [
+              "A"
+            ]
+          },
+          "policy_metrics": {
+            "A": {
+              "maximum_regret": "33/20",
+              "minimum_gain": "-3/4",
+              "negative_gain_states": [
+                0,
+                1
+              ]
+            },
+            "B": {
+              "maximum_regret": "9/4",
+              "minimum_gain": "-1/10",
+              "negative_gain_states": [
+                0,
+                1
+              ]
+            },
+            "baseline": {
+              "maximum_regret": "22/5",
+              "minimum_gain": "0",
+              "negative_gain_states": []
+            }
+          },
+          "selected_policies": [
+            "A"
+          ],
+          "undominated_policies": [
+            "baseline",
+            "A",
+            "B"
+          ]
+        },
+        "historical_strict_rule": {
+          "baseline_dominated_by": [],
           "choice": "fallback",
           "common_improving_policies": [],
           "maximum_a_minus_b": "9/4",
@@ -185,6 +283,61 @@
         ],
         "decision": {
           "baseline_dominated_by": [],
+          "choice": "B",
+          "common_improving_policies": [],
+          "dominated_by": {
+            "A": [
+              "B"
+            ],
+            "B": [],
+            "baseline": []
+          },
+          "maximin_gain": {
+            "minimum_gain": "0",
+            "policies": [
+              "baseline"
+            ]
+          },
+          "minimax_regret": {
+            "maximum_regret": "1/10",
+            "policies": [
+              "B"
+            ]
+          },
+          "policy_metrics": {
+            "A": {
+              "maximum_regret": "197/80",
+              "minimum_gain": "-3/4",
+              "negative_gain_states": [
+                0,
+                1,
+                2
+              ]
+            },
+            "B": {
+              "maximum_regret": "1/10",
+              "minimum_gain": "-1/10",
+              "negative_gain_states": [
+                0,
+                1
+              ]
+            },
+            "baseline": {
+              "maximum_regret": "43/20",
+              "minimum_gain": "0",
+              "negative_gain_states": []
+            }
+          },
+          "selected_policies": [
+            "B"
+          ],
+          "undominated_policies": [
+            "baseline",
+            "B"
+          ]
+        },
+        "historical_strict_rule": {
+          "baseline_dominated_by": [],
           "choice": "fallback",
           "common_improving_policies": [],
           "maximum_a_minus_b": "0",
@@ -257,6 +410,28 @@
     "specification": "notes/12_two_door_model_specification.md, Section 8"
   },
   "interpretation": "Exact hypothetical decision calculation; no physical-failure or station-performance estimates.",
+  "model_specific_regions": {
+    "A_strictly_preferred": "d_A > max(a_positive_above_d_a, a_beats_b_above_d_a)",
+    "B_strictly_preferred": "beta > b_positive_above_beta and d_A < a_beats_b_above_d_a",
+    "baseline_weakly_dominates": "beta <= b_positive_above_beta and d_A <= a_positive_above_d_a",
+    "coefficients": {
+      "m1": {
+        "g_a_beta_d_a": "10",
+        "g_a_constant": "-1",
+        "g_a_d_a": "1",
+        "g_b_beta": "9/2",
+        "g_b_constant": "-1/10"
+      },
+      "m2": {
+        "g_a_beta_d_a": "7/2",
+        "g_a_constant": "-1",
+        "g_a_d_a": "1",
+        "g_b_beta": "9/2",
+        "g_b_constant": "-1/10"
+      }
+    },
+    "ties": "Equality in a required comparison prevents strict preference."
+  },
   "representative_cases": [
     {
       "beta": "0",
@@ -273,8 +448,7 @@
         }
       },
       "d_a": "9/10",
-      "id": "uninformative_exposure",
-      "model_set": {
+      "historical_strict_rule": {
         "baseline_dominated_by": [],
         "choice": "baseline",
         "common_improving_policies": [],
@@ -283,6 +457,62 @@
         "minimum_g_a": "-1/10",
         "minimum_g_b": "-1/10",
         "operational_action": "baseline"
+      },
+      "id": "uninformative_exposure",
+      "model_set": {
+        "baseline_dominated_by": [],
+        "choice": "baseline",
+        "common_improving_policies": [],
+        "dominated_by": {
+          "A": [
+            "baseline"
+          ],
+          "B": [
+            "baseline"
+          ],
+          "baseline": []
+        },
+        "maximin_gain": {
+          "minimum_gain": "0",
+          "policies": [
+            "baseline"
+          ]
+        },
+        "minimax_regret": {
+          "maximum_regret": "0",
+          "policies": [
+            "baseline"
+          ]
+        },
+        "policy_metrics": {
+          "A": {
+            "maximum_regret": "1/10",
+            "minimum_gain": "-1/10",
+            "negative_gain_states": [
+              0,
+              1
+            ]
+          },
+          "B": {
+            "maximum_regret": "1/10",
+            "minimum_gain": "-1/10",
+            "negative_gain_states": [
+              0,
+              1
+            ]
+          },
+          "baseline": {
+            "maximum_regret": "0",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          }
+        },
+        "selected_policies": [
+          "baseline"
+        ],
+        "undominated_policies": [
+          "baseline"
+        ]
       },
       "models": {
         "m1": {
@@ -328,8 +558,7 @@
         }
       },
       "d_a": "9/10",
-      "id": "agreement_and_route_disagreement",
-      "model_set": {
+      "historical_strict_rule": {
         "baseline_dominated_by": [
           "A",
           "B"
@@ -344,6 +573,62 @@
         "minimum_g_a": "53/100",
         "minimum_g_b": "4/5",
         "operational_action": "baseline"
+      },
+      "id": "agreement_and_route_disagreement",
+      "model_set": {
+        "baseline_dominated_by": [
+          "A",
+          "B"
+        ],
+        "choice": "A",
+        "common_improving_policies": [
+          "A",
+          "B"
+        ],
+        "dominated_by": {
+          "A": [],
+          "B": [],
+          "baseline": [
+            "A",
+            "B"
+          ]
+        },
+        "maximin_gain": {
+          "minimum_gain": "4/5",
+          "policies": [
+            "B"
+          ]
+        },
+        "minimax_regret": {
+          "maximum_regret": "27/100",
+          "policies": [
+            "A"
+          ]
+        },
+        "policy_metrics": {
+          "A": {
+            "maximum_regret": "27/100",
+            "minimum_gain": "53/100",
+            "negative_gain_states": []
+          },
+          "B": {
+            "maximum_regret": "9/10",
+            "minimum_gain": "4/5",
+            "negative_gain_states": []
+          },
+          "baseline": {
+            "maximum_regret": "17/10",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          }
+        },
+        "selected_policies": [
+          "A"
+        ],
+        "undominated_policies": [
+          "A",
+          "B"
+        ]
       },
       "models": {
         "m1": {
@@ -389,8 +674,7 @@
         }
       },
       "d_a": "2/5",
-      "id": "detection_reversal",
-      "model_set": {
+      "historical_strict_rule": {
         "baseline_dominated_by": [
           "B"
         ],
@@ -403,6 +687,62 @@
         "minimum_g_a": "-8/25",
         "minimum_g_b": "4/5",
         "operational_action": "B"
+      },
+      "id": "detection_reversal",
+      "model_set": {
+        "baseline_dominated_by": [
+          "B"
+        ],
+        "choice": "B",
+        "common_improving_policies": [
+          "B"
+        ],
+        "dominated_by": {
+          "A": [
+            "B"
+          ],
+          "B": [],
+          "baseline": [
+            "B"
+          ]
+        },
+        "maximin_gain": {
+          "minimum_gain": "4/5",
+          "policies": [
+            "B"
+          ]
+        },
+        "minimax_regret": {
+          "maximum_regret": "0",
+          "policies": [
+            "B"
+          ]
+        },
+        "policy_metrics": {
+          "A": {
+            "maximum_regret": "28/25",
+            "minimum_gain": "-8/25",
+            "negative_gain_states": [
+              1
+            ]
+          },
+          "B": {
+            "maximum_regret": "0",
+            "minimum_gain": "4/5",
+            "negative_gain_states": []
+          },
+          "baseline": {
+            "maximum_regret": "4/5",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          }
+        },
+        "selected_policies": [
+          "B"
+        ],
+        "undominated_policies": [
+          "B"
+        ]
       },
       "models": {
         "m1": {
@@ -448,8 +788,7 @@
         }
       },
       "d_a": "3/5",
-      "id": "inspection_tie",
-      "model_set": {
+      "historical_strict_rule": {
         "baseline_dominated_by": [
           "A",
           "B"
@@ -464,6 +803,63 @@
         "minimum_g_a": "1/50",
         "minimum_g_b": "4/5",
         "operational_action": "baseline"
+      },
+      "id": "inspection_tie",
+      "model_set": {
+        "baseline_dominated_by": [
+          "A",
+          "B"
+        ],
+        "choice": "B",
+        "common_improving_policies": [
+          "A",
+          "B"
+        ],
+        "dominated_by": {
+          "A": [
+            "B"
+          ],
+          "B": [],
+          "baseline": [
+            "A",
+            "B"
+          ]
+        },
+        "maximin_gain": {
+          "minimum_gain": "4/5",
+          "policies": [
+            "B"
+          ]
+        },
+        "minimax_regret": {
+          "maximum_regret": "0",
+          "policies": [
+            "B"
+          ]
+        },
+        "policy_metrics": {
+          "A": {
+            "maximum_regret": "39/50",
+            "minimum_gain": "1/50",
+            "negative_gain_states": []
+          },
+          "B": {
+            "maximum_regret": "0",
+            "minimum_gain": "4/5",
+            "negative_gain_states": []
+          },
+          "baseline": {
+            "maximum_regret": "4/5",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          }
+        },
+        "selected_policies": [
+          "B"
+        ],
+        "undominated_policies": [
+          "B"
+        ]
       },
       "models": {
         "m1": {
@@ -510,8 +906,7 @@
         }
       },
       "d_a": "9/10",
-      "id": "baseline_tie",
-      "model_set": {
+      "historical_strict_rule": {
         "baseline_dominated_by": [],
         "choice": "fallback",
         "common_improving_policies": [],
@@ -520,6 +915,57 @@
         "minimum_g_a": "-3/100",
         "minimum_g_b": "0",
         "operational_action": "baseline"
+      },
+      "id": "baseline_tie",
+      "model_set": {
+        "baseline_dominated_by": [],
+        "choice": "A",
+        "common_improving_policies": [],
+        "dominated_by": {
+          "A": [],
+          "B": [],
+          "baseline": []
+        },
+        "maximin_gain": {
+          "minimum_gain": "0",
+          "policies": [
+            "baseline",
+            "B"
+          ]
+        },
+        "minimax_regret": {
+          "maximum_regret": "3/100",
+          "policies": [
+            "A"
+          ]
+        },
+        "policy_metrics": {
+          "A": {
+            "maximum_regret": "3/100",
+            "minimum_gain": "-3/100",
+            "negative_gain_states": [
+              1
+            ]
+          },
+          "B": {
+            "maximum_regret": "1/10",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          },
+          "baseline": {
+            "maximum_regret": "1/10",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          }
+        },
+        "selected_policies": [
+          "A"
+        ],
+        "undominated_policies": [
+          "baseline",
+          "A",
+          "B"
+        ]
       },
       "models": {
         "m1": {
@@ -566,8 +1012,7 @@
         }
       },
       "d_a": "9/10",
-      "id": "upper_endpoint",
-      "model_set": {
+      "historical_strict_rule": {
         "baseline_dominated_by": [
           "A",
           "B"
@@ -582,6 +1027,62 @@
         "minimum_g_a": "59/40",
         "minimum_g_b": "43/20",
         "operational_action": "baseline"
+      },
+      "id": "upper_endpoint",
+      "model_set": {
+        "baseline_dominated_by": [
+          "A",
+          "B"
+        ],
+        "choice": "A",
+        "common_improving_policies": [
+          "A",
+          "B"
+        ],
+        "dominated_by": {
+          "A": [],
+          "B": [],
+          "baseline": [
+            "A",
+            "B"
+          ]
+        },
+        "maximin_gain": {
+          "minimum_gain": "43/20",
+          "policies": [
+            "B"
+          ]
+        },
+        "minimax_regret": {
+          "maximum_regret": "27/40",
+          "policies": [
+            "A"
+          ]
+        },
+        "policy_metrics": {
+          "A": {
+            "maximum_regret": "27/40",
+            "minimum_gain": "59/40",
+            "negative_gain_states": []
+          },
+          "B": {
+            "maximum_regret": "9/4",
+            "minimum_gain": "43/20",
+            "negative_gain_states": []
+          },
+          "baseline": {
+            "maximum_regret": "22/5",
+            "minimum_gain": "0",
+            "negative_gain_states": []
+          }
+        },
+        "selected_policies": [
+          "A"
+        ],
+        "undominated_policies": [
+          "A",
+          "B"
+        ]
       },
       "models": {
         "m1": {
@@ -612,5 +1113,32 @@
         }
       }
     }
-  ]
+  ],
+  "selector_boundaries": {
+    "beta_entry_a": "4/243",
+    "beta_zero_b": "1/45",
+    "maximin_gain": {
+      "beta_boundary": "1/45",
+      "interpretation": "Baseline below this beta, B above it, and baseline/B tied at equality for all approved d_A."
+    },
+    "minimax_regret": {
+      "above_beta_zero_b": {
+        "denominator_beta": "27/2",
+        "denominator_constant": "2",
+        "numerator_beta": "9",
+        "numerator_constant": "9/5"
+      },
+      "below_beta_zero_b": {
+        "denominator_beta": "27/2",
+        "denominator_constant": "2",
+        "numerator_beta": "0",
+        "numerator_constant": "2"
+      },
+      "interpretation": "A above each curve; baseline below the lower-beta curve; B below the upper-beta curve. Equality retains both, with a triple tie at their junction."
+    },
+    "triple_tie": [
+      "1/45",
+      "20/23"
+    ]
+  }
 }

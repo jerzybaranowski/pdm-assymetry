@@ -2,9 +2,19 @@
 
 **Audit date:** 2026-10-19  
 **Target:** *Symmetry*, Engineering and Materials  
-**Current assessment:** **Round 1 review assessment completed; substantive scientific revision proposed, not yet implemented; AI disclosure deferred**
+**Current assessment:** **Bounded Round 1 revision implemented; current two-door figure approved and configuration verified; AI disclosure deferred**
 
-## Current revision status — 2026-10-26
+## Current implementation status — 2026-10-26
+
+The author requested a checkpoint commit followed by implementation. Commit `0f7a169` saves the prior manuscript, numerical results, reviews, and assessment. The subsequent working-tree revision implements dominance filtering, minimax regret as the main illustration, and maximin incremental gain as a comparator, preserving all numerical inputs. The [specification addendum](notes/12_two_door_model_specification.md#9-decision-rule-revision-authorized-on-2026-10-26) records this change; the [implementation report](notes/17_round1_revision_report.md) records its evidence and limits.
+
+The manuscript now includes a completed decision record, clearer checklist consequences and evidence states, four verified literature additions, narrowed inference/usability claims, and a two-panel decision-region figure. The redundant station-chain figure is no longer included; its source is preserved. The review draft builds to 18 pages with no unresolved citations/references, missing characters, or overfull/underfull boxes; the known `xcolor` warning remains. On 2026-10-26 the author explicitly approved the current two-door render, its two-panel layout at 138.6 × 85 mm, vector PDF, and 300 dpi PNG. After recording that approval, the full suite passed 18 tests and 69 subtests, all 16 catalog entries validated, and figure configuration/schema/project-state checks reported zero blockers and zero warnings. The five existing non-fatal PyMuPDF SWIG warnings remain. The approved render and manuscript PDF are unchanged.
+
+Supplement S1 is prepared locally at `output/supplement/two-door-calculation.zip`. Its extracted calculation regenerated all three reference outputs byte-for-byte. It has not been deposited or submitted. The [Round 1 response matrix](reviews/round1/response_matrix.md) separates implemented changes from partial, declined, and deferred requests.
+
+**Remaining author matters:** review the scientific revision; resolve the previously deferred AI declaration, affiliation presentation, and submission-history declarations; verify any grant identifier before adding it. No empirical case, learned Bayesian observation chain, counting-value model, or fleet simulation was added. Only the initial checkpoint was committed; the revision remains an uncommitted author-review draft in the working tree. The figure approval does not authorize a figure package, upload, or submission; none was performed. No push was performed. Earlier status sections below are historical.
+
+## Historical review assessment — 2026-10-26
 
 The author requested analysis of the four new [simulated reviews](reviews/round1/README.md). The [Round 1 assessment and proposed revision](notes/16_round1_revision_assessment.md) records the checked mathematics, review coverage, literature findings, and recommended scope. This was an assessment task: the manuscript, bibliography, numerical specification, calculation code/artifacts, diagrams, and review PDF were not changed.
 

@@ -2,22 +2,24 @@
 
 The Overleaf source was imported on 2026-10-19 in commit `3015f9b285d5333768cc446a04e4278fc547743c`. The current source contains a substantive conceptual revision under the existing invited title. It is ready for author review, with the AI disclosure deliberately red for later revision.
 
-The live issue dispositions are in [`../AUDIT.md`](../AUDIT.md). Current editorial and artifact checks are recorded in [`../notes/15_editorial_consistency_report.md`](../notes/15_editorial_consistency_report.md); the approved numerical calculation and its tests are documented in [`../notes/14_numerical_example_report.md`](../notes/14_numerical_example_report.md). The preceding revisions remain in [`../notes/13_round0_revision_report.md`](../notes/13_round0_revision_report.md) and [`../notes/08_manuscript_revision_report.md`](../notes/08_manuscript_revision_report.md).
+The live issue dispositions are in [`../AUDIT.md`](../AUDIT.md). Current implementation and artifact checks are in [`../notes/17_round1_revision_report.md`](../notes/17_round1_revision_report.md), with the [Round 1 response matrix](../reviews/round1/response_matrix.md). Checkpoint commit `0f7a169` preserves the preceding draft and review assessment. Earlier reports retain their historical verification scope.
 
 ## Canonical files
 
 - `template.tex` — manuscript wording, structure, abstract, keywords, citations, and declarations.
-- `extracted.bib` — canonical reference library: 32 entries, 23 cited in the revised text.
+- `extracted.bib` — canonical reference library: 36 entries, 26 cited in the revised text.
 - `generated/two_door_results.tex` — numerical comparison table generated from `../simulations/two_door/parameters.json`; do not edit the table manually.
-- `diagram.tex` and `inferencechain.tex` — the two active inline conceptual diagrams.
-- `conceptual_heatmap.tex` and `pioritisationoutput.tex` — historical schematic sources, no longer inputs to the revised article.
+- `diagram.tex` — the active conceptual overview.
+- `figures/two_door_decisions.pdf` — the active numerical figure, generated from calculator-exported geometry using `../scripts/plot_two_door.py` and `../config/figures.yaml`.
+- `inferencechain.tex`, `conceptual_heatmap.tex`, and `pioritisationoutput.tex` — historical conceptual sources, no longer included in the article.
+- `supplement/README.md` — instructions included in the locally prepared Supplement S1 archive.
 - `Definitions/` — MDPI class/styles/assets; no vendor source was edited.
 
 Exact manuscript wording and keys are authoritative here; historical notes preserve rationale and earlier proposals. Limited-Data Predictive Maintenance (LD-PdM) and the invited title are retained.
 
 ## Current content
 
-The Round 0 revision provides an applicability checklist, a five-step assessment procedure, and an analytical and numerical two-door policy comparison with explicit baseline and fallback. Five tables distinguish applicability, quantities, station assumptions, numerical choices, and adjacent approaches. Six equations are used in the argument. The numerical illustration implements the author's approved hypothetical inputs with exact arithmetic and continuous decision boundaries. It explicitly shows that the stipulated fallback can forgo beneficial early inspection; the procedure now separates that illustrative convention from the requirement to specify an operational fallback. The 2026-10-25 pass also clarifies definitions, historical intervals, empirical-evidence limits, and existing figure-arrow conventions. No empirical performance result is claimed. Individual review dispositions are in [`../reviews/round0/response_matrix.md`](../reviews/round0/response_matrix.md).
+The Round 1 revision provides an applicability checklist, a five-step procedure, a completed decision record, and an exact two-door comparison. Six tables, two figures, and seven numbered equations support the argument. Dominance filtering precedes the main minimax-regret criterion and maximin-incremental-gain comparator. Their different choices and exact ties are explicit, including a case where minimax regret accepts negative gain in one model. Numerical inputs remain unchanged; the old strict fallback survives only as an identified historical code diagnostic. The example stipulates the exposure/condition relationships and makes no empirical performance or learned-inference claim.
 
 Reference verification, claim scope, and full-text limitations are recorded in [`../literature/03_claim_source_matrix.md`](../literature/03_claim_source_matrix.md). Retain candidates outside `extracted.bib` until they are actually cited.
 
@@ -29,11 +31,11 @@ From this directory:
 latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=../build/manuscript template.tex
 ```
 
-The numerical table is already included. To regenerate it first, run `python3 simulations/two_door/calculate.py` from the repository root; see the [calculation guide](../simulations/two_door/README.md).
+The generated table and figure are included. To regenerate the analytical artifacts, run `python3 simulations/two_door/calculate.py` from the repository root; see the [calculation guide](../simulations/two_door/README.md). Figure rendering and its approval state are described in the [figure guide](../tools/figures/README.md). The standalone calculation is also supplied in `../output/supplement/two-door-calculation.zip`; extracted regeneration was checked byte-for-byte.
 
-TeX Live 2024 and latexmk 4.83 produce an 18-page PDF after the editorial continuation on 2026-10-25, without unresolved citations/references, missing characters, or overfull/underfull boxes. All pages were rendered and visually inspected; the abbreviations heading and table are kept together. The abstract/keywords, single-author option, year, header height, and previous width problems are repaired. A non-fatal `xcolor` load-time-option warning remains within the bundled class/PGF loading sequence.
+The 2026-10-26 Round 1 draft builds to 18 pages without unresolved citations/references, missing characters, or overfull/underfull boxes. The implementation report records the visual inspection and post-approval checks: 18 tests and 69 subtests passed, 16 catalog entries validated, and figure configuration/schema/project-state checks reported zero blockers and zero warnings. The existing non-fatal `xcolor` and PyMuPDF SWIG warnings remain. On 2026-10-26 the author explicitly approved the current two-door figure, its two-panel 138.6 × 85 mm layout, vector PDF, and 300 dpi PNG. No figure package or external upload was made; neither the supplement nor article has been submitted.
 
-The review PDF is saved as `../output/pdf/ld-pdm-conceptual-revision.pdf`. It is a review draft with the requested red AI disclosure, not a submission authorization.
+The review PDF is saved as `../output/pdf/ld-pdm-conceptual-revision.pdf`. The revision remains an uncommitted author-review draft with the requested red AI disclosure; figure approval does not authorize submission.
 
 ## Diagram previews
 

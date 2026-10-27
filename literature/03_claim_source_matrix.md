@@ -6,6 +6,8 @@ The GPECOM content and contribution check was extended on 2026-10-21 using the p
 
 **Round 0 update, 2026-10-23:** [focused source checks](05_round0_source_checks.md) document the two added, cited references on usage/load-based maintenance and soft sensing, plus rechecks of disputed metadata. The canonical library now contains 32 records, 23 cited. Ren, Xin/Gou, Buznikov, Zhou and Burnac remain in the library but are no longer used as general indirect-sensing representatives in the manuscript. The historical checks below remain evidence records, not a statement that all those sources are currently cited.
 
+**Round 1 update, 2026-10-26:** [focused source checks](06_round1_source_checks.md) record four additions for the approved revision: `Tiddens2018PdMSelection`, `Troffaes2007ImpreciseDecisions`, `Arcieri2023RobustMaintenance`, and `CookeBedford2002ReliabilityData`. They support suitability assessment, dominance/selection criteria, model-uncertain maintenance planning, and maintenance-dependent histories. Existing keys are preserved. The canonical library contains 36 records; final cited counts depend on manuscript integration. Earlier counts below are dated verification records.
+
 ## How to read the evidence status
 
 - **Direct support:** the inspected source explicitly addresses the limited statement listed here. This does not establish its prevalence across all maintenance settings.

@@ -1,0 +1,17 @@
+{
+  "configuration": "config/figures.yaml",
+  "valid": false,
+  "summary": {
+    "blocking": 1,
+    "warning": 0,
+    "info": 0
+  },
+  "issues": [
+    {
+      "severity": "blocking",
+      "code": "custom-dimensions-not-approved",
+      "location": "$.figures.two-door-decisions.specification.approvals.custom_dimensions",
+      "message": "Custom figure dimensions require explicit user approval."
+    }
+  ]
+}

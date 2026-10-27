@@ -1,7 +1,7 @@
 # Round 1 review assessment and proposed revision
 
 **Date:** 2026-10-26  
-**Status:** Assessment and proposal; manuscript revision not implemented or approved by this note.  
+**Status:** Historical assessment and proposal. On 2026-10-26 the author instructed implementation after checkpoint commit `0f7a169`; see [the specification addendum](12_two_door_model_specification.md#9-decision-rule-revision-authorized-on-2026-10-26). Approval statements below describe the assessment stage before that instruction.
 **Reviewed version:** 2026-10-25 manuscript and 18-page PDF, SHA-256 `476c89fe8dd86bd3e7e21c8a9ca2e7c8fc9b682e6b13e31ac5ea8e0e660bb8c4`.  
 **Reviews:** Four [simulated internal reviews](../reviews/round1/README.md), not journal decisions. Review references below identify numbered major comments, for example R2.1.
 
